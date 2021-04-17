@@ -40,7 +40,7 @@ h2 {
   color: white;
   font-size: 18px;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto ;
   justify-content: space-between;
 }
 
@@ -48,9 +48,9 @@ h2 {
   width: 2rem;
 }
 
-.icons {
-  display: grid;
-  grid-template-columns: auto auto auto;
+.icons { 
+  display: flex;
+  grid-template-columns: auto auto auto; 
   margin-right: 2.5rem;
 }
 
@@ -102,7 +102,7 @@ h2 {
   /* padding: 0.5rem; */
   border: 1px solid grey;
   border-radius: 0.5rem;
-  height: min-content;
+  height: max-content;
   width: 212px;
   display: flex;
   flex-direction: column;
@@ -169,4 +169,59 @@ h2 {
 }
 .margin1{
   margin: 1rem;
+}
+.textArea{
+  max-lines: 5;
+  
+}
+.checkoutbtn{
+  padding: 0.5rem;
+  background-color: navy;
+  color: white;
+}
+.form{
+  text-align: center;
+}
+
+
+.form form{
+display: flex;  
+flex-direction: column; 
+padding: 1rem;
+
+}
+.form label{
+  font-weight: bolder;
+  margin: 0.5rem;
+  
+  
+}
+.form input{
+  border: none;
+  width: 40%;
+  background-color: white;
+  color: black;
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-left: 1rem;
+  
+  
+}
+.form button{
+width: auto; 
+border: none;
+background-color: navy;
+color: white;
+font-weight: bolder;
+font-size: larger;
+border-radius: 0.5rem; 
+padding: 0.5rem;
+margin: 2rem 15rem;
+
+}
+.addressBox {
+  text-align: left;
+  margin: 1rem 2rem;
+  padding: 1rem;
+  border: 1px solid grey;
 }

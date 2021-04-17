@@ -261,7 +261,8 @@ function ProductListing(){
             ? "red"
             : "grey"}}></i></span>
             </div>
-            <span>{item.description}</span>
+            
+            <span className="textArea">{item.description}</span>
             <span>{item.material}</span>
             <span>{item.fastDelivery}</span>
             <span>{item.inStock}</span>
