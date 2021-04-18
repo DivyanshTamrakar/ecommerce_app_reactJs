@@ -1,24 +1,23 @@
 import { useState } from "react";
+import { useAddress } from "../context/AddressContext";
+import { v4 as uuidv4 } from 'uuid';
+import { Link } from "react-router-dom";
 
 export default function Address(){
-    let [address,setaddress] = useState([]);
+    let {address,setAddress}  = useAddress();
     const [addclick,setclick]  =useState(false);
+    
+    let selectAddress = 0;
+    const [radiovalue,setradiovalue] = useState(selectAddress);
     let name, mobile, locality, fulladd, state, pincode, city;
 
 
     function SubmitHandler(e){
         e.preventDefault();
-        // console.log(name);
-        // console.log(mobile);
-        // console.log(locality);
-        // console.log(fulladd);
-        // console.log(state);
-        // console.log(pincode);
-        // console.log(city);
-
-        setaddress([
+        setAddress([
             ...address,
-            {name:name,
+            {id:uuidv4(),
+              name:name,
              mobile:mobile,
              locality:locality,
               fulladd :fulladd,
@@ -27,7 +26,17 @@ export default function Address(){
                  city:city}
         ])
         setclick(false);
-        console.log(address);
+     
+
+    }
+
+    function radiohandler(e){
+      setradiovalue(
+        selectAddress = e.target.value
+      )
+      console.log(` target value ${e.target.value}`)
+      console.log(` Select Address ${selectAddress}`)
+      
 
     }
 
@@ -38,9 +47,22 @@ export default function Address(){
 
 {
     <ul style={{ listStyleType: "none" }}>
-        {address.map((address) => (
+        {address.map((address,index) => (
           <>
+                    
+               
+               
+          {/* radio  button */}
+          {/* <span>{index}</span> */}
             <div className="addressBox">
+              
+              <label>
+              <input onClick={radiohandler} type="radio" name="add" value={address.id}/>
+              </label>
+               
+              
+              
+              
               <li
                 style={{ fontSize: "25px", fontWeight: "bolder" }}
               >
@@ -62,10 +84,31 @@ export default function Address(){
                   ,{address.country}
                 </li>
               </div>
-
               <li style={{ marginTop: "0.3rem", fontWeight: "bold" }}>
                 {address.pincode}
               </li>
+
+{/* Edit and delete */}
+
+              <li style={{ marginTop: "0.3rem", fontWeight: "bold" }}>
+                <button className="primarybtn" style={{marginRight:'0.5rem'}}>Delete Address</button>
+                <button className="primarybtn"><i class="fa fa-edit"></i>Edit Address</button>
+              </li>
+
+{/* deliver to address  */}
+
+              { radiovalue === address.id ?
+              <li >
+                <Link to="/ordersummary">
+                <button style={{ marginTop: "0.3rem", fontWeight: "bold",width:"100%", backgroundColor:"green",padding:"0.5rem",color:"white" }}
+                > Deliver to this address</button>
+                   </Link>
+              </li>:<div></div>
+              }
+
+
+
+
             </div>
           </>
         ))}

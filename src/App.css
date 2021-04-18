@@ -225,3 +225,12 @@ margin: 2rem 15rem;
   padding: 1rem;
   border: 1px solid grey;
 }
+
+
+
+
+.primarybtn{
+  padding:0.2rem;
+  background-color: navy;
+  color: white;
+}

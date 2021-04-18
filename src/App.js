@@ -7,6 +7,8 @@ import Wishlist from "./Components/Wishlist";
 import {  Routes,Route,Link,Navigate} from "react-router-dom";
 import Login from './Components/Login';
 import Address from './Components/address';
+import OrderSummary  from "./Components/OrderSummary";
+
 
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
      <Route path="/wishlists" element={<Wishlist/>}/>
      <Route path="/login" element={<Login/>}/>
      <Route path="/address" element={<Address/>}/>
+     <Route path="/ordersummary" element={<OrderSummary/>}/>
       </Routes>
       
       
