@@ -9,7 +9,7 @@ export default function Address(){
     
     let selectAddress = 0;
     const [radiovalue,setradiovalue] = useState(selectAddress);
-    let name, mobile, locality, fulladd, state, pincode, city;
+    let name, mobile, fulladd, state, pincode, city;
 
 
     function SubmitHandler(e){
@@ -19,7 +19,6 @@ export default function Address(){
             {id:uuidv4(),
               name:name,
              mobile:mobile,
-             locality:locality,
               fulladd :fulladd,
                state:state, 
                 pincode:pincode,
@@ -47,7 +46,7 @@ export default function Address(){
 
 {
     <ul style={{ listStyleType: "none" }}>
-        {address.map((address,index) => (
+        {address.map((address) => (
           <>
                     
                
@@ -138,13 +137,7 @@ export default function Address(){
      pincode = e.target.value;
  }} type="number"  placeholder="Enter pincode" />
  </label>
-
-
- <label for="locality">Locality :
- <input onChange={(e)=>{
-     locality = e.target.value;
- }} type="text"  placeholder="Enter Locality" />
- </label>
+ 
  <label for="address">Address :
  <input onChange={(e)=>{
      fulladd = e.target.value;

@@ -4,8 +4,13 @@ import { useWishlist } from "../context/wishlist-context";
 
 function Cart(){
   const {itemInCart,setIteminCart} = useCart();
-  console.log(typeof(itemInCart));
+  
   const {setWishItemInCart} = useWishlist();
+  let totalprice = 0;
+  
+  
+  
+  
   function Removehandler(e) {
     console.log(e);
     const new_arr = itemInCart.filter(function (item, index) {
@@ -17,12 +22,18 @@ function Cart(){
     setIteminCart(new_arr);
   }
 
+
+
+
+
     return(
       <div>
         <div><h1>Cart</h1></div>  
         <div className="productbox">
       {itemInCart.map(function(item){
-        console.log(typeof(itemInCart.length));
+
+        totalprice = totalprice + parseInt(item.price);
+        
         return (
           <div key={item.id} className="productItem">
             <img className="corner-radius" src={item.image} height="200px" width="212px"/>
@@ -41,7 +52,6 @@ function Cart(){
         );
       })}
 
-      
       </div>
 
 

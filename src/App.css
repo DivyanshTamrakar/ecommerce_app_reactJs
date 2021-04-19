@@ -234,3 +234,33 @@ margin: 2rem 15rem;
   background-color: navy;
   color: white;
 }
+
+.OrderproductItem{
+  text-align: center;
+  border: 1px solid black;
+
+}
+.totalamount{
+  margin: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  text-align: left;
+}
+.placeOrder{
+  width: 100%;
+  margin: 1rem;
+  padding: 1rem;
+  border: none;
+  background-color: orange;
+  font-weight: bolder;
+  font-size: 1rem;
+  cursor: pointer;
+
+  color:black;
+  border-radius: 0.5rem;
+
+}
+.placeOrder:hover{
+  background-color: navy;
+  color: white;
+}
