@@ -5,6 +5,8 @@ function Wishlist(){
     console.log(WishItemInCart)
 
     return(
+
+    WishItemInCart.length!==0 ?
       <div>
         <div><h1>Your WishliSt {WishItemInCart.length}</h1></div>  
         <div className="productbox">
@@ -27,10 +29,17 @@ function Wishlist(){
       })}
       </div>
       </div>
+    
+    :
+    <div style={{marginTop:"10rem"}}>
+<span style={{fontSize:"3rem",fontWeight:"bolder"}}>
+Your Wishlist  is Empty 
+</span>
+
+    </div>
     );
 
 
 
     }
 export default Wishlist;    
-  

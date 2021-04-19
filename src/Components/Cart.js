@@ -27,7 +27,10 @@ function Cart(){
 
 
     return(
-      <div>
+    itemInCart.length!==0
+    ?
+    
+    <div>
         <div><h1>Cart</h1></div>  
         <div className="productbox">
       {itemInCart.map(function(item){
@@ -66,6 +69,16 @@ itemInCart.length !== 0 ?
 
 
       </div>
+    
+    :
+    <div style={{marginTop:"10rem"}}>
+<span style={{fontSize:"3rem",fontWeight:"bolder"}}>
+Your cart is Empty 
+</span>
+
+    </div>
+    
+    
     );
     }
 
