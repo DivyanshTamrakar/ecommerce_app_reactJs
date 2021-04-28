@@ -1,0 +1,266 @@
+*{
+  margin: 0px;
+  padding:0px;
+}
+.App {
+  text-align: center;
+  margin: 0rem;
+  padding: 0rem;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.cursor {
+  cursor: pointer;
+  border-radius: 1rem;
+}
+.corner-radius{
+  border-radius: 0.5rem;
+}
+
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0rem;
+  margin-block-end: 0rem;
+  margin-inline-start: 3rem;
+  margin-inline-end: 0rem;
+  margin-top: 0.4rem;
+  font-weight: bold;
+
+}
+
+.navigation {
+  width: 100%;
+  background-color: navy;
+  padding: 1rem;
+  color: white;
+  font-size: 18px;
+  display: grid;
+  grid-template-columns: auto auto ;
+  justify-content: space-between;
+}
+
+.Spacer {
+  width: 2rem;
+}
+
+.icons { 
+  display: flex;
+  grid-template-columns: auto auto auto; 
+  margin-right: 2.5rem;
+}
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.productbox {
+  width: 100%;
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  text-align: center;
+  grid-gap: 0px 2px;
+
+}
+
+.productItem {
+  margin: 0.5rem;
+  /* padding: 0.5rem; */
+  border: 1px solid grey;
+  border-radius: 0.5rem;
+  height: max-content;
+  width: 212px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.btn {
+  width: 50%;
+  padding: 0.5rem;
+  margin: 0.4rem 0.4rem;
+  background-color: navy;
+  border: none;
+  border-radius: 0.2rem;
+  width: 100%;
+  color: white;
+  align-self: left;
+}
+
+.notification {
+  /* background-color: #555; */
+  color: white;
+  text-decoration: none;
+  /* padding: 15px 26px; */
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+/* .notification:hover {
+  background: red;
+} */
+
+.notification .badge {
+  position: absolute;
+  top: -7px;
+  right: -12px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: black;
+  font-size: 15px;
+  color: white;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.namelike {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin:1rem 1rem;
+
+}
+.Sidebar{
+  margin: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  position: relative;
+  height: 18rem;
+  
+}
+.margin1{
+  margin: 1rem;
+}
+.textArea{
+  max-lines: 5;
+  
+}
+.checkoutbtn{
+  padding: 0.5rem;
+  background-color: navy;
+  color: white;
+}
+.form{
+  text-align: center;
+}
+
+
+.form form{
+display: flex;  
+flex-direction: column; 
+padding: 1rem;
+
+}
+.form label{
+  font-weight: bolder;
+  margin: 0.5rem;
+  
+  
+}
+.form input{
+  border: none;
+  width: 40%;
+  background-color: white;
+  color: black;
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-left: 1rem;
+  
+  
+}
+.form button{
+width: auto; 
+border: none;
+background-color: navy;
+color: white;
+font-weight: bolder;
+font-size: larger;
+border-radius: 0.5rem; 
+padding: 0.5rem;
+margin: 2rem 15rem;
+
+}
+.addressBox {
+  text-align: left;
+  margin: 1rem 2rem;
+  padding: 1rem;
+  border: 1px solid grey;
+}
+
+
+
+
+.primarybtn{
+  padding:0.2rem;
+  background-color: navy;
+  color: white;
+}
+
+.OrderproductItem{
+  text-align: center;
+  border: 1px solid black;
+
+}
+.totalamount{
+  margin: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  text-align: left;
+}
+.placeOrder{
+  width: 100%;
+  margin: 1rem;
+  padding: 1rem;
+  border: none;
+  background-color: orange;
+  font-weight: bolder;
+  font-size: 1rem;
+  cursor: pointer;
+
+  color:black;
+  border-radius: 0.5rem;
+
+}
+.placeOrder:hover{
+  background-color: navy;
+  color: white;
+}
