@@ -87,7 +87,7 @@ function ProductListing(){
       .filter(({ inStock }) => (showInventoryAll ? true : inStock));
   }
 
-  const sortedData = getSortedData(arr, sortBy);
+  const sortedData = getSortedData(productdata, sortBy);
   const filteredData = getfilteredData(sortedData, {
     showFastDeliveryOnly,
     showInventoryAll
@@ -98,7 +98,7 @@ function ProductListing(){
       <div style={{display:"grid" , gridTemplateColumns:"auto auto"}}>
         
       <div className="Sidebar">
-         <fieldset>
+         <fieldset style={{width:"14.2rem"}}>
 <legend>
   <i class="fa fa-filter"></i>
   <span style={{fontSize:"20px",fontWeight:"bolder",marginLeft:"0.3rem"}}>Filters</span></legend>
@@ -125,10 +125,10 @@ function ProductListing(){
          </fieldset>
        
 
-<div style={{height:"1.5rem"}}
+<div style={{height:"1rem"}}
 ></div>
 
-         <fieldset>
+         <fieldset style={{width:"14.2rem"}}>
 <legend><span style={{fontSize:"20px",fontWeight:"bolder",marginLeft:"0.3rem"}}>Sort By</span></legend>
 <div style={{margin:"1rem",textAlign:"left"}}>
   
@@ -188,7 +188,7 @@ function ProductListing(){
           );
         })}
         </div>
-        :<div> </div>
+        :<div className="loader"> </div>
       }
       </div>
     
