@@ -294,12 +294,28 @@ margin: 2rem 15rem;
   100% { transform: rotate(360deg); }
 }
 
+.loginBox{
+   width: max-content;
+  text-align:center;
+  border: 2px solid brown;
+  margin: 5rem;
+  margin-left: 10rem;
+}
+
 .loginForm{
   padding: 2rem;
   width: 100%;
   text-align: center;
 }
 .loginForm > div{
-  padding: 1rem ;
-
+  padding: 0.5rem ;
+}
+.input{
+  border: none;
+  padding: 0.2rem;
+  margin-left: 0.8rem;
+  border: 1px solid black;
+}
+.loginForm > button{
+  padding: 0.3rem;
 }
