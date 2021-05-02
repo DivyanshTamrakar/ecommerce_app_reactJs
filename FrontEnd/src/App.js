@@ -7,6 +7,7 @@ import {  Routes,Route} from "react-router-dom";
 import Login from './Components/Login';
 import Address from './Components/address';
 import OrderSummary  from "./Components/OrderSummary";
+import Signup from './Components/SignUp';
 
 
 
@@ -24,6 +25,7 @@ function App() {
      <Route path="/login" element={<Login/>}/>
      <Route path="/address" element={<Address/>}/>
      <Route path="/ordersummary" element={<OrderSummary/>}/>
+     <Route path="/signup" element={<Signup/>}/>
       </Routes>
       
       

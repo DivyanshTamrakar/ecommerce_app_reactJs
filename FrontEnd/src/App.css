@@ -294,28 +294,40 @@ margin: 2rem 15rem;
   100% { transform: rotate(360deg); }
 }
 
-.loginBox{
-   width: max-content;
+.loginForm{
   text-align:center;
-  border: 2px solid brown;
-  margin: 5rem;
-  margin-left: 10rem;
 }
 
-.loginForm{
-  padding: 2rem;
-  width: 100%;
+
+.form {
+  padding: 0.4rem;
+  width: 50%;
+  background-color: grey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 0.5rem;
+  margin: 1rem 1rem 1rem 10rem;
+
+}
+
+.input-form {
+  border: 2px solid black;
+  height: 1.5rem;
+  border-radius: 0.5rem;
   text-align: center;
+  background-color: white;
+  color: black;
+  width: 40%;
+
+
 }
-.loginForm > div{
-  padding: 0.5rem ;
-}
-.input{
-  border: none;
-  padding: 0.2rem;
-  margin-left: 0.8rem;
-  border: 1px solid black;
-}
-.loginForm > button{
-  padding: 0.3rem;
+.inputbutton{
+  text-align: center;
+  background-color:green;
+  padding:1rem;
+  width:15rem;
+  border:none;
+  color:white;
+  border-radius:2rem;
+  margin-right:12rem;
+  cursor:pointer
 }

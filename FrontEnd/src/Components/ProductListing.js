@@ -9,7 +9,7 @@ function ProductListing(){
   const {itemInCart,setIteminCart} = useCart();
   const [ productdata, setproductData] = useState([]);
   const {WishItemInCart,setWishItemInCart} = useWishlist();
-  const url = "https://connect-with-mongooosevalidator-ke-sath.divyanshtamraka.repl.co";
+  const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
 
 
   useEffect(()=>{

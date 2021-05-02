@@ -2,26 +2,23 @@ import {useState,useEffect} from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
 
-export default function Login(){
-
-
+export default function Signup(){
    let email = "";
    let password = "";
    let name = "";
+   let mobile="";
    const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
-
-  
-
   const Check = async () =>{
     try{
-      let response = await axios.post(`${url}/users/signin`,
+      let response = await axios.post(`${url}/users/signup`,
        {
         email :email, 
         password : password,
+        name : name,
+        mobile:mobile
       });
-      console.log(response.data)
+    //   console.log(response.data)
     if(response['data']['success'] === true){
         toast.success(response.data.message);
     }
@@ -41,7 +38,7 @@ export default function Login(){
 
   function Handler(event){
         event.preventDefault();
-       if(name === "" && email === "" && password === ""){
+       if(name === "" && email === "" && password === "" && mobile===""){
             toast.dark("Fill every Field!");    
         }else{
            
@@ -61,6 +58,17 @@ export default function Login(){
 <div>
 
       <form className="loginForm">
+
+
+          <div className="form">
+          <label>
+              <b>Name</b>
+              <input className="input-form" type="text" placeholder="Enter Name" onChange={(text)=>{
+                  name = text.target.value;
+              }} />
+          </label>
+
+          </div>  
           <div className="form">
        
         
@@ -82,20 +90,20 @@ export default function Login(){
 
           </div>
 
-       <button className="inputbutton"  onClick={Handler
-              }  >Login</button>
-
-            <Link to='/signup'>
-            <div>
-                  <b>Having Trouble Login ? Register here</b>
-              </div>
-            </Link>
+          <div className="form">
+              
+          <label>
+              <b>Mobile No</b>
+              <input className="input-form"  type="number" placeholder="Enter Mobile" maxLength="10" onChange={(text)=>{
+                  mobile = text.target.value;
+              }} />
+          </label>
+          </div>
+          <button className="inputbutton"  onClick={Handler
+              }  >Register</button>
 
 
       </form>
-
-
-
 <div>
     
 <ToastContainer
