@@ -5,11 +5,13 @@ import App from './App';
 import {  CartProvider } from "./context/cart-context";
 import { AddressProvider } from "./context/AddressContext";
 import { WishlistProvider } from './context/wishlist-context';
+import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter as Router  } from "react-router-dom";
 ReactDOM.render(
   
   <React.StrictMode>
-    <AddressProvider>
+   <AuthProvider>
+   <AddressProvider>
     <WishlistProvider>
     <CartProvider>
     <Router>
@@ -18,6 +20,7 @@ ReactDOM.render(
     </CartProvider>
     </WishlistProvider>
     </AddressProvider>
+   </AuthProvider>
 
   </React.StrictMode>,
   document.getElementById('root')

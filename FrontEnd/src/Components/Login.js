@@ -2,42 +2,22 @@ import {useState,useEffect} from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
+import { Link ,useLocation,useNavigate} from 'react-router-dom';
+import { useAuth } from "../context/AuthContext";
 
 export default function Login(){
 
-
+   let {login,LoginWithCredential} = useAuth();
    let email = "";
    let password = "";
    let name = "";
    const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
-
+   const { state } = useLocation();
+   const  navigate  = useNavigate();
+  
   
 
-  const Check = async () =>{
-    try{
-      let response = await axios.post(`${url}/users/signin`,
-       {
-        email :email, 
-        password : password,
-      });
-      console.log(response.data)
-    if(response['data']['success'] === true){
-        toast.success(response.data.message);
-    }
-    else{
-        toast.error(response.data.message);
-    }
-      
-      
-      
-       
-    }catch(e){
-      console.log("Error in catch " , e);
-    }
-    
-    
-  }
+  
 
   function Handler(event){
         event.preventDefault();
@@ -45,22 +25,26 @@ export default function Login(){
             toast.dark("Fill every Field!");    
         }else{
            
-            Check();
+           LoginWithCredential(email,password);
+          //  navigate(state?.from ? state.from:"/");
 
            }
 
         
   }
 
+function  Logouthandler(){
+  toast("User will be log out!")
 
+}
+  
 
+ 
    return (
-
-
-
 <div>
-
-      <form className="loginForm">
+     
+     
+     <form className="loginForm">
           <div className="form">
        
         
@@ -84,6 +68,17 @@ export default function Login(){
 
        <button className="inputbutton"  onClick={Handler
               }  >Login</button>
+
+
+<button className="inputbutton"  onClick={Logouthandler}  >{login?"Logout":"Login"}</button>
+
+
+
+
+
+
+
+
 
             <Link to='/signup'>
             <div>
