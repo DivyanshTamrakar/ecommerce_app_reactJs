@@ -35,15 +35,23 @@ function Cart(){
   
   
   
-  function Removehandler(e) {
-    console.log(e);
-    const new_arr = itemInCart.filter(function (item, index) {
-      return item.id !== e;
-      // console.log(item.item.id);
+  async function Removehandler(e) {
+    const _id = e;
 
-    });
-    console.log(` new array : ${new_arr}`);
-    setIteminCart(new_arr);
+
+try{
+      let response = await axios.post(`${url}/carts/delete/${_id}`);
+      const resultData = response.data.success;
+      if(resultData === true){
+              getCartItems();
+      }
+     
+    }catch(e){
+      console.log("Error in catch " , e);
+    }
+    
+
+
   }
 
 
@@ -63,9 +71,8 @@ function Cart(){
        cartData.map(function(item){
 
         totalprice = totalprice + parseInt(item.price);
-        
         return (
-          <div key={item.id} className="productItem">
+          <div key={item._id} className="productItem">
             <img className="corner-radius" src={item.image} height="200px" width="212px"/>
             
             <div className="namelike">
@@ -76,7 +83,7 @@ function Cart(){
             <span> Rs.{item.price}</span>
          <div className="button-group">
               
-         <button onClick={()=>Removehandler(item.id)}  className="btn">Remove from Cart</button>
+         <button onClick={()=>Removehandler(item._id)}  className="btn">Remove from Cart</button>
          </div>
           </div>
         );
