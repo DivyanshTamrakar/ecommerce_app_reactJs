@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../context/cart-context";
+import { CartContext, useCart } from "../context/cart-context";
 import { useWishlist } from "../context/wishlist-context";
 import axios from 'axios';
 
@@ -88,7 +88,7 @@ function Cart(){
 
 
 {
-itemInCart.length !== 0 ? 
+ cartData.length !== 0 ? 
 
 <Link to="/address"> <button className="checkoutbtn"> Proceed to CheckOut </button></Link>
 :
