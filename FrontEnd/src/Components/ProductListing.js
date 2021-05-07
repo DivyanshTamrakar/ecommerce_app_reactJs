@@ -3,19 +3,22 @@ import { useWishlist } from "../context/wishlist-context";
 import {useEffect, useReducer,useState} from 'react'
 import { arr } from "../FakeData/fakedata.js";
 import axios from 'axios';
+import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 
 function ProductListing(){
   const {itemInCart,setIteminCart} = useCart();
   const [ productdata, setproductData] = useState([]);
   const {WishItemInCart,setWishItemInCart} = useWishlist();
+  const {login,LoginWithCredential,setLogin} = useAuth();
+  const isuserLogin = localStorage.getItem('userId');
   const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
 
 
   useEffect(()=>{
     getAllProducts();
   },[]);
-
 
   const getAllProducts = async () =>{
     try{
@@ -29,6 +32,32 @@ function ProductListing(){
     
   }
 
+ 
+  async function AddToCartHandler(item){
+    try{
+      let response = await axios.post(`${url}/carts`,{
+        name: item.name,
+        productModel: item.productModel,
+        productUrl: item.productUrl,
+        customerId: isuserLogin,
+        inStock: item.inStock,
+        fastDelivery: item.fastDelivery,
+        productdescription: item.productdescription,
+        image: item.image,
+        price: item.price,
+        });
+      const resultData = response.data;
+    }catch(e){
+      console.log("Error in catch " , e);
+    }
+    
+  
+
+    
+        
+ 
+
+  }
   
 
   //reducer
@@ -180,9 +209,11 @@ function ProductListing(){
               <span style={{fontWeight:"bolder"}}> Rs.{item.price}</span>
            <div className="button-group">
                 
-           <button onClick={()=>setIteminCart((items)=>
-            [...items,item]
-            )} className="btn">Add To Cart</button>
+           {
+             isuserLogin === null?
+              <Link className="btn" to='/login'><button style={{backgroundColor:'navy', color:"white",border:"none"}}>Add To Cart</button></Link>:
+             <button onClick={()=>AddToCartHandler(item)} className="btn">Add To Cart</button>
+             }
            </div>
             </div>
           );

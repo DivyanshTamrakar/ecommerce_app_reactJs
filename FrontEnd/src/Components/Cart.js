@@ -1,12 +1,36 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/cart-context";
 import { useWishlist } from "../context/wishlist-context";
+import axios from 'axios';
 
 function Cart(){
   const {itemInCart,setIteminCart} = useCart();
-  
   const {setWishItemInCart} = useWishlist();
+  const [cartData,setCartdata] = useState([]);
   let totalprice = 0;
+  const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
+  const userId  = localStorage.getItem('userId'); 
+
+
+  useEffect(()=>{
+    getCartItems();
+  },[]);
+
+  const getCartItems = async () =>{
+    try{
+      let response = await axios.get(`${url}/carts/${userId}`);
+      const resultData = response.data.cartItem;
+      console.log(resultData);
+       setCartdata(resultData);
+      
+    }catch(e){
+      console.log("Error in catch " , e);
+    }
+    
+    
+  }
+
   
   
   
@@ -27,13 +51,16 @@ function Cart(){
 
 
     return(
-    itemInCart.length!==0
+      cartData.length!==0
     ?
     
     <div>
         <div><h1>Cart</h1></div>  
         <div className="productbox">
-      {itemInCart.map(function(item){
+      {
+      
+      
+       cartData.map(function(item){
 
         totalprice = totalprice + parseInt(item.price);
         
@@ -53,7 +80,9 @@ function Cart(){
          </div>
           </div>
         );
-      })}
+      })
+      
+      }
 
       </div>
 

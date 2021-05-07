@@ -3,6 +3,8 @@ import { useWishlist  } from "../context/wishlist-context";
 function Wishlist(){
   const {WishItemInCart,setWishItemInCart} = useWishlist();
     console.log(WishItemInCart)
+    const isuserLogin = localStorage.getItem('userId');
+
 
     return(
 

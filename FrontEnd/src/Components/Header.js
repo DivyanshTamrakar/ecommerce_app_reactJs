@@ -1,16 +1,18 @@
 import { useCart } from "../context/cart-context";
 import { useWishlist } from "../context/wishlist-context";
 import { Link} from "react-router-dom";
+import { useState } from "react";
 
 
 function Header(){
   const {itemInCart, setItemInCart} = useCart();
   const {WishItemInCart} = useWishlist();
+  
     return (
       <div className="navigation">
 
       <Link to="/"><h2 className="cursor" style={{color:"white",textDecoration:"none"}}>E-Commerce app</h2></Link>
-
+      
       <div className="icons">
       <span style={{fontSize:"2rem"}}><a href="#" class="notification">
 
