@@ -1,38 +1,25 @@
-import { useCart } from "../context/cart-context";
-import { useWishlist } from "../context/wishlist-context";
+import { getData} from '../FetchingApi/fetchApi.js'
 import {useEffect, useReducer,useState} from 'react'
-import { arr } from "../FakeData/fakedata.js";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 
 function ProductListing(){
-  const {itemInCart,setIteminCart} = useCart();
   const [ productdata, setproductData] = useState([]);
-  const {WishItemInCart,setWishItemInCart} = useWishlist();
   const {login,LoginWithCredential,setLogin} = useAuth();
   const isuserLogin = localStorage.getItem('userId');
   const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
 
 
-  useEffect(()=>{
-    getAllProducts();
+  useEffect(async ()=>{
+    let response = await getData('/products')
+    setproductData(response.product);
+    
   },[]);
 
-  const getAllProducts = async () =>{
-    try{
-      let response = await axios.get(`${url}/products`);
-      const resultData = response.data.product;
-       setproductData(resultData);
-    }catch(e){
-      console.log("Error in catch " , e);
-    }
-    
-    
-  }
-
- 
   async function AddToCartHandler(item){
 
     try{
@@ -40,6 +27,7 @@ function ProductListing(){
         name: item.name,
         productModel: item.productModel,
         productUrl: item.productUrl,
+        productId:item._id,
         customerId: isuserLogin,
         inStock: item.inStock,
         fastDelivery: item.fastDelivery,
@@ -48,6 +36,12 @@ function ProductListing(){
         price: item.price,
         });
       const resultData = response.data;
+      console.log(resultData);
+      if(resultData.available === true)
+      {
+       
+        toast.info(resultData.message);
+      }
     }catch(e){
       console.log("Error in catch " , e);
     }
@@ -60,7 +54,28 @@ function ProductListing(){
 
   }
   
+async function AddToWishilstHandler(item){
+  try{
+    let response = await axios.post(`${url}/wishlists`,{
+      name: item.name,
+      productModel: item.productModel,
+      productUrl: item.productUrl,
+      productId:item._id,
+      customerId: isuserLogin,
+      inStock: item.inStock,
+      fastDelivery: item.fastDelivery,
+      productdescription: item.productdescription,
+      image: item.image,
+      price: item.price,
+      });
+    const resultData = response.data;
+    console.log(resultData);
+  }catch(e){
+    console.log("Error in catch " , e);
+  }
+  
 
+}
   //reducer
   const initialState = {
     showInventoryAll: true,
@@ -195,11 +210,7 @@ function ProductListing(){
               
               <div className="namelike">
                 <span style={{fontWeight:"bolder"}}>{item.name}</span>
-                <span onClick={()=>setWishItemInCart((items)=>
-            [...items,item]
-            )}><i class="fa fa-heart" aria-hidden="true" style={{color: WishItemInCart.find((i) => i.id === item.id)
-              ? "red"
-              : "grey"}}></i></span>
+                <span onClick={()=>AddToWishilstHandler(item)}><i class="fa fa-heart" aria-hidden="true" style={{color:"grey"}}></i></span>
               </div>
               
               <span className="textArea">{item.description}</span>
@@ -224,7 +235,17 @@ function ProductListing(){
       }
       </div>
     
-
+      <ToastContainer
+position="bottom-center"
+autoClose={1000}
+hideProgressBar={true}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+/>
      </div>
      
       );

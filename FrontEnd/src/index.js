@@ -7,10 +7,12 @@ import { AddressProvider } from "./context/AddressContext";
 import { WishlistProvider } from './context/wishlist-context';
 import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter as Router  } from "react-router-dom";
+import { LoaderProvider } from './context/LoaderContext';
 ReactDOM.render(
   
   <React.StrictMode>
    <AuthProvider>
+   <LoaderProvider>
    <AddressProvider>
     <WishlistProvider>
     <CartProvider>
@@ -20,6 +22,7 @@ ReactDOM.render(
     </CartProvider>
     </WishlistProvider>
     </AddressProvider>
+   </LoaderProvider>
    </AuthProvider>
 
   </React.StrictMode>,

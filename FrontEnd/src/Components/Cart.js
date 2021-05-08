@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CartContext, useCart } from "../context/cart-context";
 import { useWishlist } from "../context/wishlist-context";
+import { useLoader } from "../context/LoaderContext";
 import axios from 'axios';
 
 function Cart(){
   const {itemInCart,setIteminCart} = useCart();
   const {setWishItemInCart} = useWishlist();
   const [cartData,setCartdata] = useState([]);
+  const {loader,setloader} = useLoader();
+  
   let totalprice = 0;
   const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
   const userId  = localStorage.getItem('userId'); 
@@ -18,11 +21,14 @@ function Cart(){
   },[]);
 
   const getCartItems = async () =>{
+    setloader(true);
     try{
       let response = await axios.get(`${url}/carts/${userId}`);
       const resultData = response.data.cartItem;
       console.log(resultData);
+      setloader(false);
        setCartdata(resultData);
+
       
     }catch(e){
       console.log("Error in catch " , e);
@@ -37,7 +43,7 @@ function Cart(){
   
   async function Removehandler(e) {
     const _id = e;
-
+   setloader(true);
 
 try{
       let response = await axios.post(`${url}/carts/delete/${_id}`);
@@ -59,10 +65,12 @@ try{
 
 
     return(
+      loader?<div className='loader'></div>:
       cartData.length!==0
     ?
     
     <div>
+       
         <div><h1>Cart</h1></div>  
         <div className="productbox">
       {
