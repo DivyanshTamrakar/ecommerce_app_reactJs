@@ -1,19 +1,14 @@
+import { getData,postData,userId} from '../FetchingApi/fetchApi'
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { CartContext, useCart } from "../context/cart-context";
 import { useWishlist } from "../context/wishlist-context";
 import { useLoader } from "../context/LoaderContext";
-import axios from 'axios';
 
 function Cart(){
-  const {itemInCart,setIteminCart} = useCart();
   const {setWishItemInCart} = useWishlist();
   const [cartData,setCartdata] = useState([]);
   const {loader,setloader} = useLoader();
-  
   let totalprice = 0;
-  const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
-  const userId  = localStorage.getItem('userId'); 
 
 
   useEffect(()=>{
@@ -23,11 +18,9 @@ function Cart(){
   const getCartItems = async () =>{
     setloader(true);
     try{
-      let response = await axios.get(`${url}/carts/${userId}`);
-      const resultData = response.data.cartItem;
-      console.log(resultData);
+      let response = await getData(`/carts/${userId}`);
       setloader(false);
-       setCartdata(resultData);
+      setCartdata(response.cartItem);
 
       
     }catch(e){
@@ -41,23 +34,18 @@ function Cart(){
   
   
   
-  async function Removehandler(e) {
-    const _id = e;
+  async function Removehandler(itemId) {
+    const _id = itemId;
    setloader(true);
-
 try{
-      let response = await axios.post(`${url}/carts/delete/${_id}`);
-      const resultData = response.data.success;
-      if(resultData === true){
+      let response = await postData(itemId,`/carts/delete/${_id}`);
+      if(response.success === true){
               getCartItems();
       }
      
     }catch(e){
       console.log("Error in catch " , e);
     }
-    
-
-
   }
 
 

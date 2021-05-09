@@ -1,5 +1,4 @@
-import {useState,useEffect} from 'react';
-import axios from 'axios';
+import { postData } from "../FetchingApi/fetchApi";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -8,22 +7,22 @@ export default function Signup(){
    let password = "";
    let name = "";
    let mobile="";
-   const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
+   
   const Check = async () =>{
-    try{
-      let response = await axios.post(`${url}/users/signup`,
-       {
+      const body = {
         email :email, 
         password : password,
         name : name,
         mobile:mobile
-      });
-    //   console.log(response.data)
-    if(response['data']['success'] === true){
-        toast.success(response.data.message);
+      }
+    try{
+      let response = await postData(body,`/users/signup`);
+      console.log(response)
+    if(response['success'] === true){
+        toast.success(response.message);
     }
     else{
-        toast.error(response.data.message);
+        toast.error(response.message);
     }
       
       

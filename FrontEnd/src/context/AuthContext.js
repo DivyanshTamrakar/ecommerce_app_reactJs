@@ -1,62 +1,40 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
-import {useLocation,useNavigate} from 'react-router-dom';
+import {postData,getData  } from "../FetchingApi/fetchApi";
 export const AuthContext = createContext();
-
-
-
 
 export function AuthProvider({children}){
   const [login,setLogin] = useState(false);
-
- 
-  
-  const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
- async function LoginWithCredential(email, password){
-
-  
- 
+  async function LoginWithCredential(email, password){
+   const body = {
+    email :email, 
+    password : password,
+  }
   try{
-    let response = await axios.post(`${url}/users/signin`,
-     {
-      email :email, 
-      password : password,
-    });
-    console.log(response.data)
-  if(response['data']['success'] === true){
+    let response = await postData(body, `/users/signin`);
+    console.log(response)
+    if(response['success'] === true){
     setLogin(true);
-    console.log(response['data']['user']['uid']);
-     localStorage.setItem('userId',response['data']['user']['uid']);
-     localStorage.setItem('name',response['data']['user']['name']);
+     console.log(response['user']['uid']);
+     localStorage.setItem('userId',response['user']['uid']);
+     localStorage.setItem('name',response['user']['name']);
     // navigate(state?.from ? state.from:"/");
-    toast.success(response.data.message);
-       
+    toast.success(response.message);
   }
   else{
-      toast.error(response.data.message);
+      toast.error(response.message);
   }
-    
-    
-    
-     
-  }catch(e){
-    console.log("Error in catch " , e);
+}catch(e){
+    console.log("Error in AuhtContext " , e);
   }
-  
   }
-
-
-
-
     return (
         <AuthContext.Provider value={{login,LoginWithCredential,setLogin}}>
           {children}
         </AuthContext.Provider>
       );
 }
-
 export function useAuth(){
   return useContext(AuthContext);
    

@@ -2,13 +2,12 @@ import { useWishlist  } from "../context/wishlist-context";
 import { useLoader  } from "../context/LoaderContext";
 import axios from 'axios';
 import {useState,useEffect  } from "react";
+import {getData,userId } from "../FetchingApi/fetchApi";
 
 function Wishlist(){
   const {WishItemInCart,setWishItemInCart} = useWishlist();
   const [wishData,setwishdata] = useState([]);
   const {loader,setloader} = useLoader();
-  const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
-  const userId  = localStorage.getItem('userId'); 
 
 
   useEffect(()=>{
@@ -18,10 +17,9 @@ function Wishlist(){
   const getWishItems = async () =>{
     setloader(true)
     try{
-      let response = await axios.get(`${url}/wishlists/${userId}`);
-      const resultData = response.data.wishlistitem;
+      let response = await getData(`/wishlists/${userId}`);
       setloader(false);
-      setwishdata(resultData)
+      setwishdata(response.wishlistitem)
       
     }catch(e){
       console.log("Error in catch " , e);

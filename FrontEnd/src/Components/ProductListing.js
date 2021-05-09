@@ -1,78 +1,60 @@
-import { getData} from '../FetchingApi/fetchApi.js'
+import { getData,postData,userId} from '../FetchingApi/fetchApi.js'
 import {useEffect, useReducer,useState} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
-import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 
 function ProductListing(){
   const [ productdata, setproductData] = useState([]);
-  const {login,LoginWithCredential,setLogin} = useAuth();
-  const isuserLogin = localStorage.getItem('userId');
-  const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
-
 
   useEffect(async ()=>{
-    let response = await getData('/products')
+    let response = await getData('/products');
     setproductData(response.product);
-    
   },[]);
 
+  
   async function AddToCartHandler(item){
-
-    try{
-      let response = await axios.post(`${url}/carts`,{
-        name: item.name,
-        productModel: item.productModel,
-        productUrl: item.productUrl,
-        productId:item._id,
-        customerId: isuserLogin,
-        inStock: item.inStock,
-        fastDelivery: item.fastDelivery,
-        productdescription: item.productdescription,
-        image: item.image,
-        price: item.price,
-        });
-      const resultData = response.data;
-      console.log(resultData);
-      if(resultData.available === true)
-      {
-       
-        toast.info(resultData.message);
-      }
-    }catch(e){
-      console.log("Error in catch " , e);
-    }
-    
-  
-
-    
-        
- 
-
-  }
-  
-async function AddToWishilstHandler(item){
-  try{
-    let response = await axios.post(`${url}/wishlists`,{
+    const body = {
       name: item.name,
       productModel: item.productModel,
       productUrl: item.productUrl,
       productId:item._id,
-      customerId: isuserLogin,
+      customerId: userId,
       inStock: item.inStock,
       fastDelivery: item.fastDelivery,
       productdescription: item.productdescription,
       image: item.image,
       price: item.price,
-      });
-    const resultData = response.data;
-    console.log(resultData);
-  }catch(e){
-    console.log("Error in catch " , e);
+      }
+      let response = await postData(body,'/carts');
+      if(response.available === true)
+      {
+        toast.info(response.message);
+      }
+      
   }
+  
+async function AddToWishilstHandler(item){
+const body =  {
+  name: item.name,
+  productModel: item.productModel,
+  productUrl: item.productUrl,
+  productId:item._id,
+  customerId: userId,
+  inStock: item.inStock,
+  fastDelivery: item.fastDelivery,
+  productdescription: item.productdescription,
+  image: item.image,
+  price: item.price,
+  }
+  let response = await postData(body,'/wishlists');
+  console.log("under wishlist");
+  console.log(response);
+  if(response.available === true)
+      {
+        toast.info(response.message);
+      }
   
 
 }
@@ -222,7 +204,7 @@ async function AddToWishilstHandler(item){
            <div className="button-group">
                 
            {
-             isuserLogin === null?
+             userId === null?
               <Link className="btn" to='/login'><button style={{backgroundColor:'navy', color:"white",border:"none"}}>Add To Cart</button></Link>:
              <button onClick={()=>AddToCartHandler(item)} className="btn">Add To Cart</button>
              }

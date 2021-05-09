@@ -1,6 +1,5 @@
-import {useState,useEffect} from 'react';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { userId  } from "../FetchingApi/fetchApi";
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from "../context/AuthContext";
@@ -11,13 +10,11 @@ export default function Login(){
    let email = "";
    let password = "";
    let name = "";
-   const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
-   const isuserLogin = localStorage.getItem('userId');
 
-   if(isuserLogin !== null)
+   if(userId !== null)
    {
      setLogin(true);
-     console.log(` local storage have user with id   : ${typeof(isuserLogin)}`);
+     console.log(` local storage have user with id   : ${typeof(userId)}`);
    }
  
 
@@ -28,10 +25,7 @@ export default function Login(){
         }else{
           // console.log(`${state.from}`);
            LoginWithCredential(email,password);
-         
-
-
-           }
+                   }
 
         
   }
@@ -42,9 +36,7 @@ function  Logouthandler(){
   toast.success("Successfull Logout!")
 
 }
-  
-
- 
+   
    return (
 <div>
      

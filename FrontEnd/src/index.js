@@ -8,10 +8,13 @@ import { WishlistProvider } from './context/wishlist-context';
 import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter as Router  } from "react-router-dom";
 import { LoaderProvider } from './context/LoaderContext';
+import { ProductProvider } from './context/ProductContext';
+
 ReactDOM.render(
   
   <React.StrictMode>
-   <AuthProvider>
+  <ProductProvider>
+  <AuthProvider>
    <LoaderProvider>
    <AddressProvider>
     <WishlistProvider>
@@ -24,6 +27,7 @@ ReactDOM.render(
     </AddressProvider>
    </LoaderProvider>
    </AuthProvider>
+  </ProductProvider>
 
   </React.StrictMode>,
   document.getElementById('root')

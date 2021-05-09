@@ -6,7 +6,6 @@ export const LoaderContext = createContext();
 
 export function LoaderProvider({children}){
   const [loader,setloader] = useState(false);
-  const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
     return (
         <LoaderContext.Provider value={{loader,setloader}}>
           {children}
