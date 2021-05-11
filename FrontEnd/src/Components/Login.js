@@ -1,5 +1,4 @@
 import { ToastContainer, toast } from 'react-toastify';
-import { userId  } from "../FetchingApi/fetchApi";
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from "../context/AuthContext";
@@ -10,6 +9,7 @@ export default function Login(){
    let email = "";
    let password = "";
    let name = "";
+   const userId = localStorage.getItem('userId');
 
    if(userId !== null)
    {

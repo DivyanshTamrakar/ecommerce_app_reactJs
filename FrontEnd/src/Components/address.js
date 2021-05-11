@@ -1,121 +1,147 @@
-import { useState } from "react";
-import { useAddress } from "../context/AddressContext";
-import { v4 as uuidv4 } from 'uuid';
+import { useState,useEffect } from "react";
+import { getData,postData } from "../FetchingApi/fetchApi";
+import { toast } from 'react-toastify';
 import { Link } from "react-router-dom";
+import { Toast } from "../Toast/toast";
+import { useLoader } from "../context/LoaderContext";
+
+const Deliverbtn = { 
+  marginTop: "0.3rem",
+  fontWeight: "bold",
+  width:"100%",
+  backgroundColor:"green",
+  padding:"0.5rem",
+  color:"white" }
+const addressAdd = {
+  width:'100%',
+  margin:'1rem',
+  padding:"0.8rem",
+  backgroundColor:"orange",
+  fontWeight:'bolder',
+  color:"white",border:"none",
+  cursor:'pointer'
+}
+const ChooseHeading = {padding:"0.3rem",backgroundColor:"navy",margin:"1rem",color:"white"}
+const address_state = 
+{ marginTop: "0.3rem", fontSize: "18px" };
+ 
+const list_item_name    = { fontSize: "25px", fontWeight: "bolder" };
+const list_item_state = { display: "flex", justifyContent: "space-between" };
+
+const pin_mobile  = {
+  marginTop:'0.3rem',
+  fontWeight:'bold'
+}
+const delete_btn= {marginRight:'0.5rem'}
+
 
 export default function Address(){
-    let {address,setAddress}  = useAddress();
-    const [addclick,setclick]  =useState(false);
-    
+    const  [address,setAddress]  = useState([]);
+    const [addclick,setclick]  = useState(false);
+    const {loader,setloader}  = useLoader();
+    const userId = localStorage.getItem('userId');
     let selectAddress = 0;
     const [radiovalue,setradiovalue] = useState(selectAddress);
     let name, mobile, fulladd, state, pincode, city;
 
+    
+    useEffect(async ()=>{
+      getAddressData()
+    },[]);
 
-    function SubmitHandler(e){
-        e.preventDefault();
-        setAddress([
-            ...address,
-            {id:uuidv4(),
-              name:name,
-             mobile:mobile,
-              fulladd :fulladd,
-               state:state, 
-                pincode:pincode,
-                 city:city}
-        ])
+    async function getAddressData(){
+      let response = await getData(`/address/${userId}`);
+      setAddress(response.address);
+    }
+
+    
+
+
+    async function SubmitHandler(e){
+       e.preventDefault();
+        const body =  {
+        name : name,
+        customerId: userId,
+        address: fulladd,
+        mobile: mobile,
+        state:state,
+        pincode:pincode,
+        city:city
+           };
+                     
+           
+      let response = await postData(body,'/address');
+      if(response.success === true)
+      {
+        toast.success(response.message);
+        getAddressData();
+      }
         setclick(false);
-     
-
     }
 
     function radiohandler(e){
       setradiovalue(
         selectAddress = e.target.value
       )
-      console.log(` target value ${e.target.value}`)
-      console.log(` Select Address ${selectAddress}`)
       
 
     }
 
    return (
     <div>
-<h1 style={{padding:"0.3rem",backgroundColor:"navy",margin:"1rem",color:"white"}}>Choose Delivery Address</h1>
-{/* // show list of address// */}
+      <div>
+    <h1 style={ChooseHeading}>Choose Delivery Address</h1>
+     {/* // show list of address// */}
 
-{
-    <ul style={{ listStyleType: "none" }}>
-        {address.map((address) => (
-          <>
-                    
-               
-               
-          {/* radio  button */}
-          {/* <span>{index}</span> */}
-            <div className="addressBox">
-              
-              <label>
-              <input onClick={radiohandler} type="radio" name="add" value={address.id}/>
-              </label>
-               
-              
-              
-              
-              <li
-                style={{ fontSize: "25px", fontWeight: "bolder" }}
-              >
-                {address.name}
-              </li>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <li style={{ marginTop: "0.3rem", fontSize: "18px" }}>
-                  {address.fulladd}
-                </li>
-                <li style={{ marginTop: "0.3rem", fontWeight: "bolder" }}>
-                  Mob: {address.mobile}
-                </li>
-              </div>
-              <div style={{ display: "flex" }}>
-                <li style={{ marginTop: "0.3rem", fontSize: "18px" }}>
-                  {address.state}
-                </li>
+    <div> { 
+       <ul style={{ listStyleType: "none" }}>
+          {address.map((address) => (
+            <>
+            {/* radio  button */}
+            {/* <span>{index}</span> */}
+              <div className="addressBox">
+                <label>
+                <input onClick={radiohandler} type="radio" name="add" value={address._id}/>
+                </label>
+                <li style={list_item_name}> {address.name} </li>
+                <div style={list_item_state}>
+                   <li style={address_state}>{address.address}</li>
+                   <li style={pin_mobile}>Mob: {address.mobile} </li>
+                </div>
+                <div style={{ display: "flex" }}>
+                   <li style={address_state}>{address.state}</li>
+                </div>
+                <li style={{ marginTop: "0.3rem", fontWeight: "bolder" }}>{address.pincode} </li>
+  
+                        {/* Edit and delete */}
+  
                 <li style={{ marginTop: "0.3rem", fontWeight: "bold" }}>
-                  ,{address.country}
+                  <button className="primarybtn" style={delete_btn}>Delete Address</button>
+                  <button className="primarybtn"><i class="fa fa-edit"></i>Edit Address</button>
                 </li>
+  
+  {/* deliver to address  */}
+  
+                { radiovalue === address._id ?
+                <li >
+                  <Link to="/ordersummary">
+                  <button style={Deliverbtn}
+                  > Deliver to this address</button>
+                     </Link>
+                </li>:<div></div>
+                }
+  
+  
+  
+  
               </div>
-              <li style={{ marginTop: "0.3rem", fontWeight: "bold" }}>
-                {address.pincode}
-              </li>
-
-{/* Edit and delete */}
-
-              <li style={{ marginTop: "0.3rem", fontWeight: "bold" }}>
-                <button className="primarybtn" style={{marginRight:'0.5rem'}}>Delete Address</button>
-                <button className="primarybtn"><i class="fa fa-edit"></i>Edit Address</button>
-              </li>
-
-{/* deliver to address  */}
-
-              { radiovalue === address.id ?
-              <li >
-                <Link to="/ordersummary">
-                <button style={{ marginTop: "0.3rem", fontWeight: "bold",width:"100%", backgroundColor:"green",padding:"0.5rem",color:"white" }}
-                > Deliver to this address</button>
-                   </Link>
-              </li>:<div></div>
-              }
-
-
-
-
-            </div>
-          </>
-        ))}
-      </ul>
-    }
-
-
-
+            </>
+          ))}
+        </ul>
+      }</div>
+  
+  
+  
 {/* // address form  */}
 {
     addclick === true?
@@ -163,7 +189,7 @@ export default function Address(){
     :<div></div> 
 }
 
- <button style={{padding:"0.5rem",backgroundColor:"green",color:"white",border:"none",}}
+ <button style={addressAdd}
   onClick={()=>setclick((addclick)=>!addclick)}>
      
      {addclick === false ?  "Add new Address" : "Close Address form"}
@@ -174,5 +200,8 @@ export default function Address(){
  
 
         </div>
+    
+        {Toast()}
+    </div>
     );
 }

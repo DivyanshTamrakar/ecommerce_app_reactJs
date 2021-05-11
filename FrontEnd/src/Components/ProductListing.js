@@ -1,13 +1,16 @@
-import { getData,postData,userId} from '../FetchingApi/fetchApi.js'
+import { getData,postData} from '../FetchingApi/fetchApi.js'
 import {useEffect, useReducer,useState} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Toast} from "../Toast/toast"
+
 
 import { Link } from "react-router-dom";
 
 
 function ProductListing(){
   const [ productdata, setproductData] = useState([]);
+  const userId = localStorage.getItem('userId');
 
   useEffect(async ()=>{
     let response = await getData('/products');
@@ -204,10 +207,9 @@ const body =  {
               <span style={{fontWeight:"bolder"}}> Rs.{item.price}</span>
            <div className="button-group">
                 
-           {
-             userId === null?
-              <Link className="btn" to='/login'><button style={{backgroundColor:'navy', color:"white",border:"none"}}>Add To Cart</button></Link>:
-             <button onClick={()=>AddToCartHandler(item)} className="btn">Add To Cart</button>
+           {userId === null?
+              <Link className="btn" to='/login'><button style={{backgroundColor:'navy', color:"white",border:"none"}}>Add To Cart</button></Link>
+              :<button onClick={()=>AddToCartHandler(item)} className="btn">Add To Cart</button>
              }
            </div>
             </div>
@@ -217,18 +219,8 @@ const body =  {
         :<div className="loader"> </div>
       }
       </div>
-    
-      <ToastContainer
-position="bottom-center"
-autoClose={1000}
-hideProgressBar={true}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-/>
+      { Toast() }
+ 
      </div>
      
       );

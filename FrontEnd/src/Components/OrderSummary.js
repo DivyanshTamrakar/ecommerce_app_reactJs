@@ -1,12 +1,29 @@
+import { useState ,useEffect} from "react";
+import {getData,postData  } from "../FetchingApi/fetchApi";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/cart-context";
 import { useWishlist } from "../context/wishlist-context";
 
 function OrderSummary(){
-  const {itemInCart,setIteminCart} = useCart();
-  
-  const {setWishItemInCart} = useWishlist();
-  let totalprice = 0;
+
+const [cartData,setCartdata] = useState([]);
+let totalprice = 0;
+const userId = localStorage.getItem('userId');
+
+  useEffect(()=>{
+    getCartItems();
+  },[]);
+
+  const getCartItems = async () =>{
+    try{
+      let response = await getData(`/carts/${userId}`);
+      setCartdata(response.cartItem);
+    }catch(e){
+      console.log("Error in catch " , e);
+    }
+    
+    
+  }
   
   function placeHolderhandler() {
     alert(" Your order successfull placed !");
@@ -16,13 +33,6 @@ function OrderSummary(){
   
   function Removehandler(e) {
     console.log(e);
-    const new_arr = itemInCart.filter(function (item, index) {
-      return item.id !== e;
-      // console.log(item.item.id);
-
-    });
-    console.log(` new array : ${new_arr}`);
-    setIteminCart(new_arr);
   }
 
 
@@ -33,19 +43,21 @@ function OrderSummary(){
       <div>
         <div><h1>Order Summary</h1></div>  
         <div className="productbox">
-      {itemInCart.map(function(item){
+      {cartData.map(function(item){
 
         totalprice = totalprice + parseInt(item.price);
         
         return (
-          <div key={item.id} className="OrderproductItem">
+          <div key={item._id} className="OrderproductItem">
             <img className="corner-radius" src={item.image} height="200px" width="212px"/>
             
             <div className="namelike">
               <span style={{fontWeight:"bolder"}}>{item.name}</span>
-              <span onClick={()=>setWishItemInCart((item)=>item+1)}><i class="fa fa-heart"></i></span>
+              <span
+              //  onClick={()=>setWishItemInCart((item)=>item+1)}
+              ><i class="fa fa-heart"></i></span>
             </div>
-            <span>{item.description}</span>
+            <span>{item.productdescription}</span>
             <span> Rs.{item.price}</span>
          <div className="button-group">
               
@@ -62,7 +74,7 @@ function OrderSummary(){
 
      {
 
-itemInCart.length!==0
+cartData.length!==0
 ?
 <div>
 <h2 className="totalamount">{`Total Cart Value = ${totalprice}`}</h2>

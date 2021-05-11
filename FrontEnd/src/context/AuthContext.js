@@ -15,7 +15,7 @@ export function AuthProvider({children}){
     let response = await postData(body, `/users/signin`);
     console.log(response)
     if(response['success'] === true){
-    setLogin(true);
+     setLogin(true);
      console.log(response['user']['uid']);
      localStorage.setItem('userId',response['user']['uid']);
      localStorage.setItem('name',response['user']['name']);
@@ -26,7 +26,7 @@ export function AuthProvider({children}){
       toast.error(response.message);
   }
 }catch(e){
-    console.log("Error in AuhtContext " , e);
+    console.error("Error in AuhtContext " , e);
   }
   }
     return (
