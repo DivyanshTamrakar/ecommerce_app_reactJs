@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {postData,getData  } from "../FetchingApi/fetchApi";
+import {postData} from "../FetchingApi/fetchApi";
 export const AuthContext = createContext();
 
 export function AuthProvider({children}){

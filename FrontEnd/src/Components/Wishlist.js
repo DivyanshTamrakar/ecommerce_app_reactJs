@@ -1,6 +1,6 @@
 import { useWishlist  } from "../context/wishlist-context";
 import { useLoader  } from "../context/LoaderContext";
-import axios from 'axios';
+
 import {useState,useEffect  } from "react";
 import {getData,userId } from "../FetchingApi/fetchApi";
 
@@ -12,6 +12,7 @@ function Wishlist(){
 
   useEffect(()=>{
     getWishItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
   const getWishItems = async () =>{
@@ -38,7 +39,7 @@ function Wishlist(){
     {wishData.map(function(item){
       return (
         <div key={item.id} className="productItem">
-          <img className="corner-radius" src={item.image} height="200px" width="212px"/>
+          <img className="corner-radius" src={item.image} alt="itemimage"height="200px" width="212px"/>
           <div className="namelike">
             <span style={{fontWeight:"bolder"}}>{item.name}</span>
             <span onClick={()=>setWishItemInCart((item)=>item+1)}><i class="fa fa-heart"></i></span>

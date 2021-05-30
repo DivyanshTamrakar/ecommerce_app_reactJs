@@ -3,9 +3,15 @@ export const CartContext = createContext();
 
 
 
+
+
 export function CartProvider({children}){
   const [itemInCart,setIteminCart] = useState([]);
-    return (
+
+
+
+
+  return (
         <CartContext.Provider value={{itemInCart,setIteminCart}}>
           {children}
         </CartContext.Provider>

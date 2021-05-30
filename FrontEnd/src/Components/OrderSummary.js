@@ -1,8 +1,6 @@
 import { useState ,useEffect} from "react";
-import {getData,postData  } from "../FetchingApi/fetchApi";
-import { Link } from "react-router-dom";
-import { useCart } from "../context/cart-context";
-import { useWishlist } from "../context/wishlist-context";
+import {getData } from "../FetchingApi/fetchApi";
+
 
 function OrderSummary(){
 
@@ -12,6 +10,7 @@ const userId = localStorage.getItem('userId');
 
   useEffect(()=>{
     getCartItems();
+    // eslint-disable-next-line
   },[]);
 
   const getCartItems = async () =>{
@@ -49,7 +48,7 @@ const userId = localStorage.getItem('userId');
         
         return (
           <div key={item._id} className="OrderproductItem">
-            <img className="corner-radius" src={item.image} height="200px" width="212px"/>
+            <img className="corner-radius" src={item.image} alt="item" height="200px" width="212px"/>
             
             <div className="namelike">
               <span style={{fontWeight:"bolder"}}>{item.name}</span>

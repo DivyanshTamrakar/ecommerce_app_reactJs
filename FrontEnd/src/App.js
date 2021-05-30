@@ -3,7 +3,7 @@ import Header from "./Components/Header"
 import Cart from "./Components/Cart";
 import ProductListing from "./Components/ProductListing";
 import Wishlist from "./Components/Wishlist";
-import {  Routes,Route, Navigate} from "react-router-dom";
+import {  Routes,Route } from "react-router-dom";
 import Login from './Components/Login';
 import Address from './Components/address';
 import OrderSummary  from "./Components/OrderSummary";

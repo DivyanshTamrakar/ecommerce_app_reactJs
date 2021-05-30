@@ -10,9 +10,11 @@ function Cart(){
   const {loader,setloader} = useLoader();
   let totalprice = 0;
 
+  
 
-  useEffect(()=>{
+    useEffect(()=>{
     getCartItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
   const getCartItems = async () =>{
@@ -21,6 +23,7 @@ function Cart(){
       let response = await getData(`/carts/${userId}`);
       setloader(false);
       setCartdata(response.cartItem);
+      console.log(response);
 
       
     }catch(e){
@@ -69,7 +72,7 @@ try{
         totalprice = totalprice + parseInt(item.price);
         return (
           <div key={item._id} className="productItem">
-            <img className="corner-radius" src={item.image} height="200px" width="212px"/>
+            <img className="corner-radius" src={item.image} alt="Item" height="200px" width="212px"/>
             
             <div className="namelike">
               <span style={{fontWeight:"bolder"}}>{item.name}</span>

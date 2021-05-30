@@ -108,7 +108,7 @@ h2 {
   width: 212px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .btn {

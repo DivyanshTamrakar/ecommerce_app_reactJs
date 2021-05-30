@@ -3,7 +3,6 @@ import { getData,postData } from "../FetchingApi/fetchApi";
 import { toast } from 'react-toastify';
 import { Link } from "react-router-dom";
 import { Toast } from "../Toast/toast";
-import { useLoader } from "../context/LoaderContext";
 
 const Deliverbtn = { 
   marginTop: "0.3rem",
@@ -38,15 +37,15 @@ const delete_btn= {marginRight:'0.5rem'}
 export default function Address(){
     const  [address,setAddress]  = useState([]);
     const [addclick,setclick]  = useState(false);
-    const {loader,setloader}  = useLoader();
     const userId = localStorage.getItem('userId');
     let selectAddress = 0;
     const [radiovalue,setradiovalue] = useState(selectAddress);
     let name, mobile, fulladd, state, pincode, city;
 
     
-    useEffect(async ()=>{
+    useEffect( ()=>{
       getAddressData()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
     async function getAddressData(){

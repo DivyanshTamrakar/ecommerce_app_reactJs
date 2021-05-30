@@ -1,6 +1,6 @@
 import { getData,postData} from '../FetchingApi/fetchApi.js'
 import {useEffect, useReducer,useState} from 'react'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Toast} from "../Toast/toast"
 
@@ -12,10 +12,15 @@ function ProductListing(){
   const [ productdata, setproductData] = useState([]);
   const userId = localStorage.getItem('userId');
 
-  useEffect(async ()=>{
+  useEffect( ()=>{
+    GetProductData();
+  },[]);
+
+
+  async function GetProductData(){
     let response = await getData('/products');
     setproductData(response.product);
-  },[]);
+  }
 
   
   async function AddToCartHandler(item){
@@ -192,7 +197,7 @@ const body =  {
         {filteredData.map(function(item){
           return (
             <div key={item.id} className="productItem">
-              <img className="corner-radius" src={item.image} height="200px" width="212px"/>
+              <img className="corner-radius" src={item.image} alt="Itemimage" height="200px" width="212px"/>
               
               <div className="namelike">
                 <span style={{fontWeight:"bolder"}}>{item.name}</span>
