@@ -1,74 +1,26 @@
-import { getData,postData,userId} from '../FetchingApi/fetchApi'
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useWishlist } from "../context/wishlist-context";
 import { useLoader } from "../context/LoaderContext";
+import { useCart } from '../context/cart-context';
 
 function Cart(){
   const {setWishItemInCart} = useWishlist();
-  const [cartData,setCartdata] = useState([]);
+  const {itemInCart,getCartItems,Removehandler} = useCart();
   const {loader,setloader} = useLoader();
   let totalprice = 0;
-
-  
-
-    useEffect(()=>{
+  useEffect(()=>{
     getCartItems();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+  },[])
 
-  const getCartItems = async () =>{
-    setloader(true);
-    try{
-      let response = await getData(`/carts/${userId}`);
-      setloader(false);
-      setCartdata(response.cartItem);
-      console.log(response);
-
-      
-    }catch(e){
-      console.log("Error in catch " , e);
-    }
-    
-    
-  }
-
-  
-  
-  
-  
-  async function Removehandler(itemId) {
-    const _id = itemId;
-   setloader(true);
-try{
-      let response = await postData(itemId,`/carts/delete/${_id}`);
-      if(response.success === true){
-              getCartItems();
-      }
-     
-    }catch(e){
-      console.log("Error in catch " , e);
-    }
-  }
-
-
-
-
-
-    return(
+  return(
       loader?<div className='loader'></div>:
-      cartData.length!==0
-    ?
-    
-    <div>
-       
+      itemInCart.length!==0 ?
+       <div>
         <div><h1>Cart</h1></div>  
         <div className="productbox">
-      {
-      
-      
-       cartData.map(function(item){
-
+       {
+       itemInCart.map(function(item){
         totalprice = totalprice + parseInt(item.price);
         return (
           <div key={item._id} className="productItem">
@@ -94,7 +46,7 @@ try{
 
 
 {
- cartData.length !== 0 ? 
+ itemInCart.length !== 0 ? 
 
 <Link to="/address"> <button className="checkoutbtn"> Proceed to CheckOut </button></Link>
 :
@@ -114,7 +66,7 @@ Your cart is Empty
     </div>
     
     
-    );
+   );
     }
 
    

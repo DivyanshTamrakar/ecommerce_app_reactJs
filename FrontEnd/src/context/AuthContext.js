@@ -13,10 +13,8 @@ export function AuthProvider({children}){
   }
   try{
     let response = await postData(body, `/users/signin`);
-    console.log(response)
     if(response['success'] === true){
      setLogin(true);
-     console.log(response['user']['uid']);
      localStorage.setItem('userId',response['user']['uid']);
      localStorage.setItem('name',response['user']['name']);
     // navigate(state?.from ? state.from:"/");

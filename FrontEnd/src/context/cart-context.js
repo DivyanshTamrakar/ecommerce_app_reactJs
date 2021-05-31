@@ -1,4 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { getData,postData,userId } from '../FetchingApi/fetchApi'
+import {useLoader} from '../context/LoaderContext';
 export const CartContext = createContext();  
 
 
@@ -7,12 +9,46 @@ export const CartContext = createContext();
 
 export function CartProvider({children}){
   const [itemInCart,setIteminCart] = useState([]);
+  const { setloader } = useLoader();
+  
 
+  useEffect(()=>{
+    getCartItems();
+  },[])
+
+    const getCartItems = async () =>{
+       setloader(true);
+      try{
+        let response = await getData(`/carts/${userId}`);
+        let result = response.cartItem;
+        setIteminCart(result);
+        setloader(false);
+       }catch(e){
+        console.error("Error in catch " , e);
+      }
+      
+      
+    }
+  
+    async function Removehandler(itemId) {
+      const _id = itemId;
+      setloader(true);
+     try{
+      let response = await postData(itemId,`/carts/delete/${_id}`);
+      if(response.success === true){
+         getCartItems();
+         setloader(false);
+      }
+      
+      }catch(e){
+        console.log("Error in catch " , e);
+      }
+      }
 
 
 
   return (
-        <CartContext.Provider value={{itemInCart,setIteminCart}}>
+        <CartContext.Provider value={{itemInCart,setIteminCart,getCartItems,Removehandler}}>
           {children}
         </CartContext.Provider>
       );
