@@ -1,12 +1,17 @@
 import { useCart } from "../context/cart-context";
 import { useWishlist } from "../context/wishlist-context";
 import { Link} from "react-router-dom";
+import { useEffect } from "react";
 
 
 
 function Header(){
-  const {itemInCart} = useCart();
+  const {itemInCart,getCartItems} = useCart();
   const {WishItemInCart} = useWishlist();
+
+  useEffect(()=>{
+    getCartItems();
+  })
   
     return (
       <div className="navigation">

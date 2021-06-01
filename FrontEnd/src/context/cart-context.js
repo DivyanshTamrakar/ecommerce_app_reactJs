@@ -14,6 +14,7 @@ export function CartProvider({children}){
 
   useEffect(()=>{
     getCartItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
     const getCartItems = async () =>{
@@ -21,10 +22,12 @@ export function CartProvider({children}){
       try{
         let response = await getData(`/carts/${userId}`);
         let result = response.cartItem;
-        setIteminCart(result);
         setloader(false);
+        setIteminCart(result);
+        
        }catch(e){
         console.error("Error in catch " , e);
+        setloader(false);
       }
       
       

@@ -7,14 +7,15 @@ import { useCart } from '../context/cart-context';
 function Cart(){
   const {setWishItemInCart} = useWishlist();
   const {itemInCart,getCartItems,Removehandler} = useCart();
-  const {loader,setloader} = useLoader();
+  const {loader} = useLoader();
   let totalprice = 0;
   useEffect(()=>{
     getCartItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   return(
-      loader?<div className='loader'></div>:
+      // loader?<div className='loader'></div>:
       itemInCart.length!==0 ?
        <div>
         <div><h1>Cart</h1></div>  

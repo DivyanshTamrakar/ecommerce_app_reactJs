@@ -1,50 +1,54 @@
-import { getData,postData} from '../FetchingApi/fetchApi.js'
-import {useEffect, useReducer,useState} from 'react'
+import {postData,userId} from '../FetchingApi/fetchApi.js'
+import {useEffect} from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Toast} from "../Toast/toast"
+import { useNavigate } from "react-router-dom";
+import { useProduct } from "../context/ProductContext"
 
-
-import { Link } from "react-router-dom";
 
 
 function ProductListing(){
-  const [ productdata, setproductData] = useState([]);
+  const { GetProductData , filteredData , dispatch } = useProduct();
+
   const userId = localStorage.getItem('userId');
+  let navigate = useNavigate();
 
   useEffect( ()=>{
     GetProductData();
-  },[]);
+  },[userId]);
 
-
-  async function GetProductData(){
-    let response = await getData('/products');
-    setproductData(response.product);
-  }
-
+ 
   
   async function AddToCartHandler(item){
-    const body = {
-      name: item.name,
-      productModel: item.productModel,
-      productUrl: item.productUrl,
-      productId:item._id,
-      customerId: userId,
-      inStock: item.inStock,
-      fastDelivery: item.fastDelivery,
-      productdescription: item.productdescription,
-      image: item.image,
-      price: item.price,
-      }
-      let response = await postData(body,'/carts');
-      if(response.available === true)
-      {
-        toast.info(response.message);
-      }
+
+    if(userId !== null ){
+      const body = {
+        name: item.name,
+        productModel: item.productModel,
+        productUrl: item.productUrl,
+        productId:item._id,
+        customerId: userId,
+        inStock: item.inStock,
+        fastDelivery: item.fastDelivery,
+        productdescription: item.productdescription,
+        image: item.image,
+        price: item.price,
+        }
+        let response = await postData(body,'/carts');
+        if(response.available === true)
+        {
+          toast.info(response.message);
+        }
+    }else{
+      navigate("/login");
+
+    }
+    
       
   }
   
-async function AddToWishilstHandler(item){
+   async function AddToWishilstHandler(item){
 const body =  {
   name: item.name,
   productModel: item.productModel,
@@ -66,68 +70,9 @@ const body =  {
       }
   
 
-}
-  //reducer
-  const initialState = {
-    showInventoryAll: true,
-    showFastDeliveryOnly: false,
-    sortBy: null
-  };
-  const [
-    { showInventoryAll, showFastDeliveryOnly, sortBy },
-    dispatch
-  ] = useReducer(reducer, initialState);
-
-  function reducer(state, action) {
-    switch (action.type) {
-      case "SORT":
-        return {
-          ...state,
-          sortBy: action.payload
-        };
-      case "TOGGLE_INVENTORY":
-        return (state = {
-          ...state,
-          showInventoryAll: !state.showInventoryAll
-        });
-
-      case "TOGGLE_DELIVERY":
-        return (state = {
-          ...state,
-          showFastDeliveryOnly: !state.showFastDeliveryOnly
-        });
-      default:
-        console.log("sorry");
-    }
   }
-  function getSortedData(productdata, sortvalue) {
-    if (sortvalue === "PRICE_HIGH_TO_LOW") {
-      return productdata.sort((a, b) => b.price - a.price);
-    }
-    if (sortvalue === "PRICE_LOW_TO_HIGH") {
-      return productdata.sort((a, b) => a.price - b.price);
-    }
-
-    return productdata;
-  }
-
   
-  function getfilteredData(
-    dataitem,
-    { showFastDeliveryOnly, showInventoryAll }
-  ) {
-    return dataitem
-      .filter(({ fastDelivery }) =>
-        showFastDeliveryOnly ? fastDelivery : true
-      )
-      .filter(({ inStock }) => (showInventoryAll ? true : inStock));
-  }
 
-  const sortedData = getSortedData(productdata, sortBy);
-  const filteredData = getfilteredData(sortedData, {
-    showFastDeliveryOnly,
-    showInventoryAll
-  });
     return(
      <div>
      <div className="margin1"><h1>Product Listing</h1></div>  
@@ -212,10 +157,9 @@ const body =  {
               <span style={{fontWeight:"bolder"}}> Rs.{item.price}</span>
            <div className="button-group">
                 
-           {userId === null?
-              <Link className="btn" to='/login'><button style={{backgroundColor:'navy', color:"white",border:"none"}}>Add To Cart</button></Link>
-              :<button onClick={()=>AddToCartHandler(item)} className="btn">Add To Cart</button>
-             }
+           {
+           <button onClick={()=>AddToCartHandler(item)} className="btn">Add To Cart</button>
+           }
            </div>
             </div>
           );

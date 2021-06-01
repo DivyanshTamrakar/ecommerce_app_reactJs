@@ -1,40 +1,24 @@
-import { useState ,useEffect} from "react";
-import {getData } from "../FetchingApi/fetchApi";
+import {useEffect} from "react";
+import { useCart } from '../context/cart-context';
 
 
 function OrderSummary(){
 
-const [cartData,setCartdata] = useState([]);
+
+const {itemInCart,getCartItems,Removehandler} = useCart();
 let totalprice = 0;
-const userId = localStorage.getItem('userId');
 
   useEffect(()=>{
     getCartItems();
     // eslint-disable-next-line
   },[]);
 
-  const getCartItems = async () =>{
-    try{
-      let response = await getData(`/carts/${userId}`);
-      setCartdata(response.cartItem);
-    }catch(e){
-      console.log("Error in catch " , e);
-    }
-    
-    
-  }
-  
   function placeHolderhandler() {
     alert(" Your order successfull placed !");
       
   }
   
   
-  function Removehandler(e) {
-    console.log(e);
-  }
-
-
 
 
 
@@ -42,7 +26,7 @@ const userId = localStorage.getItem('userId');
       <div>
         <div><h1>Order Summary</h1></div>  
         <div className="productbox">
-      {cartData.map(function(item){
+      {itemInCart.map(function(item){
 
         totalprice = totalprice + parseInt(item.price);
         
@@ -60,7 +44,7 @@ const userId = localStorage.getItem('userId');
             <span> Rs.{item.price}</span>
          <div className="button-group">
               
-         <button onClick={()=>Removehandler(item.id)}  className="btn">Remove from Cart</button>
+         <button onClick={()=>Removehandler(item._id)}  className="btn">Remove from Cart</button>
          </div>
 
 
@@ -73,7 +57,7 @@ const userId = localStorage.getItem('userId');
 
      {
 
-cartData.length!==0
+itemInCart.length!==0
 ?
 <div>
 <h2 className="totalamount">{`Total Cart Value = ${totalprice}`}</h2>
