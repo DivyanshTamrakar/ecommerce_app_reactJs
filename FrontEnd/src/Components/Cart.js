@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useWishlist } from "../context/wishlist-context";
-import { useLoader } from "../context/LoaderContext";
 import { useCart } from '../context/cart-context';
 
 function Cart(){
   const {setWishItemInCart} = useWishlist();
   const {itemInCart,getCartItems,Removehandler} = useCart();
-  const {loader} = useLoader();
+  
   let totalprice = 0;
   useEffect(()=>{
     getCartItems();

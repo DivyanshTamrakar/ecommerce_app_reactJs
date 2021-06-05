@@ -1,4 +1,4 @@
-import {postData,userId} from '../FetchingApi/fetchApi.js'
+import {postData} from '../FetchingApi/fetchApi.js'
 import {useEffect} from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,6 +16,7 @@ function ProductListing(){
 
   useEffect( ()=>{
     GetProductData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[userId]);
 
  

@@ -31,7 +31,8 @@ function Wishlist(){
 
     return(
 
-    loader?<div className="loader"></div>:  wishData.length!==0 ?
+    // loader?<div className="loader"></div>:  
+    wishData.length!==0 ?
     <div>
 
       <div><h1>Your WishliSt {WishItemInCart.length}</h1></div>  

@@ -14,21 +14,21 @@ import { ProductProvider } from './context/ProductContext';
 ReactDOM.render(
   
   <React.StrictMode>
-<AuthProvider>
-   <LoaderProvider>
-   <ProductProvider>
-   <AddressProvider>
-    <WishlistProvider>
-    <CartProvider>
-    <Router>
-    <App />
-    </Router>
-    </CartProvider>
-    </WishlistProvider>
-    </AddressProvider>
-   </ProductProvider>
-   </LoaderProvider>
-   </AuthProvider>
+      <Router>
+      <AuthProvider>
+      <LoaderProvider>
+      <ProductProvider>
+      <AddressProvider>
+      <WishlistProvider>
+      <CartProvider>
+      <App />
+      </CartProvider>
+      </WishlistProvider>
+      </AddressProvider>
+      </ProductProvider>
+      </LoaderProvider>
+      </AuthProvider>
+      </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

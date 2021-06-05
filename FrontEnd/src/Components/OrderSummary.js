@@ -57,12 +57,8 @@ let totalprice = 0;
 
      {
 
-itemInCart.length!==0
-?
-<div>
-<h2 className="totalamount">{`Total Cart Value = ${totalprice}`}</h2>
-
-  
+itemInCart.length!==0 ?
+<div><h2 className="totalamount">{`Total Cart Value = ${totalprice}`}</h2>  
 <button onClick={placeHolderhandler} className="placeOrder">Place Your Order</button>  
 </div>
 :<div></div>
