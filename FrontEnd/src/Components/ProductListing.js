@@ -76,7 +76,7 @@ const body =  {
 
     return(
      <div>
-     <div className="margin1"><h1>Product Listing</h1></div>  
+     
       <div style={{display:"grid" , gridTemplateColumns:"auto auto"}}>
         
       <div className="Sidebar">
