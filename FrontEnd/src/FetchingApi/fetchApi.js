@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 
-export const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
+// export const url = "https://ecommerceappbackend.divyanshtamraka.repl.co";
+export const url = "https://evening-cliffs-67692.herokuapp.com"
 // userId which comes from local storage
 export const userId = localStorage.getItem('userId');
 export async  function getData(...endpoints){

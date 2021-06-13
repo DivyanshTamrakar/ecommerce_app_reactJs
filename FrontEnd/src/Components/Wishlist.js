@@ -24,6 +24,7 @@ function Wishlist(){
       
     }catch(e){
       console.log("Error in catch " , e);
+      setloader(false);
     }
   }
 
@@ -31,7 +32,7 @@ function Wishlist(){
 
     return(
 
-    // loader?<div className="loader"></div>:  
+    loader?<div className="loader"></div>:  
     wishData.length!==0 ?
     <div>
 
