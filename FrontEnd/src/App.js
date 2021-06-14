@@ -20,10 +20,8 @@ function App() {
  
   return (
     <div className="App">
-      <div>
-      <Header/>
-      </div>
-    <div className="main-content">
+    <div><Header/></div>
+    <div>
      <Routes>
      <Route path="/" element={<ProductListing/>}/>
      <PrivateRoute path="/carts" element={<Cart/>}/>
@@ -32,15 +30,9 @@ function App() {
      <Route path="/address" element={<Address/>}/>
      <Route path="/ordersummary" element={<OrderSummary/>}/>
      <Route path="/signup" element={<Signup/>}/>
-      </Routes>
-      
-      
-
-      
-           
-      <div>
-       
-      </div> 
+    </Routes>
+    <div>
+    </div> 
     </div>
     </div>
   );

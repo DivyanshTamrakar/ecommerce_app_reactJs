@@ -1,57 +1,35 @@
 import { useWishlist } from "../context/wishlist-context";
 import { Link} from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart ,faShoppingCart,faUser,faStore} from '@fortawesome/free-solid-svg-icons'
 
 
 
-function Header(){
+
+
+export default function Header(){
   const {WishItemInCart} = useWishlist();
 
     
     return (
       <div className="navigation">
-
-      <Link to="/"><h2 className="cursor" style={{color:"white",textDecoration:"none"}}>E-Commerce app</h2></Link>
-      
+      <Link to="/"><FontAwesomeIcon icon={faStore}  color="white"  size="2x"/></Link>
       <div className="icons">
-      <span style={{fontSize:"2rem"}}><a href="/" class="notification">
-
-      <Link to="/wishlists"><span><i class="fa fa-heart" style={{color:"white"}}></i></span></Link>
-
+      <span  class="notification">
+      <Link to="/wishlists"><FontAwesomeIcon icon={faHeart}  color="white" /></Link>
       <span class="badge">{WishItemInCart.length}</span>
-
-      </a>
       </span>
-
-      <div className="Spacer"></div>
-
-      <span  style={{fontSize:"2rem"}}><a href="/" class="notification">
-
-      <Link to="/carts"><span><i class="fa fa-shopping-cart" style={{color:"white"}}></i></span></Link>
-
+      <span  class="notification">
+      <Link to="/carts"><FontAwesomeIcon icon={faShoppingCart}  color="white" /></Link>
       <span class="badge">{0}</span>
-
-     
-
-      </a></span>
-
-      <div className="Spacer"></div>
-
-      <span  style={{fontSize:"2rem"}}><a href="/" class="notification">
-
-      <Link to="/login"><span><i class="fa fa-user" style={{color:"white"}}></i></span></Link>
-
-      </a></span>
-
-
-
+      </span>
+      <span  class="notification">
+      <Link to="/login"><FontAwesomeIcon icon={faUser}  color="white" /></Link>
+      </span>
       </div>
-    
-    
-    
       </div>
     );
   
   }
-
-  export default Header;
+  
   

@@ -1,11 +1,15 @@
-*{
+* {
   margin: 0px;
-  padding:0px;
+  padding: 0px;
+
 }
+
 .App {
   text-align: center;
   margin: 0rem;
   padding: 0rem;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
 }
 
 .App-logo {
@@ -17,7 +21,8 @@
   cursor: pointer;
   border-radius: 1rem;
 }
-.corner-radius{
+
+.corner-radius {
   border-radius: 0.5rem;
 }
 
@@ -35,23 +40,28 @@ h2 {
 
 .navigation {
   width: 100%;
-  background-color: navy;
-  padding: 1rem;
+  background-color: rgb(255, 0, 149);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: fixed;
+  z-index: 2;
+  padding: 0.9rem;
   color: white;
-  font-size: 18px;
-  display: grid;
-  grid-template-columns: auto auto ;
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
-.Spacer {
-  width: 2rem;
-}
-
-.icons { 
+.icons {
+  margin-right: 1.5rem;
+  width:15rem;
+  padding: 0.3rem;
+  background-color: #ff0e9b;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
-  grid-template-columns: auto auto auto; 
-  margin-right: 2.5rem;
+  flex-direction: row;
+  justify-content: space-around;
+  
 }
 
 
@@ -86,66 +96,79 @@ h2 {
     transform: rotate(360deg);
   }
 }
-
-
-
 .productbox {
-  width: 100%;
-  margin: 2rem;
+  padding: 6rem 0.5rem 1rem 4rem ;
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto;
   text-align: center;
-  grid-gap: 0px 2px;
+  grid-gap: 2rem 0;
+  background-color: whitesmoke;
 
 }
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .productbox {
+  padding: 0.5rem 0.5rem 1rem 0.2rem ;
+  display: grid;
+  grid-template-columns: auto  ;
+  text-align: center;
+  grid-gap: 2rem 0;
+  background-color: whitesmoke;
+  }
+  .productItem {
+    width: 20rem;
+    height: max-content;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: left;
+    display: grid;
+    grid-template-columns: auto  ;
+    cursor: pointer;
+  }
+}
+
 
 .productItem {
-  margin: 0.5rem;
-  /* padding: 0.5rem; */
-  border: 1px solid grey;
-  border-radius: 0.5rem;
+  width: 20rem;
   height: max-content;
-  width: 212px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-around;
+  cursor: pointer;
+  position: relative;
 }
 
 .btn {
-  width: 50%;
   padding: 0.5rem;
   margin: 0.4rem 0.4rem;
-  background-color: navy;
+  background-color: rgb(255, 0, 119);
   border: none;
   border-radius: 0.2rem;
-  width: 100%;
   color: white;
-  align-self: left;
+  font-weight: 900;
 }
 
 .notification {
-  /* background-color: #555; */
   color: white;
   text-decoration: none;
-  /* padding: 15px 26px; */
   position: relative;
   display: inline-block;
   border-radius: 2px;
+  font-size: 1.5rem;
 }
 
-/* .notification:hover {
-  background: red;
-} */
-
-.notification .badge {
+.badge {
   position: absolute;
   top: -7px;
   right: -12px;
-  padding: 5px 10px;
+  padding: 3px 7px;
   border-radius: 50%;
-  background-color: black;
+  background-color: rgb(255, 238, 0);
   font-size: 15px;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .button-group {
@@ -154,52 +177,67 @@ h2 {
   justify-content: space-around;
 }
 
-.namelike {
+.name-like-section {
+  margin: 1rem 1rem 0rem 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin:1rem 1rem;
+
+  
 
 }
-.Sidebar{
+
+.margin{
+  margin: 0.5rem 0.5rem 0rem 1rem;
+}
+.font-bold{
+  font-weight: bold;
+}
+.Sidebar {
   width: min-content;
   margin: 1rem;
   margin-top: 1rem;
   padding-top: 1rem;
   position: relative;
   height: 18rem;
-  
+
 }
-.margin1{
+
+.margin1 {
   margin: 1rem;
 }
-.textArea{
+
+.textArea {
   max-lines: 5;
-  
+
 }
-.checkoutbtn{
+
+.checkoutbtn {
   padding: 0.5rem;
   background-color: navy;
   color: white;
 }
-.form{
+
+.form {
   text-align: center;
 }
 
 
-.form form{
-display: flex;  
-flex-direction: column; 
-padding: 1rem;
+.form form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
 
 }
-.form label{
+
+.form label {
   font-weight: bolder;
   margin: 0.5rem;
-  
-  
+
+
 }
-.form input{
+
+.form input {
   border: none;
   width: 40%;
   background-color: white;
@@ -207,21 +245,23 @@ padding: 1rem;
   padding: 0.5rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-left: 1rem;
-  
-  
-}
-.form button{
-width: auto; 
-border: none;
-background-color: navy;
-color: white;
-font-weight: bolder;
-font-size: larger;
-border-radius: 0.5rem; 
-padding: 0.5rem;
-margin: 2rem 15rem;
+
 
 }
+
+.form button {
+  width: auto;
+  border: none;
+  background-color: navy;
+  color: white;
+  font-weight: bolder;
+  font-size: larger;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin: 2rem 15rem;
+
+}
+
 .addressBox {
   text-align: left;
   margin: 1rem 2rem;
@@ -232,24 +272,26 @@ margin: 2rem 15rem;
 
 
 
-.primarybtn{
-  padding:0.2rem;
+.primarybtn {
+  padding: 0.2rem;
   background-color: navy;
   color: white;
 }
 
-.OrderproductItem{
+.OrderproductItem {
   text-align: center;
   border: 1px solid black;
 
 }
-.totalamount{
+
+.totalamount {
   margin: 0.5rem;
   padding: 0.3rem;
   border-radius: 0.5rem;
   text-align: left;
 }
-.placeOrder{
+
+.placeOrder {
   width: 100%;
   margin: 1rem;
   padding: 1rem;
@@ -259,14 +301,15 @@ margin: 2rem 15rem;
   font-size: 1rem;
   cursor: pointer;
 
-  color:black;
+  color: black;
   border-radius: 0.5rem;
 
 }
-.placeOrder:hover{
+
+.placeOrder:hover {
   background-color: navy;
   color: white;
-  
+
 }
 
 
@@ -277,25 +320,36 @@ margin: 2rem 15rem;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
   border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
   animation: spin 2s linear infinite;
 }
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.loginForm{
-  text-align:center;
+.loginForm {
+  text-align: center;
 }
 
 
@@ -320,22 +374,23 @@ margin: 2rem 15rem;
 
 
 }
-.inputbutton{
+
+.inputbutton {
   text-align: center;
-  background-color:green;
-  padding:1rem;
-  width:15rem;
-  border:none;
-  color:white;
-  border-radius:2rem;
-  margin-right:12rem;
-  cursor:pointer
+  background-color: green;
+  padding: 1rem;
+  width: 15rem;
+  border: none;
+  color: white;
+  border-radius: 2rem;
+  margin-right: 12rem;
+  cursor: pointer
 }
 
 .Modal {
   height: 100%;
   width: 100%;
-  background-size: auto 100%; 
+  background-size: auto 100%;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.753);
   top: 0;
@@ -359,4 +414,29 @@ margin: 2rem 15rem;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 0.5rem;
+}
+
+
+
+.bestseller:after {
+  content: "bestseller";
+  z-index: 1;
+  overflow: hidden;
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  letter-spacing: 1px;
+  transform: rotate(-45deg);
+  width: 120px;
+  display: block; 
+  background: #79A70A;
+  background: linear-gradient(#fffb00 0%, #ff7300 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  left: -30px;
+  top: 25px;
+  /* clip-path: polygon(120px 20px, 90px -10px, 30px -10px, 0px 20px, 10px 30px,  110px 30px) */
 }
