@@ -38,7 +38,7 @@ function  Logouthandler(){
 }
    
    return (
-<div style={{marginTop:"7rem"}}>
+<div style={{marginTop:"1rem"}}>
     { login === true ? 
     <div >
          <button className="inputbutton" onClick={Logouthandler}>Logout</button>

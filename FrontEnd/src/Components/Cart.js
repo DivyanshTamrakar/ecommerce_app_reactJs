@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useWishlist } from "../context/wishlist-context";
 import {getData,postData} from "../FetchingApi/fetchApi"
 import {useLoader} from "../context/LoaderContext"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart} from '@fortawesome/free-solid-svg-icons'
 
 
 function Cart(){
@@ -52,26 +54,25 @@ function Cart(){
   return(
     loader ? <div className='loader'></div>:
     itemInCart.length!==0 ?
-     <div>
-      <div><h1>Cart</h1></div>  
-      <div className="productbox">
-     {
-     itemInCart.map(function(item){
+     <div className="Cartframe">
+      <div className="CartBoxLeft">
+        <div style={{textAlign:'left', fontWeight:'500',fontSize:'2.5rem',margin:"0.5rem"}}>Shopping Cart</div>
+     {itemInCart.map(function(item){
       totalprice = totalprice + parseInt(item.price);
       return (
-        <div key={item._id} className="productItem">
-          <img className="corner-radius" src={item.image} alt="Item" height="200px" width="212px"/>
-          
-          <div className="namelike">
-            <span style={{fontWeight:"bolder"}}>{item.name}</span>
-            <span onClick={()=>setWishItemInCart((item)=>item+1)}><i class="fa fa-heart"></i></span>
-          </div>
-          <span>{item.description}</span>
-          <span> Rs.{item.price}</span>
-       <div className="button-group">
-            
-       <button onClick={()=>Removehandler(item._id)}  className="btn">Remove from Cart</button>
-       </div>
+        <div key={item._id} className="CartItem">
+          <img src={item.image} alt="item-name" height="200px" width="25%"/>
+        <div className="Cart-Item-description">
+            <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+            <span style={{fontWeight:"900",fontSize:'1.5rem'}}>{item.name}</span>
+            <span onClick={()=>setWishItemInCart((item)=>item+1)}><FontAwesomeIcon icon={faHeart}  color="black" aria-hidden='true' /></span>
+            </div>
+            <div style={{fontWeight:"bold",color:'green'}}>{item.inStock && "InStock"}</div>
+            <div style={{fontWeight:'500',color:'grey'}}>{item.productdescription}</div>
+            <button onClick={()=>Removehandler(item._id)}>Remove from Cart</button>
+
+        </div>
+        <div style={{fontWeight:'900',margin:'1rem',width:'20%'}}>₹ {item.price}.00</div>
         </div>
       );
     })
@@ -79,17 +80,10 @@ function Cart(){
     }
 
     </div>
-
-
-{
-itemInCart.length !== 0 ? 
-
-<Link to="/address"> <button className="checkoutbtn"> Proceed to CheckOut </button></Link>
-:
-<div></div>
-}
-
-
+    <div className="CartBoxRight">
+      <span>SUB-TOTAL : ₹ {totalprice}.00</span>
+      {itemInCart.length && <Link to="/address"> <button className="cursor"> Proceed to Buy </button></Link>}
+    </div>
 
     </div>
   

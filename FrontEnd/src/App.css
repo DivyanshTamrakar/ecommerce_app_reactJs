@@ -19,7 +19,7 @@
 
 .cursor {
   cursor: pointer;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }
 
 .corner-radius {
@@ -42,7 +42,7 @@ h2 {
   width: 100%;
   background-color: rgb(255, 0, 149);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  position: fixed;
+  position: sticky;
   z-index: 2;
   padding: 0.9rem;
   color: white;
@@ -97,7 +97,7 @@ h2 {
   }
 }
 .productbox {
-  padding: 6rem 0.5rem 1rem 4rem ;
+  padding: 1.5rem 0.5rem 1rem 4rem ;
   display: grid;
   grid-template-columns: auto auto auto;
   text-align: center;
@@ -125,6 +125,8 @@ h2 {
     grid-template-columns: auto  ;
     cursor: pointer;
   }
+  
+  
 }
 
 
@@ -415,9 +417,6 @@ h2 {
   transform: translate(-50%, -50%);
   border-radius: 0.5rem;
 }
-
-
-
 .bestseller:after {
   content: "bestseller";
   z-index: 1;
@@ -438,5 +437,73 @@ h2 {
   position: absolute;
   left: -30px;
   top: 25px;
-  /* clip-path: polygon(120px 20px, 90px -10px, 30px -10px, 0px 20px, 10px 30px,  110px 30px) */
+}
+.Cartframe{
+  padding: 0.5rem;
+  padding-top: 2rem;
+  background-color: rgb(241,241,241);
+  display: grid;
+  grid-template-columns: 75% 22%;
+  grid-column-gap: 1rem;
+}
+
+.CartBoxRight{
+  height: 5rem;
+  text-align: left;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+
+
+}
+.CartBoxRight > span{
+  font-weight: 700;
+  margin-left:1rem ;
+  font-size: large;
+}
+.CartBoxRight  button{
+border: none;
+width: auto;
+padding: 0.5rem;
+border-radius: 0.4rem;
+margin: 0rem 1rem 0rem 1rem ;
+background-color: #fffb00;
+font-weight: 600;
+}
+
+.CartBoxLeft{
+  background-color: rgb(255, 255, 255);
+  padding: 1rem;
+  
+}
+
+.CartItem{
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.5rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+  
+}
+.Cart-Item-description{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 3;
+  text-align: left;
+  margin: 0.7rem;
+}
+.Cart-Item-description button{
+border: none;
+width: auto;
+padding: 0.5rem;
+border-radius: 0.4rem;
+background-color: #fffb00;
+cursor: pointer;
+font-weight: 600;
 }
