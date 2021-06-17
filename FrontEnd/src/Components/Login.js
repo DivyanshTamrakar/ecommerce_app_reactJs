@@ -10,6 +10,8 @@ export default function Login(){
    let password = "";
    let name = "";
    const userId = localStorage.getItem('userId');
+   
+   
 
    if(userId !== null)
    {
@@ -23,8 +25,9 @@ export default function Login(){
        if(name === "" && email === "" && password === ""){
             toast.dark("Fill every Field!");    
         }else{
-          // console.log(`${state.from}`);
+          // console.log(`In Login page ${state.from}`);
            LoginWithCredential(email,password);
+           
                    }
 
         
@@ -32,6 +35,7 @@ export default function Login(){
 
 function  Logouthandler(){
   setLogin(false);
+  localStorage.removeItem('userId');
   localStorage.clear();
   toast.success("Successfull Logout!")
 

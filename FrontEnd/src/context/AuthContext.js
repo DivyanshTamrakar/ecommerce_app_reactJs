@@ -2,10 +2,14 @@ import { createContext, useContext, useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {postData} from "../FetchingApi/fetchApi";
+import { useLocation, useNavigate } from "react-router-dom";
 export const AuthContext = createContext();
 
 export function AuthProvider({children}){
   const [login,setLogin] = useState(false);
+  let navigate = useNavigate();
+  let {state} = useLocation();
+  console.log("in Context",state?.from);
   async function LoginWithCredential(email, password){
    const body = {
     email :email, 
@@ -17,7 +21,7 @@ export function AuthProvider({children}){
      setLogin(true);
      localStorage.setItem('userId',response['user']['uid']);
      localStorage.setItem('name',response['user']['name']);
-    // navigate(state?.from ? state.from:"/");
+     navigate(`${state?.from? state.from : '/'}`, { replace: true });
     toast.success(response.message);
   }
   else{

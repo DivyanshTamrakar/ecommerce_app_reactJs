@@ -1,11 +1,10 @@
-import { useWishlist  } from "../context/wishlist-context";
 import { useLoader  } from "../context/LoaderContext";
-
 import {useState,useEffect  } from "react";
 import {getData,userId } from "../FetchingApi/fetchApi";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 
 function Wishlist(){
-  const {WishItemInCart,setWishItemInCart} = useWishlist();
   const [wishData,setwishdata] = useState([]);
   const {loader,setloader} = useLoader();
 
@@ -23,7 +22,7 @@ function Wishlist(){
       setwishdata(response.wishlistitem)
       
     }catch(e){
-      console.log("Error in catch " , e);
+      console.error("Error in catch " , e);
       setloader(false);
     }
   }
@@ -34,28 +33,37 @@ function Wishlist(){
 
     loader?<div className="loader"></div>:  
     wishData.length!==0 ?
-    <div>
-
-      <div><h1>Your WishliSt {WishItemInCart.length}</h1></div>  
       <div className="productbox">
     {wishData.map(function(item){
       return (
         <div key={item.id} className="productItem">
-          <img className="corner-radius" src={item.image} alt="itemimage"height="200px" width="212px"/>
-          <div className="namelike">
-            <span style={{fontWeight:"bolder"}}>{item.name}</span>
-            <span onClick={()=>setWishItemInCart((item)=>item+1)}><i class="fa fa-heart"></i></span>
-          </div>
-          <span>{item.description}</span>
-          <span> Rs.{item.price}</span>
-       <div className="button-group">
-            
-       <button className="btn">Move to Cart</button>
-       </div>
+          <img src={item.image} alt="itemimage"height="300px" width="100%"/>
+          <div className="name-like-section">
+                <div style={{display:'flex',flexDirection:'column'}}>
+                  <span style={{fontWeight:'1000'}}>{item.name}</span>
+                  <span style={{fontSize:'12px'}}>by Amazon Brand - Solimo</span>
+                  
+                  </div>
+              </div>
+          
+
+              <span className="margin" style={{fontSize:'13px',color:'green',fontWeight:'bolder'}}>16,710 Reviews</span>
+              <span className="margin" style={{fontSize:'15px',fontWeight:'700'}}>₹ {item.price}.00</span>
+              
+          
+              <div className="margin" style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+                <span style={{marginTop:'0.5rem',fontWeight:'500'}}>
+                 {
+                   item.fastDelivery && "Fast Delivery Available"
+                 }
+                </span>
+                <span>
+                <button className="btn" style={{backgroundColor:'red'}}><FontAwesomeIcon icon={faTrashAlt} color={"white"} size={'2x'}/></button>
+                </span>
+              </div>
         </div>
       );
     })}
-    </div>
     </div>
   
   :
