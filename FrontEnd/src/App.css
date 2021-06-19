@@ -560,7 +560,7 @@ h2 {
 }
 
 
-.FilterFrame{
+.FilterFrame {
   margin: auto;
   height: max-content;
   width: 60%;
@@ -571,7 +571,7 @@ h2 {
   color: black;
 }
 
-.icon-name{
+.icon-name {
   border: 1px solid black;
   -webkit-align-items: center;
   -ms-flex-align: center;
@@ -581,7 +581,8 @@ h2 {
   font-weight: bolder;
   font-size: 1.5rem;
 }
-.filterBox{
+
+.filterBox {
   width: 20rem;
   background-color: #ff0e9b;
   padding: 0.4rem;
@@ -593,12 +594,72 @@ h2 {
   display: flex;
   justify-content: space-around;
 }
-.filterBox > div{
-  display:flex;
+
+.filterBox>div {
+  display: flex;
   justify-content: space-between;
 }
-.filterBox > div > input{
+
+.filterBox>div>input {
   height: 1.5rem;
   border: none;
   size: 1.5rem;
+}
+
+.form-frame {
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  padding: 1.2rem 3rem 1rem 3rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 21em;
+  height: max-content;
+  margin-top: -11em;
+  /*set to a negative number 1/2 of your height*/
+  margin-left: -15em;
+  /*set to a negative number 1/2 of your width*/
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  border-radius: 1rem;
+}
+
+.form-frame>span {
+  font-weight: 800;
+  font-size: 2rem;
+  align-self: center;
+}
+
+.form-frame>div>label {
+  font-weight: 700;
+}
+.form-frame>div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.0rem;
+}
+
+.form-frame>div>input {
+  border: 1.5px solid rgba(189, 189, 189, 0.74);
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  margin: 0.3rem 1.5rem 0rem 0rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+
+
+.form-frame>div>button {
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: white;
+  font-weight: 900;
+  background-color: #3498db;
+  cursor: pointer;
+
 }

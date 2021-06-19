@@ -6,7 +6,7 @@ import {Toast} from "../Toast/toast"
 import { useNavigate } from "react-router-dom";
 import { useProduct } from "../context/ProductContext"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart,faFilter} from '@fortawesome/free-solid-svg-icons'
+import { faHeart} from '@fortawesome/free-solid-svg-icons'
 
 
 
