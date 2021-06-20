@@ -9,6 +9,7 @@ import Address from './Components/address';
 import OrderSummary  from "./Components/OrderSummary";
 import Signup from './Components/SignUp';
 import NotFoundPage from './Components/NotFoundPage';
+import AddNewAddress from './Components/AddAddress';
 import { PrivateRoute } from "./Components/privateroute";
 
 
@@ -31,10 +32,9 @@ function App() {
      <Route path="/address" element={<Address/>}/>
      <Route path="/ordersummary" element={<OrderSummary/>}/>
      <Route path="/signup" element={<Signup/>}/>
+     <Route path="/addnewaddress" element={<AddNewAddress/>}/>
      <Route path="*" element={<NotFoundPage />} />
     </Routes>
-    <div>
-    </div> 
     </div>
     </div>
   );
