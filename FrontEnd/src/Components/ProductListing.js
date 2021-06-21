@@ -7,12 +7,17 @@ import { useNavigate } from "react-router-dom";
 import { useProduct } from "../context/ProductContext"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart} from '@fortawesome/free-solid-svg-icons'
+import Filter from './Filter.js';
+
+
+
+
 
 
 
 function ProductListing(){
-  const { GetProductData , filteredData , dispatch } = useProduct();
-  const [ft,setft] = useState(false);
+  const { GetProductData , filteredData} = useProduct();
+  const [filter,setfilter] = useState(false);
 
   const userId = localStorage.getItem('userId');
   let navigate = useNavigate();
@@ -22,7 +27,8 @@ function ProductListing(){
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[userId]);
 
- 
+
+  
   
   async function AddToCartHandler(item){
 
@@ -80,46 +86,14 @@ const body =  {
     return(
      <div style={{backgroundColor:'whitesmoke'}}>
       <div>
- <button onClick={()=>setft(!ft)} className="btn" style={{backgroundColor:'rgb(255,214,36)'}}>Show Filters</button>
- {ft &&  <div className="FilterFrame">
-<div className="filterBox">
-<div>
-<input onClick={()=>dispatch({type:"TOGGLE_INVENTORY"})}  type="checkbox" />
-<h4>InStock </h4>
-</div>
-<div>
-<input onClick={()=>dispatch({type:"TOGGLE_DELIVERY"})} type="checkbox" />
-<h4>fast-Delivery</h4>
-</div>
- </div>  
-
-
-
- <div className="filterBox">
-<div>
-<input onClick={()=>dispatch({type:"SORT",payload:"PRICE_LOW_TO_HIGH"})} type="radio" name="sort" />
-<h4>Price Low To High</h4>
-</div>
-<div>
-<input onClick={()=>dispatch({type:"SORT",payload:"PRICE_HIGH_TO_LOW"})} type="radio" name="sort" />
-<h4>Price Hight To Low</h4>
-</div>
-
-
-  
- </div> 
-
-
-
-
-</div>
-}
+      <button onClick={()=>setfilter(!filter)} className="btn" style={{backgroundColor:'rgb(255,214,36)'}}>Show Filters</button>
+      {filter && <Filter/>}
       {
         filteredData.length!==0?
           <div className="productbox">
-        {filteredData.map(function(item){
+        {filteredData.map((item)=>{
           return (
-            <div key={item.id} className="productItem">
+            <div key={item._id} className="productItem">
               {item.inStock && <div className="bestseller"></div>}
               <img src={item.image} alt="Itemimage" height="300px" width="100%"/>
               <div className="name-like-section">

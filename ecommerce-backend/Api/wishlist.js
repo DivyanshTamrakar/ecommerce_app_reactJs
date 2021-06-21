@@ -86,6 +86,27 @@ wishlistitem.__v = undefined;
   })
 })
 
+router.route('/delete/:_id')
+  .get(async (req, res) => {
+    const _id = req.params;
+    Wishlist.findOneAndDelete({
+      _id
+    }, function (err, docs) {
+      if (err) {
+        return res.json({
+          success: false,
+          message: "Something went Wrong",
+          erro: `${err}`
+        })
+      } else {
+        return res.json({
+          success: true,
+          message: "Item Removed Successfully",
+          deletedItem: docs
+        })
+      }
+    });
+  })
 
 
 module.exports = router

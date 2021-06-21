@@ -1,6 +1,7 @@
 * {
   margin: 0px;
   padding: 0px;
+  
 
 }
 
@@ -594,7 +595,7 @@ h2 {
 /* address component style */
 
 .AddressFrame {
-  background-color: rgb(244,247,246)orange;
+  background-color: rgb(244,247,246);
   padding: 1rem;
   text-align: left;
 }
@@ -657,3 +658,10 @@ font-weight: 700;
 
 }
 
+.wish-delete{
+  margin: 1rem;
+  color: red;
+}
+.wish-delete:hover{
+  color: black;
+}
