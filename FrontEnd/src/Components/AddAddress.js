@@ -25,7 +25,7 @@ export default function AddNewAddress(){
         e.preventDefault();
         let newRegistraion = {...userAddress}
         console.log(newRegistraion);
-        RegisterAddress({name:newRegistraion.fullName, mobile:newRegistraion.mobile,city:newRegistraion.mobile,fulladd:newRegistraion.fullAddress,pincode:newRegistraion.pincode,state:newRegistraion.state})
+        RegisterAddress({name:newRegistraion.fullName, mobile:newRegistraion.mobile,city:newRegistraion.city,fulladd:newRegistraion.fullAddress,pincode:newRegistraion.pincode,state:newRegistraion.state})
     }
 
 const RegisterAddress = async ({name, mobile, fulladd, state, pincode, city})=>{

@@ -3,12 +3,14 @@ import { getData } from "../FetchingApi/fetchApi";
 import { Link } from "react-router-dom";
 import {useLoader} from "../context/LoaderContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
+import { faMapMarkerAlt,faTrash} from '@fortawesome/free-solid-svg-icons'
+import {Toast} from '../Toast/toast'
+import { toast } from "react-toastify";
 
 export default function Address(){
     const  [address,setAddress]  = useState([]);
     const userId = localStorage.getItem('userId');
-    const  {setloader} = useLoader();
+    const  {loader,setloader} = useLoader();
     let selectAddress = 0;
     const [clickvalue,setclickvalue] = useState(selectAddress);
     
@@ -37,15 +39,33 @@ export default function Address(){
     function ClickCardHandler(id){
       setclickvalue( selectAddress = id )
       }
+     
+     const RemoveHandler = async (e)=>{
+       console.log(e);
+       try{
+         let response = await getData(`/address/delete/${e}`)
+         response.success?toast.success(response.message):toast.error(response.message);
+         getAddressData();
+         
+       }
+       catch(error){
+        console.error(error);
+       }
+
+
+      }
 
    return (
     <div className="AddressFrame" >
       <span id='heading'>Select Address</span>
       
-    {address.length !==0
-    ?<div className="show-address">
+    {
+    
+    
+    <div className="show-address">
+       {loader && <div className='loader'></div>}
       {
-       address.map(({address, city,mobile,name,pincode,state,_id},index)=>
+       address.length !==0 && address.map(({address, city,mobile,name,pincode,state,_id},index)=>
        (
        <div className="AddressCard" onClick={()=>ClickCardHandler(_id)}>
          <div>Address {index + 1}</div>
@@ -58,6 +78,15 @@ export default function Address(){
          <span>{state}</span> ,<span>India</span>
          </div>
          <span>{mobile}</span>
+
+         <div onClick={()=>RemoveHandler(_id)} >
+         <FontAwesomeIcon icon={faTrash} size='1x' color="red"/>
+         <span style={{fontWeight:'bolder',marginLeft:'0.4rem'}}>Remove</span>
+
+         </div>
+
+
+
          { clickvalue === _id &&
                 <span >
                   <Link to="/ordersummary"  style={{textDecoration:'none'}} > 
@@ -76,7 +105,15 @@ export default function Address(){
       </div></Link>
 
     </div>
-    :<div className="loader" ></div>}
+    
+    
+    
+    
+    }
+
+    <div>
+    {Toast()}
+    </div>
     </div>
     );
 }
