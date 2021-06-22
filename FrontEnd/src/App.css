@@ -108,6 +108,26 @@ h2 {
 
 }
 
+
+.productItem {
+  width: 20rem;
+  height: 100% !important;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  position: relative;
+}
+
+
+
+.outOfStock{
+  	filter: opacity(0.5);
+}
+
 @media only screen and (max-width: 768px) {
 
   /* For mobile phones: */
@@ -131,22 +151,8 @@ h2 {
     cursor: pointer;
   }
 
-
 }
 
-
-.productItem {
-  width: 20rem;
-  height: max-content;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  cursor: pointer;
-  position: relative;
-}
 
 .btn {
   padding: 0.5rem;

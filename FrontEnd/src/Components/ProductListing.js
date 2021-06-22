@@ -93,7 +93,7 @@ const body =  {
           <div className="productbox">
         {filteredData.map((item)=>{
           return (
-            <div key={item._id} className="productItem">
+            <div key={item._id} className={item.inStock?"productItem" :"productItem outOfStock"}>
               {item.inStock && <div className="bestseller"></div>}
               <img src={item.image} alt="Itemimage" height="300px" width="100%"/>
               <div className="name-like-section">
@@ -112,9 +112,12 @@ const body =  {
                    item.fastDelivery && "Fast Delivery Available"
                  }
                 </span>
-                <span>
-                <button onClick={()=>AddToCartHandler(item)} className="btn">Add To Cart</button>
-                </span>
+                {
+                  item.inStock &&
+                  <span>
+                  <button onClick={()=>AddToCartHandler(item)} className="btn">Add To Cart</button>
+                  </span>
+                }
               </div>
             </div>
           );

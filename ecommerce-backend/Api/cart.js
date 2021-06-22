@@ -94,8 +94,9 @@ router.route('/:userId')
 
 router.route('/delete/:_id')
   .post((req, res) => {
-    const id = req.params;
-    Cart.findOneAndDelete({ _id: id }, function(err, docs) {
+    const _id = req.params;
+    console.log(_id);
+    Cart.findOneAndDelete({ _id }, function(err, docs) {
       if (err) {
         return res.json({
           success: false,
@@ -124,6 +125,20 @@ router.route('/delete/:_id')
 
       }
     });
+
+
+
+  })
+
+
+  router.route('/delete/all/:customerId')
+  .get((req, res) => {
+    const customerId = req.params;
+    Cart.deleteMany(customerId).then(function(){
+      return res.status(200).json({  success:true,message:"all cart items deleted" })
+  }).catch(function(error){
+    return res.json({  success:false,message:"Something went wrong" })
+  });
 
 
 

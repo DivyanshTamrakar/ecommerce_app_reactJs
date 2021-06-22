@@ -1,12 +1,16 @@
 import {useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import { useLoader } from "../context/LoaderContext";
-import {getData,postData,userId} from '../FetchingApi/fetchApi'
-
+import {getData,postData} from '../FetchingApi/fetchApi'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart} from '@fortawesome/free-solid-svg-icons'
 
 function OrderSummary(){
 
   const [items,setItems] = useState([]);
   let {loader,setloader} = useLoader();
+  const navigate = useNavigate();
+  const userId = localStorage.getItem('userId');
 
   let totalprice = 0;
 
@@ -29,16 +33,21 @@ function OrderSummary(){
    
  }
 
-  function placeHolderhandler() {
+  const placeOrderhandler = async () =>{
+    
+    try{
+      await getData(`/carts/delete/all/${userId}`);
+     }catch(error){
+      console.error(error)
+    }
     alert(" Your order successfull placed !");
-      
+    navigate('/');
   }
   
-  async function Removehandler(itemId) {
+  async function Removehandler(id) {
     setloader(true);
-    const _id = itemId;
    try{
-    let response = await postData(itemId,`/carts/delete/${_id}`);
+    let response = await postData(id,`/carts/delete/${id}`);
     if(response.success === true){
       setloader(false);
        getCartItems();
@@ -56,30 +65,29 @@ function OrderSummary(){
     return(
       <div>
         {
-          loader?<div className="loader"></div>:   <div>
+          loader?<div className="loader"></div>:
+          <div>
           <div><h1>Order Summary</h1></div>  
           <div className="productbox">
         {
         
-        items.map(function(item){
+        items.map(function({price,_id,image,name,productdescription}){
   
-          totalprice = totalprice + parseInt(item.price);
+          totalprice = totalprice + parseInt(price);
           
           return (
-            <div key={item._id} className="OrderproductItem">
-              <img className="corner-radius" src={item.image} alt="item" height="200px" width="212px"/>
+            <div key={_id} className="OrderproductItem">
+              <img className="corner-radius" src={image} alt="item" height="200px" width="212px"/>
               
               <div className="namelike">
-                <span style={{fontWeight:"bolder"}}>{item.name}</span>
-                <span
-                //  onClick={()=>setWishItemInCart((item)=>item+1)}
-                ><i class="fa fa-heart"></i></span>
+                <span style={{fontWeight:"bolder"}}>{name}</span>
+                <FontAwesomeIcon icon={faHeart} />
               </div>
-              <span>{item.productdescription}</span>
-              <span> Rs.{item.price}</span>
+              <span>{productdescription}</span>
+              <span> Rs.{price}</span>
            <div className="button-group">
                 
-           <button onClick={()=>Removehandler(item._id)}  className="btn">Remove from Cart</button>
+           <button onClick={()=>Removehandler(_id)}  className="btn">Remove from Cart</button>
            </div>
   
   
@@ -92,12 +100,10 @@ function OrderSummary(){
   
        {
   
-  items.length!==0 ?
+  items.length !==0 &&
   <div><h2 className="totalamount">{`Total Cart Value = ${totalprice}`}</h2>  
-  <button onClick={placeHolderhandler} className="placeOrder">Place Your Order</button>  
+  <button onClick={placeOrderhandler} className="placeOrder">Place Your Order</button>  
   </div>
-  :<div></div>
-  
        }
   
   
