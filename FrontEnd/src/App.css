@@ -671,3 +671,57 @@ font-weight: 700;
 .wish-delete:hover{
   color: black;
 }
+
+/* // side bar  */
+
+.sidenav {
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  top: 0px;
+  left: 0;
+  background-color:white;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  transition: 0.3s;
+  padding-top: 2rem;
+}
+
+.sidenav span {
+  padding: 1rem;
+  text-decoration: none;
+  font-size: 25px;
+  color: #0c0c0c;
+  font-weight: 800;
+  cursor: pointer;
+  display: block;
+  transition: 0.3s;
+  border: 1px solid black;
+  margin: 1rem;
+}
+
+.sidenav span:hover {
+  color: #ff0000;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 35px;
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+#mySidenav-open{
+  width: 20%;
+  
+}
+#mySidenav-close{
+  width: 0px;
+}
