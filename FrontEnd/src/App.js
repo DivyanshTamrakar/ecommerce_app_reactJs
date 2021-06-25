@@ -29,8 +29,8 @@ function App() {
      <PrivateRoute path="/carts" element={<Cart/>}/>
      <PrivateRoute path="/wishlists" element={<Wishlist/>}/>
      <Route path="/login" element={<Login/>}/>
-     <Route path="/address" element={<Address/>}/>
-     <Route path="/ordersummary" element={<OrderSummary/>}/>
+     <PrivateRoute path="/address" element={<Address/>}/>
+     <PrivateRoute path="/ordersummary" element={<OrderSummary/>}/>
      <Route path="/signup" element={<Signup/>}/>
      <Route path="/addnewaddress" element={<AddNewAddress/>}/>
      <Route path="*" element={<NotFoundPage />} />
