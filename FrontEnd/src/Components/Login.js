@@ -28,6 +28,7 @@ export default function Login(){
    }
 
    function  Logouthandler(){
+     setLogin(false);
      localStorage.removeItem('userId');
      localStorage.clear();
      toast.success("Successfull Logout!")
