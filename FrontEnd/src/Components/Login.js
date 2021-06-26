@@ -1,14 +1,20 @@
+import "./Login.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from "../context/AuthContext";
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faUser} from '@fortawesome/free-solid-svg-icons'
 
 export const HideLinkUnderline = { textDecoration: 'none' ,color:'black'};
 export const GoToRegisterPageLink ={display:'inline',fontWeight:'500',textAlign:'right',cursor:'pointer'}
-export default function Login(){
 
-   let {login,LoginWithCredential,setLogin} = useAuth();
+export default function Login(){
+   
+  let { login , LoginWithCredential, setLogin } = useAuth();
+   
+
    const [UserDetails,setUserDetails] = useState({
      email:'',
      password:''
@@ -22,11 +28,9 @@ export default function Login(){
    }
 
    function  Logouthandler(){
-  setLogin(false);
-  localStorage.removeItem('userId');
-  localStorage.clear();
-  toast.success("Successfull Logout!")
-
+     localStorage.removeItem('userId');
+     localStorage.clear();
+     toast.success("Successfull Logout!")
   }
 
 
@@ -44,9 +48,8 @@ export default function Login(){
       console.log("fill all fileds");
     } 
     else{
-      console.log(newRecord);
       LoginWithCredential(newRecord.email,newRecord.password);
-    }
+        }
 
 
   }
@@ -55,8 +58,16 @@ export default function Login(){
    return (
 <div style={{marginTop:"1rem"}}>
     { login === true 
-    ? 
-    <div > <button className="inputbutton" onClick={Logouthandler}>Logout</button> </div>
+       ? 
+      <div className="ProfileFrame">
+
+        <div className='Avatar'>
+          <FontAwesomeIcon icon={faUser} color="white" size="5x"/>
+        </div>
+        <div className='Username'> { localStorage.getItem('name')}</div>
+        <button className='logout cursor' onClick={Logouthandler}>Logout</button>
+      </div>
+
        :  <form action="" onSubmit={SubmitHandler}>
               <div className="form-frame">
                 <span>Sign In</span>

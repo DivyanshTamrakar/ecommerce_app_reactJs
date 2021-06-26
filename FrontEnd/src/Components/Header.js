@@ -1,7 +1,7 @@
 import { useWishlist } from "../context/wishlist-context";
 import { Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars,faHeart ,faShoppingCart,faStore,faUser} from '@fortawesome/free-solid-svg-icons'
+import { faBars,faHeart ,faShoppingCart,faUser} from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react";
 
 
