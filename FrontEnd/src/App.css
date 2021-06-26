@@ -685,7 +685,6 @@ font-weight: 700;
   overflow-y: hidden;
   transition: 0.3s;
 }
-
 .sidenav span {
   padding: 1rem;
   text-decoration: none;
@@ -712,7 +711,6 @@ font-weight: 700;
   color: black;
   font-weight: 750;
 }
-
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav span {font-size: 18px;}
@@ -723,13 +721,13 @@ font-weight: 700;
 #mySidenav-close{
   width: 0px;
 }
-[type]{
+[type='header-profile'] {
   background-color: rgb(255,0,149);
   display: grid;
   grid-template-columns: 10% auto;
   
   color: white;
 }
-[type] span{
+[type='header-profile'] span {
   color: white;
 }
