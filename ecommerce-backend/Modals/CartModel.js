@@ -41,12 +41,10 @@ const CartSchema = new mongoose.Schema({
     type:String,
     required:"Description is must",
     minLength:[20,"Description must  be greater than 20 words"]
-  }
-
-
+  },
 }, {
   // Make Mongoose use Unix time (seconds since Jan 1, 1970)
-  timestamps:true
+   timestamps:true
 });
 
 

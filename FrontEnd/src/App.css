@@ -686,7 +686,7 @@ font-weight: 700;
   transition: 0.3s;
 }
 .sidenav span {
-  padding: 1rem;
+  padding: 0.9rem;
   text-decoration: none;
   font-size: 25px;
   color: rgb(97, 95, 95);
@@ -700,8 +700,8 @@ font-weight: 700;
 
 .sidenav .closebtn {
   position: absolute;
-  top: 4.5rem;
-  right: 0.5rem;
+  top: 1rem;
+  right: 0;
   font-size: 35px;
   color: rgb(0, 0, 0);
   font-weight: 700;

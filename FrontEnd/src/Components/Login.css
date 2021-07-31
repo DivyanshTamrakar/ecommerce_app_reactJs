@@ -35,10 +35,12 @@
     font-size: larger;
     border-radius: 0.5rem;
 }
-.cursor{
-    cursor:pointer;
+
+.cursor {
+    cursor: pointer;
 }
-.logout:hover{
+
+.logout:hover {
     color: black;
     background-color: grey;
 }

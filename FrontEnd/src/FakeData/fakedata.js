@@ -5,7 +5,7 @@ faker.seed(123);
 export const arr = [...Array(15)].map((item) => ({
   id: faker.random.uuid(),
   name: faker.commerce.productName(),
-  description :faker.commerce.productDescription(),
+  description: faker.commerce.productDescription(),
   image: faker.random.image(),
   price: faker.commerce.price(),
   material: faker.commerce.productMaterial(),
@@ -16,21 +16,21 @@ export const arr = [...Array(15)].map((item) => ({
   offer: faker.random.arrayElement([
     "Save 50",
     "70% bonanza",
-    "Republic Day Sale"
+    "Republic Day Sale",
   ]),
   idealFor: faker.random.arrayElement([
     "Men",
     "Women",
     "Girl",
     "Boy",
-    "Senior"
+    "Senior",
   ]),
   level: faker.random.arrayElement([
     "beginner",
     "amateur",
     "intermediate",
     "advanced",
-    "professional"
+    "professional",
   ]),
-  color: faker.commerce.color()
+  color: faker.commerce.color(),
 }));

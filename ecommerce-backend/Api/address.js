@@ -1,14 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var {
-  User
-} = require("../Modals/UserModel");
-var {
-  Address
-} = require("../Modals/AddressModel");
-var {
-  extend
-} = require('lodash');
+var {Address} = require("../Modals/AddressModel");
 var bodyparser = require('body-parser');
 router.use(bodyparser.json())
 
