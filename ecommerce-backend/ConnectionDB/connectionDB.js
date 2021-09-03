@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 function initializeConnection() {
   const url =
-    "mongodb+srv://divyansh:tamrakar@neog-cluster.j0bu3.mongodb.net/inventory";
+    "mongodb+srv://divyansh:developer@neog-cluster.j0bu3.mongodb.net/inventory";
   mongoose
     .connect(url, {
       useNewUrlParser: true,
