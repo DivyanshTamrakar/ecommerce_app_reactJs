@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useLoader } from "../context/LoaderContext";
-import { getData, postData } from "../FetchingApi/fetchApi";
+import { useLoader } from "../../context/LoaderContext";
+import { getData, postData } from "../../FetchingApi/fetchApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 

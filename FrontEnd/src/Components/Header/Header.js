@@ -1,4 +1,4 @@
-import { useWishlist } from "../context/wishlist-context";
+import { useWishlist } from "../../context/wishlist-context";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,7 +8,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { useCart } from "../context/cart-context";
+import { useCart } from "../../context/cart-context";
 
 export default function Header() {
   const { WishItemInCart } = useWishlist();

@@ -1,15 +1,15 @@
 import "./App.css";
-import Header from "./Components/Header";
+import Header from "./Components/Header/Header";
 import Cart from "./Pages/Cart";
 import Wishlist from "./Components/Wishlist";
 import { Routes, Route } from "react-router-dom";
-import Login from "./Components/Login";
-import Address from "./Components/address";
-import OrderSummary from "./Components/OrderSummary";
-import Signup from "./Components/SignUp";
+import Login from "./Components/Login/Login";
+import Address from "./Components/Address/address";
+import OrderSummary from "./Components/OrderHistory/OrderSummary";
+import Signup from "./Components/SignUp/SignUp";
 import NotFoundPage from "./Pages/NotFoundPage";
-import AddNewAddress from "./Components/AddAddress";
-import OrderHistoryPage from "./Components/OrderHistoryPage";
+import AddNewAddress from "./Components/Address/AddAddress";
+import OrderHistoryPage from "./Components/OrderHistory/OrderHistoryPage";
 import { PrivateRoute } from "./Components/privateroute";
 import Home from "./Pages/Home";
 

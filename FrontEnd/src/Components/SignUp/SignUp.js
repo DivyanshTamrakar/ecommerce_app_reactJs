@@ -1,6 +1,6 @@
-import { postData } from "../FetchingApi/fetchApi";
+import { postData } from "../../FetchingApi/fetchApi";
 import { ToastContainer, toast } from "react-toastify";
-import { GoToRegisterPageLink, HideLinkUnderline } from "./Login";
+import { GoToRegisterPageLink, HideLinkUnderline } from "../Login/Login";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";

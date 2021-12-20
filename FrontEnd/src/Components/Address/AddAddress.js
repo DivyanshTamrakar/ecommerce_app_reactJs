@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { Toast } from "../Toast/toast";
+import { Toast } from "../../Toast/toast";
 import { useState } from "react";
-import { postData } from "../FetchingApi/fetchApi";
+import { postData } from "../../FetchingApi/fetchApi";
 export default function AddNewAddress() {
   let navigate = useNavigate();
   let userId = localStorage.getItem("userId");

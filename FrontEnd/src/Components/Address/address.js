@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { getData } from "../FetchingApi/fetchApi";
+import { getData } from "../../FetchingApi/fetchApi";
 import { Link } from "react-router-dom";
-import { useLoader } from "../context/LoaderContext";
+import { useLoader } from "../../context/LoaderContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { Toast } from "../Toast/toast";
+import { Toast } from "../../Toast/toast";
 import { toast } from "react-toastify";
 
 export default function Address() {
