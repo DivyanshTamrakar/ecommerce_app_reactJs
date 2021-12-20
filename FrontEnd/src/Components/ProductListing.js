@@ -10,7 +10,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Filter from "./Filter.js";
 
 function ProductListing() {
-  
+
   const { GetProductData, filteredData } = useProduct();
   const [filter, setfilter] = useState(false);
 
@@ -79,10 +79,10 @@ function ProductListing() {
         {filter && <Filter />}
         {filteredData.length !== 0 ? (
           <div className="productbox">
-            {filteredData.map((item) => {
+            {filteredData.map((item, index) => {
               return (
                 <div
-                  key={item._id}
+                  key={index}
                   className={
                     item.inStock ? "productItem" : "productItem outOfStock"
                   }
