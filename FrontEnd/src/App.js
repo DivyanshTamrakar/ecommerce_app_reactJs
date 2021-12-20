@@ -7,7 +7,7 @@ import Login from "./Components/Login";
 import Address from "./Components/address";
 import OrderSummary from "./Components/OrderSummary";
 import Signup from "./Components/SignUp";
-import NotFoundPage from "./Components/NotFoundPage";
+import NotFoundPage from "./Pages/NotFoundPage";
 import AddNewAddress from "./Components/AddAddress";
 import OrderHistoryPage from "./Components/OrderHistoryPage";
 import { PrivateRoute } from "./Components/privateroute";
