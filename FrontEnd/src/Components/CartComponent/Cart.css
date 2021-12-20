@@ -1,0 +1,38 @@
+.CartBoxRight {
+    height: max-content;
+    text-align: left;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: white;
+}
+
+.CartBoxRight span {
+    font-weight: 650;
+    padding: 5px;
+}
+
+.CartBoxRight button {
+    border: none;
+    width: auto;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    background-color: #fffb00;
+    font-weight: 600;
+}
+
+.HeadingPrice {
+    color: grey;
+    text-align: left;
+    font-weight: 700;
+    padding: 5px;
+}
+
+.CartHeading {
+    font-size: x-large;
+    font-weight: 700;
+    text-align: left;
+    padding: 15px;
+}

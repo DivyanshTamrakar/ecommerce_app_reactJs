@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./Components/Header";
-import Cart from "./Components/Cart";
+import Cart from "./Pages/Cart";
 import Wishlist from "./Components/Wishlist";
 import { Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";

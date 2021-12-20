@@ -24,7 +24,7 @@ const ProductCard = ({ item, index }) => {
                 image: item.image,
                 price: item.price,
             };
-            let response = await postData(body, "/carts");
+            const response = await postData(body, "/carts");
             if (response.available === true) {
                 toast.info(response.message);
             }

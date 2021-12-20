@@ -8,9 +8,11 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useCart } from "../context/cart-context";
 
 export default function Header() {
   const { WishItemInCart } = useWishlist();
+  const { itemInCart } = useCart()
 
   const [Drawer, setDrawer] = useState(false);
 
@@ -37,19 +39,19 @@ export default function Header() {
           Ecommerce Store{" "}
         </Link>
         <div className="icons">
-          <span class="notification">
+          <span className="notification">
             <Link to="/wishlists">
               <FontAwesomeIcon icon={faHeart} color="white" />
             </Link>
-            <span class="badge">{WishItemInCart.length}</span>
+            <span className="badge">{WishItemInCart.length}</span>
           </span>
-          <span class="notification">
+          <span className="notification">
             <Link to="/carts">
               <FontAwesomeIcon icon={faShoppingCart} color="white" />
             </Link>
-            <span class="badge">{0}</span>
+            <span style={{fontWeight:"700",color:"black400"}} className="badge">{itemInCart.length}</span>
           </span>
-          <span class="notification">
+          <span className="notification">
             <Link to="/login">
               <FontAwesomeIcon icon={faUser} color="white" />
             </Link>
