@@ -10,6 +10,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Filter from "./Filter.js";
 
 function ProductListing() {
+  
   const { GetProductData, filteredData } = useProduct();
   const [filter, setfilter] = useState(false);
 

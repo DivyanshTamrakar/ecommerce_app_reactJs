@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useLoader } from "../context/LoaderContext";
 import { getData, postData } from "../FetchingApi/fetchApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,7 +21,6 @@ function loadScript(src) {
 function OrderSummary() {
   const [items, setItems] = useState([]);
   let { loader, setloader } = useLoader();
-  const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
 
   let totalprice = 0;
@@ -79,14 +77,14 @@ function OrderSummary() {
 
 
 
-    const data = await postData({"userId":localStorage.getItem('userId'),"amount":"5000" },'/razorpay');
- 
+    const data = await postData({ "userId": localStorage.getItem('userId'), "amount": "5000" }, '/razorpay');
+
 
     // const data = await fetch("http://localhost:5000/razorpay", {
     //   method: "POST",
     // }).then((t) => t.json());
-    if(data.success){console.log("data",data);}
-    
+    if (data.success) { console.log("data", data); }
+
     var options = {
       key: "rzp_test_x5vD6ApR8W8yaS", // Enter the Key ID generated from the Dashboard
       currency: data.currency,
