@@ -688,3 +688,7 @@ h2 {
 [type='header-profile'] span {
     color: white;
 }
+
+.textDecorationNone {
+    text-decoration: none;
+}
