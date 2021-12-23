@@ -13,7 +13,7 @@ function CartDetail() {
             <hr/>
             <span>Total Items : {itemInCart.length}</span>
             <span>SUB-TOTAL : ₹ {totalprice}.00</span>
-                <Link to="/address">
+                <Link to="/address" className='textDecorationNone'>
                     <button className="cursor"> Proceed to Buy </button>
                 </Link>
         </div>
