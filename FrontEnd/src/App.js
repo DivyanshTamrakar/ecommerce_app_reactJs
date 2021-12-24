@@ -1,19 +1,21 @@
 import "./App.css";
 import Header from "./Components/Header/Header";
+import Home from "./Pages/Home";
 import Cart from "./Pages/Cart";
-import Wishlist from "./Components/Wishlist";
-import { Routes, Route } from "react-router-dom";
+import WishList from "./Pages/WishList";
 import Login from "./Pages/Login";
 import Address from "./Pages/Address";
-import OrderSummary from "./Components/OrderHistory/OrderSummary";
 import Signup from "./Pages/SignUp";
 import NotFoundPage from "./Pages/NotFoundPage";
 import AddNewAddress from "./Pages/AddNewAddress";
+import OrderSummary from "./Components/OrderHistory/OrderSummary";
 import OrderHistoryPage from "./Components/OrderHistory/OrderHistoryPage";
 import { PrivateRoute } from "./Components/privateroute";
-import Home from "./Pages/Home";
+import { Routes, Route } from "react-router-dom";
+
 
 function App() {
+
   return (
     <div className="App">
       <div>
@@ -23,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <PrivateRoute path="/carts" element={<Cart />} />
-          <PrivateRoute path="/wishlists" element={<Wishlist />} />
+          <PrivateRoute path="/wishlists" element={<WishList />} />
           <Route path="/login" element={<Login />} />
           <PrivateRoute path="/address" element={<Address />} />
           <PrivateRoute path="/ordersummary" element={<OrderSummary />} />

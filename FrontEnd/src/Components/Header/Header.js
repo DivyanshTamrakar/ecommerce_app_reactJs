@@ -1,14 +1,17 @@
 import { useWishlist } from "../../context/wishlist-context";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faHeart,
-  faShoppingCart,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 import { useState } from "react";
 import { useCart } from "../../context/cart-context";
+
+
+const IconDesign = { color: 'white', fontSize: '2rem' };
+const BadgeDesign = { fontWeight: "600", color: "black400",padding:'5px' };
 
 export default function Header() {
   const { WishItemInCart } = useWishlist();
@@ -41,19 +44,19 @@ export default function Header() {
         <div className="icons">
           <span className="notification">
             <Link to="/wishlists">
-              <FontAwesomeIcon icon={faHeart} color="white" />
+              <FavoriteIcon sx={IconDesign} />
             </Link>
-            <span className="badge">{WishItemInCart.length}</span>
+            <span style={BadgeDesign} className="badge">{WishItemInCart.length}</span>
           </span>
           <span className="notification">
             <Link to="/carts">
-              <FontAwesomeIcon icon={faShoppingCart} color="white" />
+              <ShoppingCartIcon sx={IconDesign} />
             </Link>
-            <span style={{fontWeight:"700",color:"black400"}} className="badge">{itemInCart.length}</span>
+            <span style={BadgeDesign} className="badge">{itemInCart.length}</span>
           </span>
           <span className="notification">
             <Link to="/login">
-              <FontAwesomeIcon icon={faUser} color="white" />
+              <AccountCircleIcon sx={IconDesign} />
             </Link>
           </span>
         </div>

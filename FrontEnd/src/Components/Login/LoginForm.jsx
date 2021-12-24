@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from '../../context/AuthContext';
 
 function LoginForm() {
-    const userId = localStorage.getItem("userId");
-    let { LoginWithCredential, setLogin } = useAuth();
-
+    let { LoginWithCredential } = useAuth();
     const [UserDetails, setUserDetails] = useState({
         email: "",
         password: "",
