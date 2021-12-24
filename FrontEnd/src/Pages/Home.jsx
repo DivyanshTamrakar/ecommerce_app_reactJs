@@ -1,6 +1,6 @@
 import React from 'react'
 import "react-toastify/dist/ReactToastify.css";
-import { Toast } from "../Toast/toast";
+import Toast from "../Components/toast";
 import Filter from "../Components/HomeComponents/Filter";
 import Card from '../Components/HomeComponents/Card';
 
@@ -11,7 +11,7 @@ const Home = () => {
         <div style={{ backgroundColor: "whitesmoke" }}>
             <Filter />
             <Card />
-            {Toast()}
+            <Toast />
         </div>
     );
 }

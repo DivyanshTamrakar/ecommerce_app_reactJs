@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Components/Login/Login";
 import Address from "./Pages/Address";
 import OrderSummary from "./Components/OrderHistory/OrderSummary";
-import Signup from "./Components/SignUp/SignUp";
+import Signup from "./Pages/SignUp";
 import NotFoundPage from "./Pages/NotFoundPage";
 import AddNewAddress from "./Pages/AddNewAddress";
 import OrderHistoryPage from "./Components/OrderHistory/OrderHistoryPage";

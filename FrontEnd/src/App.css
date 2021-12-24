@@ -692,3 +692,7 @@ h2 {
 .textDecorationNone {
     text-decoration: none;
 }
+
+.colorBlack {
+    color: black;
+}

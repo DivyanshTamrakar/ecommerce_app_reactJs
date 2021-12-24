@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getData } from "../FetchingApi/fetchApi";
 import { useLoader } from "../context/LoaderContext";
-import { Toast } from "../Toast/toast";
+import Toast from "../Components/toast";
 import AddressFrame from "../Components/Address/AddressFrame";
 import Loader from '../Components/Loader';
 
@@ -32,8 +32,8 @@ export default function Address() {
   return (
     <div className="AddressFrame">
       <span id="heading">Select Address</span>
-      {loader ? <Loader/>:<AddressFrame address={address}/>}
-      <div>{Toast()}</div>
+      {loader ? <Loader /> : <AddressFrame address={address} />}
+      <Toast />
     </div>
   );
 }

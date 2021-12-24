@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import { getData, userId } from "../FetchingApi/fetchApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-
-import { Toast } from "../Toast/toast";
 import { toast } from "react-toastify";
+import Toast from "./toast";
 
 function Wishlist() {
   const [wishData, setwishdata] = useState([]);
@@ -108,7 +107,7 @@ function Wishlist() {
         </div>
       )}
 
-      <div>{Toast()}</div>
+      <Toast />
     </>
   );
 }
