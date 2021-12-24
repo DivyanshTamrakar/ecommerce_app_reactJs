@@ -3,7 +3,7 @@ import Header from "./Components/Header/Header";
 import Cart from "./Pages/Cart";
 import Wishlist from "./Components/Wishlist";
 import { Routes, Route } from "react-router-dom";
-import Login from "./Components/Login/Login";
+import Login from "./Pages/Login";
 import Address from "./Pages/Address";
 import OrderSummary from "./Components/OrderHistory/OrderSummary";
 import Signup from "./Pages/SignUp";
