@@ -1,9 +1,9 @@
 import React from 'react'
 import '../Components/Login/Login.css'
 import { useAuth } from "../context/AuthContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { toast } from "react-toastify";
+
 
 function UserProfile() {
 
@@ -19,11 +19,11 @@ function UserProfile() {
     return (
 
         <div className="ProfileFrame">
-            <div className="Avatar">
-                <FontAwesomeIcon icon={faUser} color="white" size="5x" />
+            <div>
+                <AccountCircleIcon color='info' si sx={{ color: 'gray', fontSize: "5rem" }} />
             </div>
             <div className="Username"> {localStorage.getItem("name")}</div>
-            <button className="logout cursor" onClick={Logouthandler}>
+            <button className="logout cursor" onClick={() => Logouthandler}>
                 Logout
             </button>
         </div>
