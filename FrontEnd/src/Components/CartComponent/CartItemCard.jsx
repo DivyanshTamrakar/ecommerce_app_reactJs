@@ -7,7 +7,7 @@ import { useLoader } from "../../context/LoaderContext";
 import { useCart } from '../../context/cart-context';
 
 
-function CartItemCard({ item, index }) {
+function CartItemCard({ item }) {
     const { setWishItemInCart } = useWishlist();
     const { setloader } = useLoader();
     const {getCartItems} = useCart();
@@ -26,12 +26,12 @@ function CartItemCard({ item, index }) {
         }
     }
     return (
-        <div key={index} className="CartItem">
+        <div className="CartItem">
             <img
                 src={item.image}
                 alt="item-name"
                 height="200px"
-                width="25%"
+                width="auto"
             />
             <div className="Cart-Item-description">
                 <div

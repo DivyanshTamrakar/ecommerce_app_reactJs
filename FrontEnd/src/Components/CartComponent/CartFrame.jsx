@@ -12,7 +12,7 @@ const CartFrame = () => {
     const { itemInCart } = useCart();
 
     return (
-        <div>
+        <div className='CartBox'>
             {
                 itemInCart.length ?
                     <div>

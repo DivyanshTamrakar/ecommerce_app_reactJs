@@ -5,13 +5,15 @@ import Filter from "../Components/HomeComponents/Filter";
 import Card from '../Components/HomeComponents/Card';
 
 
+
 const Home = () => {
 
     return (
         <div>
-            {/* <Filter /> */}
+            <Filter />
             <Card />
             <Toast />
+
         </div>
     );
 }
