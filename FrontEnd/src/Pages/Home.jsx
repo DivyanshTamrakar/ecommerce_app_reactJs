@@ -8,8 +8,8 @@ import Card from '../Components/HomeComponents/Card';
 const Home = () => {
 
     return (
-        <div style={{ backgroundColor: "whitesmoke" }}>
-            <Filter />
+        <div>
+            {/* <Filter /> */}
             <Card />
             <Toast />
         </div>

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const ProductCard = ({ item, index }) => {
+const ProductCard = ({ item}) => {
 
     const userId = localStorage.getItem("userId");
     let navigate = useNavigate();
@@ -56,7 +56,6 @@ const ProductCard = ({ item, index }) => {
 
     return (
         <div
-            key={index}
             className={item.inStock ? "productItem" : "productItem outOfStock"}>
             {item.inStock && <div className="bestseller"></div>}
             <img

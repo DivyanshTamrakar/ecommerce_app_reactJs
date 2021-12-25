@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useProduct } from '../../context/ProductContext';
 import ProductCard from "./ProductCard";
+import Loader from '../Loader';
 
 const Card = () => {
     const { GetProductData, filteredData } = useProduct();
@@ -10,17 +11,15 @@ const Card = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userId]);
     return (
-        <div>
-            {filteredData.length !== 0 ? (
+        <>
+            {filteredData.length !== 0 ?
                 <div className="productbox">
                     {filteredData.map((item, index) => {
-                        return <ProductCard key={index} item={item} index={index} />
+                        return <ProductCard key={index} item={item} />
                     })}
                 </div>
-            ) : (
-                <div className="loader"> </div>
-            )}
-        </div>
+                : <Loader />}
+        </>
     )
 }
 
