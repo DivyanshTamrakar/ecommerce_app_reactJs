@@ -36,31 +36,6 @@ h2 {
     font-weight: bold;
 }
 
-.navigation {
-    width: 100%;
-    background-color: rgb(255, 0, 149);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    position: sticky;
-    z-index: 2;
-    padding: 0.9rem;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.icons {
-    margin-right: 1.5rem;
-    width: 15rem;
-    padding: 0.3rem;
-    background-color: #ff0e9b;
-    border-radius: 1.5rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {
         animation: App-logo-spin infinite 20s linear;
@@ -148,26 +123,6 @@ h2 {
     color: white;
     font-weight: 900;
     cursor: pointer;
-}
-
-.notification {
-    color: white;
-    text-decoration: none;
-    position: relative;
-    display: inline-block;
-    border-radius: 2px;
-    font-size: 1.5rem;
-}
-
-.badge {
-    position: absolute;
-    top: -7px;
-    right: -12px;
-    padding: 3px 7px;
-    border-radius: 50%;
-    background-color: rgb(255, 238, 0);
-    font-size: 15px;
-    color: rgb(0, 0, 0);
 }
 
 .button-group {
@@ -693,6 +648,6 @@ h2 {
     text-decoration: none;
 }
 
-.colorBlack {
-    color: black;
+.colorWhite {
+    color: white;
 }
