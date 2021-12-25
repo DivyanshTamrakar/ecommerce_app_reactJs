@@ -23,7 +23,7 @@ function UserProfile() {
                 <AccountCircleIcon color='info' sx={{ color: 'gray', fontSize: "5rem" }} />
             </div>
             <div className="Username"> {localStorage.getItem("name")}</div>
-            <button className="logout cursor" onClick={() => Logouthandler}>
+            <button className="logout cursor" onClick={Logouthandler}>
                 Logout
             </button>
         </div>

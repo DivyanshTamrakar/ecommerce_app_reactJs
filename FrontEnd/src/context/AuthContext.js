@@ -10,14 +10,16 @@ export function AuthProvider({ children }) {
   let navigate = useNavigate();
   let { state } = useLocation();
   console.log("in Context", state?.from);
-  async function LoginWithCredential(email, password) {
+
+
+  const LoginWithCredential = async (email, password) => {
     const body = {
       email: email,
       password: password,
     };
     try {
-      let response = await postData(body, `/users/signin`);
-      if (response["success"] === true) {
+      const response = await postData(body, `/users/signin`);
+      if (response["success"]) {
         setLogin(true);
         localStorage.setItem("userId", response["user"]["uid"]);
         localStorage.setItem("name", response["user"]["name"]);
@@ -29,6 +31,8 @@ export function AuthProvider({ children }) {
     } catch (e) {
       console.error("Error in AuhtContext ", e);
     }
+
+
   }
   return (
     <AuthContext.Provider value={{ login, LoginWithCredential, setLogin }}>
