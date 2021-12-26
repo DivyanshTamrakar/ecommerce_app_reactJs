@@ -8,8 +8,7 @@ import Address from "./Pages/Address";
 import Signup from "./Pages/SignUp";
 import NotFoundPage from "./Pages/NotFoundPage";
 import AddNewAddress from "./Pages/AddNewAddress";
-import OrderSummary from "./Components/OrderHistory/OrderSummary";
-import OrderHistoryPage from "./Components/OrderHistory/OrderHistoryPage";
+import OrderSummary from "./Pages/OrderSummary";
 import { PrivateRoute } from "./Components/privateroute";
 import { Routes, Route } from "react-router-dom";
 
@@ -21,7 +20,7 @@ function App() {
     <div className="App">
       <div>
         <Header />
-        
+
       </div>
       <div>
         <Routes>
@@ -33,7 +32,7 @@ function App() {
           <PrivateRoute path="/ordersummary" element={<OrderSummary />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/addnewaddress" element={<AddNewAddress />} />
-          <Route path="/orderhistory" element={<OrderHistoryPage />} />
+          <Route path="/orderhistory" element={<OrderSummary />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

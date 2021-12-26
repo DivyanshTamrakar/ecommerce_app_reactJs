@@ -22,10 +22,6 @@
     border-radius: 0.5rem;
 }
 
-.corner-radius {
-    border-radius: 0.5rem;
-}
-
 h2 {
     display: block;
     font-size: 1.5em;
@@ -126,10 +122,15 @@ h2 {
     cursor: pointer;
 }
 
-.button-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+.order-remove-button {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgb(255, 0, 119);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
 }
 
 .name-like-section {
@@ -184,33 +185,19 @@ h2 {
 }
 
 .OrderproductItem {
-    text-align: center;
-    border: 1px solid black;
+    text-align: left;
+    border: 1px solid gray;
+    padding: 10px;
 }
 
 .totalamount {
-    margin: 0.5rem;
-    padding: 0.3rem;
-    border-radius: 0.5rem;
+    background-color: yellow;
+    width: max-content;
+    padding: 10px;
     text-align: left;
-}
-
-.placeOrder {
-    width: 100%;
-    margin: 1rem;
-    padding: 1rem;
-    border: none;
-    background-color: orange;
-    font-weight: bolder;
-    font-size: 1rem;
-    cursor: pointer;
+    margin-inline-start: 0;
+    margin: 10px 10px 0px 10px;
     color: black;
-    border-radius: 0.5rem;
-}
-
-.placeOrder:hover {
-    background-color: navy;
-    color: white;
 }
 
 .loader {
@@ -556,4 +543,9 @@ h2 {
 
 .colorWhite {
     color: white;
+}
+
+.textBold {
+    font-weight: bolder;
+    font-size: 20px;
 }
