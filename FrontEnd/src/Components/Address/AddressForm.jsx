@@ -3,7 +3,7 @@ import { useState } from "react";
 import { postData } from "../../FetchingApi/fetchApi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
+import './Address.css'
 const AddressForm = () => {
     const navigate = useNavigate();
     const userId = localStorage.getItem("userId");

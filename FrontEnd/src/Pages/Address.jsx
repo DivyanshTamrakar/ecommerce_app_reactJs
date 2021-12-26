@@ -4,6 +4,7 @@ import { useLoader } from "../context/LoaderContext";
 import Toast from "../Components/toast";
 import AddressFrame from "../Components/Address/AddressFrame";
 import Loader from '../Components/Loader';
+import '../Components/Address/Address.css';
 
 export default function Address() {
   const [address, setAddress] = useState([]);

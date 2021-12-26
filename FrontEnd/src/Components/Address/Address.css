@@ -1,0 +1,114 @@
+.AddressFields {
+    background-color: rgb(255, 255, 255)e;
+    width: max-content;
+    height: 15rem;
+    top: 60%;
+    left: 33%;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-column-gap: 1rem;
+    justify-items: center;
+    box-shadow: none;
+}
+
+.AddressFrame {
+    background-color: rgb(244, 247, 246);
+    padding: 5px;
+    text-align: left;
+}
+
+.show-address {
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    padding: 1rem;
+    justify-items: left;
+    grid-template-columns: 30% 30% 30%;
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+}
+
+.AddressCard {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    text-align: left;
+    height: fit-content;
+    padding: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0.5rem;
+    color: black;
+    background-color: #ffffff;
+}
+
+.AddressCard:hover {
+    background-color: rgb(221, 221, 221);
+    color: black;
+}
+
+.AddressCard>div:first-of-type {
+    font-weight: 900;
+}
+
+.AddressText {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+    max-width: 90%;
+}
+
+.addNewAddress {
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+    height: fit-content;
+}
+
+.addNewAddress>span {
+    font-weight: 850;
+    font-size: 1rem;
+}
+
+.fontWeight {
+    font-weight: 750;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .show-address {
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .AddressCard {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        text-align: left;
+        height: fit-content;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 1px;
+        color: black;
+        background-color: #ffffff;
+    }
+    .addNewAddress {
+        -webkit-align-items: left;
+        -ms-flex-align: left;
+        align-items: left;
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        cursor: pointer;
+        text-align: left;
+        height: fit-content;
+        padding: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 3px;
+        color: black;
+        background-color: #ffffff;
+    }
+}

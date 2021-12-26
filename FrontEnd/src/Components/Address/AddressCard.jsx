@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { getData } from '../../FetchingApi/fetchApi';
 import Button from '@mui/material/Button';
-
+import './Address.css'
 
 function AddressCard({ address, city, mobile, name, pincode, state, _id, index }) {
 
@@ -27,17 +27,15 @@ function AddressCard({ address, city, mobile, name, pincode, state, _id, index }
             className="AddressCard"
             onClick={() => setclickvalue(_id)}>
             <div>Address {index + 1}</div>
-            <span style={{ marginTop: "0.5rem", fontWeight: "580" }}>
+            <span className='AddressText fontWeight' >
                 {name}
             </span>
-            <span style={{ maxWidth: "90%" }}>{address}</span>
-            <div>
-                <span>{city}</span> ,<span>{pincode}</span>
-            </div>
-            <div>
-                <span>{state}</span> ,<span>India</span>
-            </div>
-            <span>{mobile}</span>
+            <span className='AddressText'>{address}</span>
+            <span className='AddressText'>{city}</span>
+            <span className='AddressText'>{pincode}</span>
+            <span className='AddressText'>{state}</span>
+            <span className='AddressText'>India</span>
+            <span className='AddressText'>{mobile}</span>
 
             <Button color='secondary' onClick={() => RemoveHandler(_id)} variant="contained" startIcon={<DeleteIcon color='error' />}>
                 Remove Address

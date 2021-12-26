@@ -2,6 +2,7 @@ import React from 'react'
 import AddressCard from './AddressCard'
 import { Link } from "react-router-dom";
 import EditLocationOutlinedIcon from '@mui/icons-material/EditLocationOutlined';
+import './Address.css'
 
 function AddressFrame({ address }) {
 
@@ -23,7 +24,7 @@ function AddressFrame({ address }) {
             }
             <Link to="/addnewaddress" className="textDecorationNone" >
                 <div className="AddressCard addNewAddress ">
-                    <EditLocationOutlinedIcon sx={{ fontSize: "105px" }} />
+                    <EditLocationOutlinedIcon sx={{fontSize:'75px'}}  />
                     <span >Add New Address</span>
                 </div>
             </Link>
