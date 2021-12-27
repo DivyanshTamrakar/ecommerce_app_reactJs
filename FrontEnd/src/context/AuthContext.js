@@ -24,6 +24,7 @@ export function AuthProvider({ children }) {
         localStorage.setItem("userId", response["user"]["uid"]);
         localStorage.setItem("name", response["user"]["name"]);
         navigate(`${state?.from ? state.from : "/"}`, { replace: true });
+        window.location.reload(false);
         toast.success(response.message);
       } else {
         toast.error(response.message);

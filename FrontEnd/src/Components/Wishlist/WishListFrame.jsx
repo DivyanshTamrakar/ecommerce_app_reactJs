@@ -13,7 +13,6 @@ function WishListFrame() {
     <div>
       {
         loader ? <Loader /> :
-
           ItemInWishlist.length !== 0 ?
             <WishListing />
             : <EmptyWishlist />

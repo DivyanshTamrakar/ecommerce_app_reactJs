@@ -14,6 +14,7 @@ function UserProfile() {
         setLogin(false);
         localStorage.removeItem("userId");
         localStorage.clear();
+        window.location.reload(false);
         toast.success("Successfull Logout!");
     }
     return (

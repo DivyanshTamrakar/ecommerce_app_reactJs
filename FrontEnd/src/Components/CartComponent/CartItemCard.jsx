@@ -11,12 +11,14 @@ function CartItemCard({ item }) {
     const { setWishItemInCart } = useWishlist();
     const { setloader } = useLoader();
     const {getCartItems} = useCart();
+
+
     const Removehandler = async (itemId) => {
         setloader(true);
         const _id = itemId;
         try {
             let response = await postData(itemId, `/carts/delete/${_id}`);
-            if (response.success === true) {
+            if (response.success) {
                 setloader(false);
                 getCartItems();
             }

@@ -9,10 +9,7 @@ export function WishlistProvider({ children }) {
   const { setloader } = useLoader();
   const [ItemInWishlist, setItemInWishlist] = useState([]);
 
-  useEffect(() => {
-    getWishItems();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
 
   const getWishItems = async () => {
     setloader(true);
@@ -26,6 +23,15 @@ export function WishlistProvider({ children }) {
     }
   };
 
+
+
+
+  useEffect(() => {
+    getWishItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+ 
 
   return (
     <WishListContext.Provider value={{ ItemInWishlist, setItemInWishlist ,getWishItems }}>

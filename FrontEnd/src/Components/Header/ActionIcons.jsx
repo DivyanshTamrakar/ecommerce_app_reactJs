@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Header.css';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -13,7 +13,7 @@ const IconDesign = { color: 'white', fontSize: '2rem', cursor: 'pointer' };
 function ActionIcons() {
 
     const { ItemInWishlist } = useWishlist();
-    const { itemInCart } = useCart()
+    const { itemInCart } = useCart();
 
     return (
         <div className='Actionbox'>
