@@ -3,9 +3,12 @@ import { getData } from '../../FetchingApi/fetchApi';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
+import { useWishlist } from '../../context/wishlist-context';
 
 
 function WishItemCard({ _id, name, image, price, fastDelivery }) {
+
+    const { getWishItems } = useWishlist();
 
     const RemoveWishItem = async (e) => {
         try {
@@ -13,7 +16,7 @@ function WishItemCard({ _id, name, image, price, fastDelivery }) {
             response.success
                 ? toast.success(response.message)
                 : toast.error(response.message);
-            // getWishItems();
+                  getWishItems();
         } catch (error) {
             console.error(error);
         }
@@ -46,7 +49,6 @@ function WishItemCard({ _id, name, image, price, fastDelivery }) {
             >
                 ₹ {price}.00
             </span>
-
             <div
                 className="margin"
                 style={{

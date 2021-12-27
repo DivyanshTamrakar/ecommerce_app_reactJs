@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const IconDesign = { color: 'white', fontSize: '2rem', cursor: 'pointer' };
 function ActionIcons() {
 
-    const { WishItemInCart } = useWishlist();
+    const { ItemInWishlist } = useWishlist();
     const { itemInCart } = useCart()
 
     return (
@@ -20,7 +20,7 @@ function ActionIcons() {
             <div className='notification'>
                 <Link to='/wishlists' className='textDecorationNone'>
                     <FavoriteIcon sx={IconDesign} />
-                    <span className="badge">{WishItemInCart.length}</span>
+                    <span className="badge">{ItemInWishlist.length}</span>
                 </Link>
             </div>
             <div className='notification'>
