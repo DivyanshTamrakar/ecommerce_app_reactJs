@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import './Header.css';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,8 +13,19 @@ import { Link } from "react-router-dom";
 const IconDesign = { color: 'white', fontSize: '2rem', cursor: 'pointer' };
 function ActionIcons() {
 
-    const { ItemInWishlist } = useWishlist();
-    const { itemInCart } = useCart();
+    const { ItemInWishlist, getWishItems } = useWishlist();
+    const { itemInCart, getCartItems } = useCart();
+
+
+    useEffect(() => {
+        getCartItems();
+    }, [itemInCart])
+
+
+    useEffect(() => {
+        getWishItems();
+    }, [ItemInWishlist])
+
 
     return (
         <div className='Actionbox'>
