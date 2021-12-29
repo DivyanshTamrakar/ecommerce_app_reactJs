@@ -1,6 +1,8 @@
 * {
     margin: 0px;
     padding: 0px;
+    
+    
 }
 
 .App {
@@ -10,6 +12,7 @@
     max-width: 100% !important;
     overflow-x: hidden !important;
     overflow-y: hidden !important;
+    margin-top: 65px;
 }
 
 .App-logo {
@@ -347,28 +350,32 @@ h2 {
 }
 
 .filterBox {
-    width: 20rem;
-    background-color: #ff0e9b;
-    padding: 0.4rem;
-    color: white;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    display: -webkit-flex;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: left;    
+    justify-content: left;
+    
 }
 
 .filterBox>div {
-    display: flex;
-    justify-content: space-between;
+display: flex;
+flex-direction: row;    
+align-items: left;
+justify-content: left;
+margin :  10px 0 0 20px;
+
+}
+.filterBox>div>input{
+    align-self: center;
 }
 
-.filterBox>div>input {
-    height: 1.5rem;
-    border: none;
-    size: 1.5rem;
+
+.filterBox>div>h4{
+    width: fit-content;
+    margin-left: 10px;
+    font-weight: 800;
 }
+
 
 .form-frame {
     display: flex;
@@ -548,4 +555,19 @@ h2 {
 .textBold {
     font-weight: bolder;
     font-size: 20px;
+}
+
+/* css for custom drawer */
+
+.Drawer{
+    background-color: rgb(226, 226, 226);
+    position: fixed;
+    left: 0;
+    top: 67px;
+    bottom: 0;
+    width: 200px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    
 }
