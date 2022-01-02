@@ -9,6 +9,14 @@ var userApi = require('./Api/user');
 var cartApi = require('./Api/cart');
 var wishlistApi = require('./Api/wishlist');
 var addressApi = require('./Api/address');
+const { Product } = require('./Modals/ProductModel');
+var bodyparser = require('body-parser');
+var mongoose = require("mongoose");
+
+
+app.use(bodyparser.json())
+
+
 
 app.use(cors());
 
@@ -66,6 +74,54 @@ app.get('/',(req,res)=>{
   })
 
 
+
+
+
+  app.post('/additem', async (req, res) => {
+    const data = req.body;
+    const id = mongoose.Types.ObjectId(data.userid);
+    Product.findByIdAndUpdate(
+      { _id: data.productId },
+      { $push: { cartarray: id } },
+      { new: true },
+      function (err, docs) {
+        if (err) {
+         return res.json({ success: false, error: err });
+        } else {
+          return res.json({
+            success: true,
+            message: "cart array item added",
+            result: docs,
+          });
+        }
+      }
+    );
+       
+  });
+
+
+  app.post('/removeitem',async (req, res) => {
+    const { productId, userid } = req.body;
+    const id = mongoose.Types.ObjectId(userid);
+  
+    Product.findByIdAndUpdate(
+      { _id: productId },
+      { $pull: { cartarray: id } },
+      { new: true },
+      function (err, docs) {
+        if (err) {
+          res.json({ success: false, error: err });
+        } else {
+          res.json({
+            success: true,
+            message: "item successfully removed ",
+            result: docs,
+          });
+        }
+      }
+    );
+  });
+  
 
 
 app.listen(process.env.PORT || PORT, () => {

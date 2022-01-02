@@ -8,6 +8,8 @@ import { useCart } from '../../context/cart-context';
 
 
 function CartItemCard({ item }) {
+    const userId = localStorage.getItem("userId");
+
     const { setWishItemInCart } = useWishlist();
     const { setloader } = useLoader();
     const {getCartItems} = useCart();
@@ -17,11 +19,15 @@ function CartItemCard({ item }) {
         setloader(true);
         const _id = itemId;
         try {
-            let response = await postData(itemId, `/carts/delete/${_id}`);
+            const response = await postData(itemId, `/carts/delete/${_id}`);
             if (response.success) {
                 setloader(false);
                 getCartItems();
             }
+
+            await postData({productId:item.productId,userid:userId},'/removeitem')
+
+
         } catch (e) {
             console.log("Error in catch ", e);
             setloader(false);

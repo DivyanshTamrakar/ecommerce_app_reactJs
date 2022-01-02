@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { postData } from "../../FetchingApi/fetchApi";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,7 +9,7 @@ const ProductCard = ({ item}) => {
 
     const userId = localStorage.getItem("userId");
     let navigate = useNavigate();
-
+    
     const AddToCartHandler = async (item) => {
         if (userId !== null) {
             const body = {
@@ -24,10 +24,14 @@ const ProductCard = ({ item}) => {
                 image: item.image,
                 price: item.price,
             };
+
             const response = await postData(body, "/carts");
             if (response.available) {
                 toast.info(response.message);
             }
+            
+            await postData({productId:body.productId,userid:body.customerId}, "/additem");
+
         } else {
             navigate("/login");
         }
@@ -118,12 +122,23 @@ const ProductCard = ({ item}) => {
                 </span>
                 {item.inStock && (
                     <span>
-                        <button
+                        {
+                            item.cartarray.includes(userId)?
+                        <Link to='/carts'>
+                         <button
+                            className="gotocartbtn"
+                        >
+                            Go to Cart
+                        </button>
+                        </Link>
+                            :
+                            <button
                             onClick={() => AddToCartHandler(item)}
                             className="btn"
                         >
                             Add To Cart
                         </button>
+                        }
                     </span>
                 )}
             </div>

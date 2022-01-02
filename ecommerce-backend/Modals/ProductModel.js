@@ -33,7 +33,8 @@ const ProductSchema = new mongoose.Schema({
     type:String,
     required:"Description is must",
     minLength:[20,"Description must  be greater than 20 words"]
-  }
+  },
+  cartarray: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 
 
 }, {

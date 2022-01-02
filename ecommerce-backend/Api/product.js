@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require("mongoose");
 var { Product } = require("../Modals/ProductModel");
 var { extend } = require('lodash');
 var { arr } = require('../FakeData/faker');
@@ -104,8 +105,5 @@ const { product } = req;
    }
 
 })
-
-
-
 
 module.exports = router
