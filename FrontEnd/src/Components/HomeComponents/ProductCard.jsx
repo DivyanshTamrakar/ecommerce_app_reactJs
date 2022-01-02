@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { useState ,useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { postData } from "../../FetchingApi/fetchApi";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useProduct } from '../../context/ProductContext';
 
-const ProductCard = ({ item}) => {
 
+const ProductCard = ({ item }) => {
+    const { GetProductData } = useProduct();
     const userId = localStorage.getItem("userId");
+    const [localloader, setlocalloader] = useState(false)
     let navigate = useNavigate();
-    
+
+    useEffect(() => {
+        GetProductData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [userId])
+
+
     const AddToCartHandler = async (item) => {
+        setlocalloader(true);
         if (userId !== null) {
             const body = {
                 name: item.name,
@@ -29,8 +39,10 @@ const ProductCard = ({ item}) => {
             if (response.available) {
                 toast.info(response.message);
             }
-            
-            await postData({productId:body.productId,userid:body.customerId}, "/additem");
+            else if(response.success){
+                           setlocalloader(false);
+            }
+            await postData({ productId: body.productId, userid: body.customerId }, "/additem");
 
         } else {
             navigate("/login");
@@ -123,21 +135,24 @@ const ProductCard = ({ item}) => {
                 {item.inStock && (
                     <span>
                         {
-                            item.cartarray.includes(userId)?
-                        <Link to='/carts'>
-                         <button
-                            className="gotocartbtn"
-                        >
-                            Go to Cart
-                        </button>
-                        </Link>
-                            :
-                            <button
-                            onClick={() => AddToCartHandler(item)}
-                            className="btn"
-                        >
-                            Add To Cart
-                        </button>
+                            item.cartarray.includes(userId) ?
+                                <Link to='/carts'>
+                                    {
+                                        localloader ? 'loading....'   :
+                                         <button
+                                        className="gotocartbtn"
+                                    >
+                                        Go to Cart
+                                    </button>
+                                    }
+                                </Link>
+                                :
+                                <button
+                                    onClick={() => AddToCartHandler(item)}
+                                    className="btn"
+                                >
+                                    Add To Cart
+                                </button>
                         }
                     </span>
                 )}

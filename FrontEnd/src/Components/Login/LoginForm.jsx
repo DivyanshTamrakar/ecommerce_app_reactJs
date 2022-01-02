@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 import { useAuth } from '../../context/AuthContext';
 
 function LoginForm() {
@@ -16,11 +17,16 @@ function LoginForm() {
         setUserDetails({ ...UserDetails, [name]: value });
     }
 
+
+const filltestdetails = ()=>{
+    setUserDetails({email:'test@gmail.com',password:'test123'});
+}
+
     const SubmitHandler = (e) => {
         e.preventDefault();
         const newRecord = { ...UserDetails };
         if (newRecord.email === "" && newRecord.password === "") {
-            console.log("fill all fileds");
+            toast.error('Email and password cant be empty')
         } else {
             LoginWithCredential(newRecord.email, newRecord.password);
         }
@@ -74,6 +80,9 @@ function LoginForm() {
                             SignUp
                         </span>
                     </Link>
+                    <span onClick={filltestdetails} style={{ color: "#3498db", display: "block", textAlign:'center', cursor:'pointer',border:'0.5px solid black',margin:'5px',padding:'3px' }}>
+                            Sign In as a test user
+                        </span>
                 </div>
             </div>
         </form>
