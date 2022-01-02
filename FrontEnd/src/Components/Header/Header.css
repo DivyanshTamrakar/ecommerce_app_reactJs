@@ -1,0 +1,61 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(40,116,240);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 11;
+}
+
+
+.menuIcon {
+    flex: 0.1;
+    align-self: center;
+}
+
+.title {
+    flex: 0.6;
+    font-weight: 700;
+    flex-grow: 2;
+    color: white;
+    font-size: 25px;
+}
+
+.rightCom {
+    flex: 0.3;
+    flex-grow: 0.5;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.Actionbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.notification {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+    font-size: 1.5rem;
+}
+
+.badge {
+    position: absolute;
+    top: -7px;
+    right: -12px;
+    padding: 2px 5px;
+    border-radius: 50%;
+    background-color: rgb(255, 238, 0);
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+}
