@@ -1,0 +1,12 @@
+{
+ 
+    "extends": ["airbnb", "prettier","eslint:recommended","plugin:react/jsx-runtime"],
+    "plugins": ["prettier"],
+    "import/order": ["error", {"groups": ["index", "sibling", "parent", "internal", "external", "builtin", "object", "type"]}],
+    "eqeqeq": ["error", "always"],
+    "rules": {
+        "no-unused-vars":"warn" ,
+        "no-console":"off",
+        "properties": "always"
+               }
+}
