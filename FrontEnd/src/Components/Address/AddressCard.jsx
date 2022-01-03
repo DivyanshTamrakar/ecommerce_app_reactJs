@@ -1,8 +1,8 @@
+import { getData } from '../../FetchingApi/fetchApi';
 import React, { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import { getData } from '../../FetchingApi/fetchApi';
 import Button from '@mui/material/Button';
 import './Address.css'
 
@@ -12,7 +12,7 @@ function AddressCard({ address, city, mobile, name, pincode, state, _id, index }
 
     const RemoveHandler = async (e) => {
         try {
-            let response = await getData(`/address/delete/${e}`);
+            const response = await getData(`/address/delete/${e}`);
             response.success
                 ? toast.success(response.message)
                 : toast.error(response.message);

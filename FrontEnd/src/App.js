@@ -10,7 +10,7 @@ import NotFoundPage from "./Pages/NotFoundPage";
 import AddNewAddress from "./Pages/AddNewAddress";
 import OrderSummary from "./Pages/OrderSummary";
 import { PrivateRoute } from "./Components/privateroute";
-import { Routes, Route } from "react-router-dom";
+import { Routes,Route} from "react-router-dom";
 
 
 
