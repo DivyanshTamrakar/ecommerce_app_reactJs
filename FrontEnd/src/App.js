@@ -10,7 +10,7 @@ import NotFoundPage from "./Pages/NotFoundPage";
 import AddNewAddress from "./Pages/AddNewAddress";
 import OrderSummary from "./Pages/OrderSummary";
 import { PrivateRoute } from "./Components/privateroute";
-import { Routes,Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 
 
@@ -25,11 +25,32 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <PrivateRoute path="/carts" element={<Cart />} />
-          <PrivateRoute path="/wishlists" element={<WishList />} />
+          <Route
+            path="/carts"
+            element={
+              <PrivateRoute>
+                <Cart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/wishlists"
+            element={
+              <PrivateRoute>
+                <WishList />
+              </PrivateRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
-          <PrivateRoute path="/address" element={<Address />} />
-          <PrivateRoute path="/ordersummary" element={<OrderSummary />} />
+          <Route
+            path="/address"
+            element={
+              <PrivateRoute>
+                <Address />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/ordersummary" element={<PrivateRoute> <OrderSummary /> </PrivateRoute>} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/addnewaddress" element={<AddNewAddress />} />
           <Route path="/orderhistory" element={<OrderSummary />} />
