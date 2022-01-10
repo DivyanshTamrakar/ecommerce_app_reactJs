@@ -1,7 +1,7 @@
 # Full Stack E-Commerce App Web Application
 
 It is an e-commerce app with the features included :
-* **Authentication (using JWT tokens).**
+* **Authentication.**
 * **Payment gateway Integration**
 * **Add to Wishlist.**
 * **Add to Cart**
