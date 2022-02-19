@@ -3,13 +3,10 @@ import { getData } from "../FetchingApi/fetchApi";
 import { useLoader } from "./LoaderContext";
 export const WishListContext = createContext();
 
-
 export function WishlistProvider({ children }) {
   const userId = localStorage.getItem("userId");
   const { setloader } = useLoader();
   const [ItemInWishlist, setItemInWishlist] = useState([]);
-
-
 
   const getWishItems = async () => {
     setloader(true);
@@ -23,18 +20,15 @@ export function WishlistProvider({ children }) {
     }
   };
 
-
-
-
   useEffect(() => {
     getWishItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
- 
-
   return (
-    <WishListContext.Provider value={{ ItemInWishlist, setItemInWishlist ,getWishItems }}>
+    <WishListContext.Provider
+      value={{ ItemInWishlist, setItemInWishlist, getWishItems }}
+    >
       {children}
     </WishListContext.Provider>
   );
