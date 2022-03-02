@@ -11,7 +11,6 @@ const arr = [...Array(5)].map((item) => ({
   productdescription :faker.commerce.productDescription(),
   image: faker.random.image(),
   price: faker.commerce.price(),
-  
 }));
 
 
