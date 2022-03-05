@@ -1,0 +1,29 @@
+.productbox{
+    width: 95%;
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    text-align: center;
+    margin: 0 20px;
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax( 300px, 1fr));
+    grid-gap: 20px;
+    grid-auto-rows: minmax(100px, auto);
+    grid-auto-columns: minmax(50px, auto);
+}
+
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .productbox {
+        width: auto;
+        position: relative;
+        background-color: white;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax( 300px, 1fr));
+        grid-gap: 20px;
+        grid-auto-rows: minmax(100px, auto);
+        grid-auto-columns: minmax(50px, auto);
+    }
+}

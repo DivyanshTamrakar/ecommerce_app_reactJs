@@ -5,6 +5,10 @@
     
 }
 
+.pad-caraousel{
+    padding: 10px;
+}
+
 .App {
     text-align: center;
     margin: 0rem;
@@ -88,7 +92,7 @@ h2 {
 }
 
 .outOfStock {
-    filter: opacity(0.5);
+    filter: opacity(1);
 }
 
 @media only screen and (max-width: 768px) {
