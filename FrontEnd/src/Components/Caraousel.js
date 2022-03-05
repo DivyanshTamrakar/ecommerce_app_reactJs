@@ -17,7 +17,7 @@ function Caraousel() {
       <div className="pad-caraousel">
         <img
           alt=""
-          src="https://m.media-amazon.com/images/I/61X6s7dTE5L._SX3000_.jpg"
+          src="https://m.media-amazon.com/images/I/7159FfgbU6L._SX3000_.jpg"
         />
       </div>
       <div className="pad-caraousel">
