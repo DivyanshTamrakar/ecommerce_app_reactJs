@@ -13,7 +13,7 @@ const Card = () => {
   return (
     <>
       {filteredData.length !== 0 ? (
-        <div className="productbox">
+        <div className="listingproductbox">
           {filteredData.map((item, index) => {
             return <ProductCard key={index} item={item} />;
           })}

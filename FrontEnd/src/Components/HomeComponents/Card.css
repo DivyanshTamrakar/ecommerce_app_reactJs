@@ -1,4 +1,4 @@
-.productbox{
+.listingproductbox{
     width: 95%;
     position: absolute;
     top: 50%;
@@ -16,7 +16,7 @@
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    .productbox {
+    .listingproductbox {
         width: auto;
         position: relative;
         background-color: white;
