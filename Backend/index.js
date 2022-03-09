@@ -65,10 +65,10 @@ app.post("/razorpay", async (req, res) => {
 });
 
 app.post("/additem", async (req, res) => {
-  const data = req.body;
-  const id = mongoose.Types.ObjectId(data.userid);
+  const { productId, userid } = req.body;
+  const id = mongoose.Types.ObjectId(userid);
   Product.findByIdAndUpdate(
-    { _id: data.productId },
+    { _id: productId },
     { $push: { cartarray: id } },
     { new: true },
     function (err, docs) {

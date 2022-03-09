@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { postData } from "../../FetchingApi/fetchApi";
 import { toast } from "react-toastify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useProduct } from "../../context/ProductContext";
 import { useCart } from "../../context/cart-context";
-
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useWishlist } from "../../context/wishlist-context";
 const ProductCard = ({ item }) => {
   const { GetProductData } = useProduct();
   const { itemInCart } = useCart();
+  const { ItemInWishlist } = useWishlist();
   const userId = localStorage.getItem("userId");
   const [localloader, setlocalloader] = useState(false);
   let navigate = useNavigate();
@@ -17,7 +18,7 @@ const ProductCard = ({ item }) => {
   useEffect(() => {
     GetProductData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemInCart.length]);
+  }, [itemInCart.length,ItemInWishlist.length]);
 
   const AddToCartHandler = async (item) => {
     setlocalloader(true);
@@ -63,12 +64,14 @@ const ProductCard = ({ item }) => {
       image: item.image,
       price: item.price,
     };
-    let response = await postData(body, "/wishlists");
-    console.log("under wishlist");
-    console.log(response);
-    if (response.available === true) {
+    const response = await postData(body, "/wishlists");
+    if (response.available) {
       toast.info(response.message);
     }
+    await postData(
+      { productId: body.productId, userid: body.customerId },
+      "/products/add/wishlistArray"
+    );
   };
 
   return (
@@ -80,8 +83,12 @@ const ProductCard = ({ item }) => {
           <span style={{ fontWeight: "1000" }}>{item.name}</span>
           <span style={{ fontSize: "12px" }}>by Amazon Brand - Solimo</span>
         </div>
-        <span onClick={() => AddToWishilstHandler(item)}>
-          <FontAwesomeIcon icon={faHeart} color="black" aria-hidden="true" />
+        <span>
+          {item.wishlistarray.includes(userId) ? (
+            <FavoriteIcon sx={{color:'red'}}/>
+          ) : (
+            <FavoriteBorderIcon onClick={() => AddToWishilstHandler(item)} />
+          )}
         </span>
       </div>
       <span

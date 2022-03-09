@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const { Product } = require("../modals/product.model");
 
 const bodyparser = require("body-parser");
 const {
@@ -8,7 +7,9 @@ const {
   postProducts,
   getParticularProduct,
   postParticularProduct,
-  productMiddleware
+  productMiddleware,
+  addToWishlistArray,
+  removeFromWishlistArray,
 } = require("../controllers/product.controller");
 
 router.use(bodyparser.json());
@@ -21,5 +22,8 @@ router
   .route("/:productId")
   .get(getParticularProduct)
   .post(postParticularProduct);
+
+router.route("/add/wishlistArray").post(addToWishlistArray);
+router.route("/remove/wishlistArray").post(removeFromWishlistArray);
 
 module.exports = router;
