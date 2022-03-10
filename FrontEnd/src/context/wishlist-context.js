@@ -11,9 +11,9 @@ export function WishlistProvider({ children }) {
   const getWishItems = async () => {
     setloader(true);
     try {
-      let response = await getData(`/wishlists/${userId}`);
-      setloader(false);
+      const response = await getData(`/wishlists/${userId}`);
       setItemInWishlist(response.wishlistitem);
+      setloader(false);
     } catch (e) {
       console.error("Error in catch ", e);
       setloader(false);

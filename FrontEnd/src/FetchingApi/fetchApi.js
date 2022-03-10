@@ -1,6 +1,6 @@
 import axios from "axios";
 
- export const url = "https://thawing-spire-10182.herokuapp.com"
+ export const url = "https://divecommercebackend.herokuapp.com"
 // export const url = "http://localhost:5000";
 // userId which comes from local storage
 export const userId = localStorage.getItem("userId");

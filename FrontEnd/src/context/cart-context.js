@@ -16,10 +16,9 @@ export function CartProvider({ children }) {
   const getCartItems = async () => {
     setloader(true);
     try {
-      let response = await getData(`/carts/${userId}`);
-      let result = response.cartItem;
+      const response = await getData(`/carts/${userId}`);
+      setIteminCart(response.cartItem);
       setloader(false);
-      setIteminCart(result);
     } catch (e) {
       setloader(false);
     }

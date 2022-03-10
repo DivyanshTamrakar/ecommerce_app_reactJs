@@ -1,6 +1,7 @@
 const { Product } = require("../modals/product.model");
 const { arr } = require("../FakeData/faker");
 const { extend } = require("lodash");
+const mongoose = require("mongoose");
 
 const getProducts = async (req, res) => {
   try {
@@ -38,6 +39,7 @@ const postProducts = async (req, res) => {
 };
 
 const productMiddleware = async (req, res, next, productId) => {
+  console.log('productId', productId)
   try {
     const product = await Product.findById(productId);
     if (!product) {
@@ -84,10 +86,55 @@ const postParticularProduct = async (req, res) => {
     });
   }
 };
+
+const addToWishlistArray = async (req, res) => {
+  const { productId,userid } = req.body;
+  const id = mongoose.Types.ObjectId(userid);
+  Product.findByIdAndUpdate(
+    { _id: productId },
+    { $push: { wishlistarray: id } },
+    { new: true },
+    function (err, docs) {
+      if (err) {
+        return res.json({ success: false, error: err });
+      } else {
+        return res.json({
+          success: true,
+          message: "wishlist array item added",
+          result: docs,
+        });
+      }
+    }
+  );
+};
+
+const removeFromWishlistArray = async (req, res) => {
+  const { productId, userid } = req.body;
+  const id = mongoose.Types.ObjectId(userid);
+
+  Product.findByIdAndUpdate(
+    { _id: productId },
+    { $pull: { wishlistarray: id } },
+    { new: true },
+    function (err, docs) {
+      if (err) {
+        res.json({ success: false, error: err });
+      } else {
+        res.json({
+          success: true,
+          message: "item successfully removed ",
+          result: docs,
+        });
+      }
+    }
+  );
+};
 module.exports = {
   getProducts,
   postProducts,
   getParticularProduct,
   postParticularProduct,
-  productMiddleware
+  productMiddleware,
+  removeFromWishlistArray,
+  addToWishlistArray,
 };
