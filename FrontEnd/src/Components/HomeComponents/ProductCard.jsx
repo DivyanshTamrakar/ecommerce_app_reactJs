@@ -1,28 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { postData } from "../../FetchingApi/fetchApi";
-import { toast } from "react-toastify";
-import { useProduct } from "../../context/ProductContext";
-import { useCart } from "../../context/cart-context";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useProduct } from "../../context/ProductContext";
 import { useWishlist } from "../../context/wishlist-context";
-const ProductCard = ({ item }) => {
-  const { GetProductData } = useProduct();
-  const { itemInCart } = useCart();
-  const { ItemInWishlist } = useWishlist();
-  const userId = localStorage.getItem("userId");
-  const [localloader, setlocalloader] = useState(false);
-  let navigate = useNavigate();
+import { useCart } from "../../context/cart-context";
 
-  useEffect(() => {
-    GetProductData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemInCart.length,ItemInWishlist.length]);
+const ProductCard = ({ item }) => {
+  const userId = localStorage.getItem("userId");
+  const [localloader] = useState(false);
+  const navigate = useNavigate();
+  const { GetProductData } = useProduct();
+  const { getWishItems } = useWishlist();
+  const { getCartItems } = useCart();
 
   const AddToCartHandler = async (item) => {
-    setlocalloader(true);
-    if (userId !== null) {
+    if (userId) {
       const body = {
         name: item.name,
         productModel: item.productModel,
@@ -35,43 +29,42 @@ const ProductCard = ({ item }) => {
         image: item.image,
         price: item.price,
       };
-
       const response = await postData(body, "/carts");
-      if (response.available) {
-        toast.info(response.message);
-      } else if (response.success) {
-        setlocalloader(false);
-      }
       await postData(
         { productId: body.productId, userid: body.customerId },
         "/additem"
       );
+      GetProductData();
+      getCartItems();
     } else {
       navigate("/login");
     }
   };
 
   const AddToWishilstHandler = async (item) => {
-    const body = {
-      name: item.name,
-      productModel: item.productModel,
-      productUrl: item.productUrl,
-      productId: item._id,
-      customerId: userId,
-      inStock: item.inStock,
-      fastDelivery: item.fastDelivery,
-      productdescription: item.productdescription,
-      image: item.image,
-      price: item.price,
-    };
-    const response = await postData(body, "/wishlists");
-    if (response.available) {
-      toast.info(response.message);
+    if (userId) {
+      const body = {
+        name: item.name,
+        productModel: item.productModel,
+        productUrl: item.productUrl,
+        productId: item._id,
+        customerId: userId,
+        inStock: item.inStock,
+        fastDelivery: item.fastDelivery,
+        productdescription: item.productdescription,
+        image: item.image,
+        price: item.price,
+      };
+      const response = await postData(body, "/wishlists");
+      await postData(
+        { productId: body.productId, userid: body.customerId },
+        "/products/add/wishlistArray"
+      );
+      GetProductData();
+      getWishItems();
+    } else {
+      navigate("/login");
     }
-    await postData(
-      { productId: body.productId, userid: body.customerId },
-      "/products/add/wishlistArray"
-    );
   };
 
   return (
@@ -85,7 +78,7 @@ const ProductCard = ({ item }) => {
         </div>
         <span>
           {item.wishlistarray.includes(userId) ? (
-            <FavoriteIcon sx={{color:'red'}}/>
+            <FavoriteIcon sx={{ color: "red" }} />
           ) : (
             <FavoriteBorderIcon onClick={() => AddToWishilstHandler(item)} />
           )}

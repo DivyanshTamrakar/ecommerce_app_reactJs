@@ -1,25 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React from "react";
 import "./Header.css";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useCart } from "../../context/cart-context";
-import { useWishlist } from "../../context/wishlist-context";
 import { Link } from "react-router-dom";
+import { useWishlist } from "../../context/wishlist-context";
+import { useCart } from "../../context/cart-context";
 
 const IconDesign = { color: "white", fontSize: "2rem", cursor: "pointer" };
 function ActionIcons() {
-  const { ItemInWishlist, getWishItems } = useWishlist();
-  const { itemInCart, getCartItems } = useCart();
+  const { ItemInWishlist } = useWishlist();
+  const { itemInCart } = useCart();
 
-  useEffect(() => {
-    getCartItems();
-  }, [itemInCart]);
-
-  useEffect(() => {
-    getWishItems();
-  }, [ItemInWishlist]);
 
   return (
     <div className="Actionbox">

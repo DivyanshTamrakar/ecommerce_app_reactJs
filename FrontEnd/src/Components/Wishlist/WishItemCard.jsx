@@ -11,11 +11,10 @@ function WishItemCard({ _id, name, image, price, fastDelivery, productId }) {
 
   const RemoveWishItem = async (e) => {
     try {
-      let response = await getData(`/wishlists/delete/${e}`);
+      const response = await getData(`/wishlists/delete/${e}`);
       response.success
         ? toast.success(response.message)
         : toast.error(response.message);
-      getWishItems();
     } catch (error) {
       console.error(error);
     }
@@ -24,6 +23,7 @@ function WishItemCard({ _id, name, image, price, fastDelivery, productId }) {
       { productId: productId, userid: userId },
       "/products/remove/wishlistArray"
     );
+    getWishItems();
   };
 
   return (
