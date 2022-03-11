@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/cart-context";
-import { postData, getData } from "../../FetchingApi/fetchApi";
+import { postData } from "../../FetchingApi/fetchApi";
 import swal from "sweetalert";
 
 const loadScript = (src) => {
