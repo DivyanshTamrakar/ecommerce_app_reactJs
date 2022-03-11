@@ -22,16 +22,15 @@ const loadScript = (src) => {
 function PlacedOrderFooter() {
   const { totalprice } = useCart();
   const navigate = useNavigate();
-  const userId = localStorage.getItem("userId");
 
-  const placeOrderhandler = async () => {
-    try {
-      const res = await getData(`/carts/delete/all/${userId}`);
-      console.log(res);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const placeOrderhandler = async () => {
+  //   try {
+  //     const res = await getData(`/carts/delete/all/${userId}`);
+  //     console.log(res);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   async function displayRazorpay() {
     const res = await loadScript(
@@ -63,7 +62,6 @@ function PlacedOrderFooter() {
             closeOnClickOutside: false,
           }).then((okay) => {
             if (okay) {
-              placeOrderhandler();
               navigate("/");
             }
           });
