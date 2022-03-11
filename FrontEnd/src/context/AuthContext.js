@@ -9,8 +9,6 @@ export function AuthProvider({ children }) {
   const [login, setLogin] = useState(false);
   let navigate = useNavigate();
   let { state } = useLocation();
-  console.log("in Context", state?.from);
-
 
   const LoginWithCredential = async (email, password) => {
     const body = {
@@ -32,9 +30,7 @@ export function AuthProvider({ children }) {
     } catch (e) {
       console.error("Error in AuhtContext ", e);
     }
-
-
-  }
+  };
   return (
     <AuthContext.Provider value={{ login, LoginWithCredential, setLogin }}>
       {children}
