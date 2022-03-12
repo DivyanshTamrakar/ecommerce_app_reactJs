@@ -1,9 +1,9 @@
-import { Button } from '@mui/material';
-import React from 'react'
-import { useCart } from '../../context/cart-context'
-import { postData } from '../../FetchingApi/fetchApi';
-
-
+import { Button } from "@mui/material";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/cart-context";
+import { postData } from "../../FetchingApi/fetchApi";
+import swal from "sweetalert";
 
 const loadScript = (src) => {
   return new Promise((resolve) => {
@@ -17,10 +17,20 @@ const loadScript = (src) => {
     };
     document.body.appendChild(script);
   });
-}
+};
 
 function PlacedOrderFooter() {
+  const { totalprice } = useCart();
+  const navigate = useNavigate();
 
+  // const placeOrderhandler = async () => {
+  //   try {
+  //     const res = await getData(`/carts/delete/all/${userId}`);
+  //     console.log(res);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   async function displayRazorpay() {
     const res = await loadScript(
@@ -30,21 +40,32 @@ function PlacedOrderFooter() {
       alert("Razorpay SDK failed to load. Are you online?");
       return;
     }
-    const data = await postData({ "userId": localStorage.getItem('userId'), "amount": "5000" }, '/razorpay');
-    if (data.success) { console.log("data", data); }
+    const data = await postData(
+      { userId: localStorage.getItem("userId"), amount: totalprice },
+      "/razorpay"
+    );
     var options = {
       key: "rzp_test_x5vD6ApR8W8yaS", // Enter the Key ID generated from the Dashboard
       currency: data.currency,
-      amount: "5000",
-      name: "Acme Corp",
+      amount: data.amount,
+      name: "Divyansh Ecommerce",
       description: "Test Transaction",
-      image: "https://example.com/your_logo",
+      image:
+        "https://c8.alamy.com/zooms/9/9e95d8f1f8bc4c42a033f680574f3122/2d8eh9y.jpg",
 
       order_id: data.id,
       handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
+        if (response.razorpay_order_id) {
+          swal({
+            icon: "success",
+            title: "Order Placed Successfully!",
+            closeOnClickOutside: false,
+          }).then((okay) => {
+            if (okay) {
+              navigate("/");
+            }
+          });
+        }
       },
       prefill: {
         name: "Gaurav Kumar",
@@ -62,18 +83,19 @@ function PlacedOrderFooter() {
     paymentObject.open();
   }
 
-
-  const { totalprice } = useCart()
   return (
     <div>
       <h2 className="totalamount">{`Total Cart Value = ₹${totalprice}`}</h2>
-      <Button color='primary' onClick={displayRazorpay} variant="contained"
-        sx={{ margin: '10px' }}>
+      <Button
+        color="primary"
+        onClick={displayRazorpay}
+        variant="contained"
+        sx={{ margin: "10px" }}
+      >
         Place Your Order
       </Button>
-
     </div>
-  )
+  );
 }
 
-export default PlacedOrderFooter
+export default PlacedOrderFooter;

@@ -38,10 +38,9 @@ const razorpay = new Razorpay({
 });
 
 app.post("/razorpay", async (req, res) => {
-  const details = req.body;
-  console.log(details);
+  
   const payment_capture = 1;
-  const amount = 499;
+  const amount = req.body.amount;
   const currency = "INR";
 
   const options = {
@@ -52,7 +51,6 @@ app.post("/razorpay", async (req, res) => {
 
   try {
     const response = await razorpay.orders.create(options);
-    console.log(response);
     res.json({
       success: true,
       id: response.id,
