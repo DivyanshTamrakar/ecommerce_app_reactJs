@@ -7,7 +7,7 @@ import { useWishlist } from "../../context/wishlist-context";
 
 function WishItemCard({ _id, name, image, price, fastDelivery, productId }) {
   const userId = localStorage.getItem("userId");
-  const { getWishItems } = useWishlist();
+  const { getWishlistItems } = useWishlist();
 
   const RemoveWishItem = async (e) => {
     try {
@@ -23,7 +23,7 @@ function WishItemCard({ _id, name, image, price, fastDelivery, productId }) {
       { productId: productId, userid: userId },
       "/products/remove/wishlistArray"
     );
-    getWishItems();
+    getWishlistItems();
   };
 
   return (

@@ -4,12 +4,11 @@ import { Link } from "react-router-dom";
 import EditLocationOutlinedIcon from "@mui/icons-material/EditLocationOutlined";
 import "./Address.css";
 import { getData } from "../../FetchingApi/fetchApi";
-import { useLoader } from "../../context/LoaderContext";
+
 
 function AddressFrame() {
   const userId = localStorage.getItem("userId");
   const [address, setAddress] = useState([]);
-  const { setloader } = useLoader();
 
   useEffect(() => {
     getAddressData();
@@ -17,13 +16,11 @@ function AddressFrame() {
   }, []);
 
   const getAddressData = async () => {
-    setloader(true);
     try {
       let response = await getData(`/address/${userId}`);
-      setloader(false);
       setAddress(response.address);
     } catch (e) {
-      setloader(false);
+      console.error(e)
     }
   };
 

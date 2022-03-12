@@ -13,8 +13,8 @@ import { ProductProvider } from "./context/ProductContext";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <AuthProvider>
-        <LoaderProvider>
+      <LoaderProvider>
+        <AuthProvider>
           <CartProvider>
             <WishlistProvider>
               <ProductProvider>
@@ -24,8 +24,8 @@ ReactDOM.render(
               </ProductProvider>
             </WishlistProvider>
           </CartProvider>
-        </LoaderProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </LoaderProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

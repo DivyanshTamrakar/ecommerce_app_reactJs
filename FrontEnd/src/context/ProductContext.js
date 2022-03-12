@@ -5,8 +5,8 @@ export const ProductContext = createContext();
 export function ProductProvider({ children }) {
   const [productdata, setproductData] = useState([]);
 
-  async function GetProductData() {
-    let response = await getData("/products");
+  async function getProductListing() {
+    const response = await getData("/products");
     setproductData(response.product);
   }
 
@@ -69,7 +69,7 @@ export function ProductProvider({ children }) {
   });
 
   return (
-    <ProductContext.Provider value={{ GetProductData, filteredData, dispatch }}>
+    <ProductContext.Provider value={{ getProductListing, filteredData, dispatch }}>
       {children}
     </ProductContext.Provider>
   );

@@ -3,23 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useWishlist } from "../../context/wishlist-context";
 import { postData } from "../../FetchingApi/fetchApi";
-import { useLoader } from "../../context/LoaderContext";
 import { useCart } from "../../context/cart-context";
 
 function CartItemCard({ item }) {
   const userId = localStorage.getItem("userId");
 
   const { setWishItemInCart } = useWishlist();
-  const { setloader } = useLoader();
   const { getCartItems } = useCart();
 
   const Removehandler = async (itemId) => {
-    setloader(true);
     const _id = itemId;
     try {
       const response = await postData(itemId, `/carts/delete/${_id}`);
       if (response.success) {
-        setloader(false);
       }
 
       await postData(
@@ -29,7 +25,6 @@ function CartItemCard({ item }) {
       getCartItems();
     } catch (e) {
       console.log("Error in catch ", e);
-      setloader(false);
     }
   };
   return (
