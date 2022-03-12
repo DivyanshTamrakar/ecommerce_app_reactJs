@@ -1,17 +1,22 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { getData } from "../FetchingApi/fetchApi";
+import { useLoader } from "./LoaderContext";
 export const WishListContext = createContext();
 
 export function WishlistProvider({ children }) {
   const userId = localStorage.getItem("userId");
-  const [ItemInWishlist, setItemInWishlist] = useState([]);
+  const [itemInWishlist, setitemInWishlist] = useState([]);
+  const {setloader} = useLoader();
 
   const getWishlistItems = async () => {
     try {
       const response = await getData(`/wishlists/${userId}`);
-      setItemInWishlist(response.wishlistitem);
+      setitemInWishlist(response.wishlistitem);
+      setloader(false);
     } catch (e) {
+      setloader(false);
       console.error("Error in catch ", e);
+
     }
   };
 
@@ -22,7 +27,7 @@ export function WishlistProvider({ children }) {
 
   return (
     <WishListContext.Provider
-      value={{ ItemInWishlist, setItemInWishlist, getWishlistItems }}
+      value={{ itemInWishlist, setitemInWishlist, getWishlistItems }}
     >
       {children}
     </WishListContext.Provider>

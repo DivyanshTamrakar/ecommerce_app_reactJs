@@ -2,19 +2,19 @@ import React from "react";
 import { getData, postData } from "../../FetchingApi/fetchApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { toast } from "react-toastify";
+
 import { useWishlist } from "../../context/wishlist-context";
+import { useLoader } from "../../context/LoaderContext";
 
 function WishItemCard({ _id, name, image, price, fastDelivery, productId }) {
   const userId = localStorage.getItem("userId");
   const { getWishlistItems } = useWishlist();
+  const { setloader } = useLoader();
 
   const RemoveWishItem = async (e) => {
+    setloader(true);
     try {
       const response = await getData(`/wishlists/delete/${e}`);
-      response.success
-        ? toast.success(response.message)
-        : toast.error(response.message);
     } catch (error) {
       console.error(error);
     }

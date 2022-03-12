@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { postData } from "../../FetchingApi/fetchApi";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -13,9 +13,12 @@ const ProductCard = ({ item }) => {
   const { getProductListing } = useProduct();
   const { getWishlistItems } = useWishlist();
   const { getCartItems } = useCart();
+  const [buttonloader, setbuttonloader] = useState(false);
+  const [itemexist, setitemexist] = useState(false);
 
   const addToCart = async (item) => {
     if (userId) {
+      setbuttonloader(true);
       const body = {
         name: item.name,
         productModel: item.productModel,
@@ -35,6 +38,9 @@ const ProductCard = ({ item }) => {
       );
       getProductListing();
       getCartItems();
+      setitemexist(true);
+      setbuttonloader(false);
+      
     } else {
       navigate("/login");
     }
@@ -121,13 +127,15 @@ const ProductCard = ({ item }) => {
           <span>
             {item.cartarray.includes(userId) ? (
               <Link to="/carts">
-                <button className="gotocartbtn">
-                  Go to Cart
-                </button>
+                <button className="btn">Go to Cart</button>
               </Link>
             ) : (
               <button onClick={() => addToCart(item)} className="btn">
-                Add To Cart
+                {itemexist && !buttonloader
+                  ? "Go to Cart"
+                  : buttonloader
+                  ? "Loading"
+                  : "Add To Cart"}
               </button>
             )}
           </span>

@@ -4,7 +4,8 @@ import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
 
 function LoginForm() {
-  let { LoginWithCredential } = useAuth();
+  const { LoginWithCredential } = useAuth();
+
   const [UserDetails, setUserDetails] = useState({
     email: "",
     password: "",
