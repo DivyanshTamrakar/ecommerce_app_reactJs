@@ -1,20 +1,25 @@
-import React from 'react'
-import WishListing from './WishListing'
-import EmptyWishlist from './EmptyWishlist'
-import { useWishlist } from '../../context/wishlist-context';
+import React from "react";
+import WishListing from "./WishListing";
+import EmptyWishlist from "./EmptyWishlist";
+import { useWishlist } from "../../context/wishlist-context";
+import { useLoader } from "../../context/LoaderContext";
+import Loader from "../Loader";
 
 function WishListFrame() {
-  const { ItemInWishlist } = useWishlist();
+  const { itemInWishlist } = useWishlist();
+  const { loader } = useLoader();
 
   return (
     <div>
-      {
-        ItemInWishlist.length !== 0 ?
-          <WishListing />
-          : <EmptyWishlist />
-      }
+      {loader ? (
+        <Loader />
+      ) : (
+        <div>
+          {itemInWishlist.length > 0 ? <WishListing /> : <EmptyWishlist />}
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default WishListFrame
+export default WishListFrame;

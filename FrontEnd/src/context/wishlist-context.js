@@ -5,29 +5,29 @@ export const WishListContext = createContext();
 
 export function WishlistProvider({ children }) {
   const userId = localStorage.getItem("userId");
-  const { setloader } = useLoader();
-  const [ItemInWishlist, setItemInWishlist] = useState([]);
+  const [itemInWishlist, setitemInWishlist] = useState([]);
+  const {setloader} = useLoader();
 
-  const getWishItems = async () => {
-    setloader(true);
+  const getWishlistItems = async () => {
     try {
       const response = await getData(`/wishlists/${userId}`);
-      setItemInWishlist(response.wishlistitem);
+      setitemInWishlist(response.wishlistitem);
       setloader(false);
     } catch (e) {
-      console.error("Error in catch ", e);
       setloader(false);
+      console.error("Error in catch ", e);
+
     }
   };
 
   useEffect(() => {
-    getWishItems();
+    getWishlistItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <WishListContext.Provider
-      value={{ ItemInWishlist, setItemInWishlist, getWishItems }}
+      value={{ itemInWishlist, setitemInWishlist, getWishlistItems }}
     >
       {children}
     </WishListContext.Provider>

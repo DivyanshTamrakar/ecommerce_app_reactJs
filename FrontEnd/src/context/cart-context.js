@@ -14,13 +14,13 @@ export function CartProvider({ children }) {
   );
 
   const getCartItems = async () => {
-    setloader(true);
     try {
       const response = await getData(`/carts/${userId}`);
       setIteminCart(response.cartItem);
       setloader(false);
     } catch (e) {
       setloader(false);
+      console.error(e);
     }
   };
 

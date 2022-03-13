@@ -7,7 +7,7 @@ import Caraousel from "../Components/Caraousel";
 const Home = () => {
   return (
     <div>
-      <Caraousel/>
+      <Caraousel />
       <Card />
       <Toast />
     </div>

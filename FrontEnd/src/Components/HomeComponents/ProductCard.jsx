@@ -9,14 +9,16 @@ import { useCart } from "../../context/cart-context";
 
 const ProductCard = ({ item }) => {
   const userId = localStorage.getItem("userId");
-  const [localloader] = useState(false);
   const navigate = useNavigate();
-  const { GetProductData } = useProduct();
-  const { getWishItems } = useWishlist();
+  const { getProductListing } = useProduct();
+  const { getWishlistItems } = useWishlist();
   const { getCartItems } = useCart();
+  const [buttonloader, setbuttonloader] = useState(false);
+  const [itemexist, setitemexist] = useState(false);
 
-  const AddToCartHandler = async (item) => {
+  const addToCart = async (item) => {
     if (userId) {
+      setbuttonloader(true);
       const body = {
         name: item.name,
         productModel: item.productModel,
@@ -29,19 +31,22 @@ const ProductCard = ({ item }) => {
         image: item.image,
         price: item.price,
       };
-      const response = await postData(body, "/carts");
+      await postData(body, "/carts");
       await postData(
         { productId: body.productId, userid: body.customerId },
         "/additem"
       );
-      GetProductData();
+      getProductListing();
       getCartItems();
+      setitemexist(true);
+      setbuttonloader(false);
+      
     } else {
       navigate("/login");
     }
   };
 
-  const AddToWishilstHandler = async (item) => {
+  const addToWishlist = async (item) => {
     if (userId) {
       const body = {
         name: item.name,
@@ -55,13 +60,13 @@ const ProductCard = ({ item }) => {
         image: item.image,
         price: item.price,
       };
-      const response = await postData(body, "/wishlists");
+      await postData(body, "/wishlists");
       await postData(
         { productId: body.productId, userid: body.customerId },
         "/products/add/wishlistArray"
       );
-      GetProductData();
-      getWishItems();
+      getProductListing();
+      getWishlistItems();
     } else {
       navigate("/login");
     }
@@ -80,7 +85,7 @@ const ProductCard = ({ item }) => {
           {item.wishlistarray.includes(userId) ? (
             <FavoriteIcon sx={{ color: "red" }} />
           ) : (
-            <FavoriteBorderIcon onClick={() => AddToWishilstHandler(item)} />
+            <FavoriteBorderIcon onClick={() => addToWishlist(item)} />
           )}
         </span>
       </div>
@@ -122,15 +127,15 @@ const ProductCard = ({ item }) => {
           <span>
             {item.cartarray.includes(userId) ? (
               <Link to="/carts">
-                {localloader ? (
-                  "loading...."
-                ) : (
-                  <button className="gotocartbtn">Go to Cart</button>
-                )}
+                <button className="btn">Go to Cart</button>
               </Link>
             ) : (
-              <button onClick={() => AddToCartHandler(item)} className="btn">
-                Add To Cart
+              <button onClick={() => addToCart(item)} className="btn">
+                {itemexist && !buttonloader
+                  ? "Go to Cart"
+                  : buttonloader
+                  ? "Loading"
+                  : "Add To Cart"}
               </button>
             )}
           </span>

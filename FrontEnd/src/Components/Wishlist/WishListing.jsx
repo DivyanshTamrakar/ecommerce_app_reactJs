@@ -5,11 +5,11 @@ import WishItemCard from './WishItemCard';
 
 function WishListing() {
 
-    const { ItemInWishlist } = useWishlist();
+    const { itemInWishlist } = useWishlist();
 
     return (
         <div className="productbox">
-            {ItemInWishlist.map(({ _id, name, image, price, fastDelivery, productId }) => {
+            {itemInWishlist.map(({ _id, name, image, price, fastDelivery, productId }) => {
                 return (
                     <WishItemCard key={_id} _id={_id} name={name} image={image} price={price} fastDelivery={fastDelivery} productId={productId} />
                 );

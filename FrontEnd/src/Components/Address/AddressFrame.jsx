@@ -5,11 +5,12 @@ import EditLocationOutlinedIcon from "@mui/icons-material/EditLocationOutlined";
 import "./Address.css";
 import { getData } from "../../FetchingApi/fetchApi";
 import { useLoader } from "../../context/LoaderContext";
+import Loader from "../Loader";
 
 function AddressFrame() {
   const userId = localStorage.getItem("userId");
   const [address, setAddress] = useState([]);
-  const { setloader } = useLoader();
+  const { loader, setloader } = useLoader();
 
   useEffect(() => {
     getAddressData();
@@ -19,41 +20,48 @@ function AddressFrame() {
   const getAddressData = async () => {
     setloader(true);
     try {
-      let response = await getData(`/address/${userId}`);
-      setloader(false);
+      const response = await getData(`/address/${userId}`);
       setAddress(response.address);
+      setloader(false);
     } catch (e) {
+      console.error(e);
       setloader(false);
     }
   };
 
   return (
-    <div className="show-address">
-      {address.length !== 0 &&
-        address.map(
-          ({ address, city, mobile, name, pincode, state, _id }, index) => {
-            return (
-              <AddressCard
-                key={_id}
-                index={index}
-                address={address}
-                city={city}
-                mobile={mobile}
-                name={name}
-                pincode={pincode}
-                state={state}
-                _id={_id}
-                getAddressData={getAddressData}
-              />
-            );
-          }
-        )}
-      <Link to="/addnewaddress" className="textDecorationNone">
-        <div className="AddressCard addNewAddress ">
-          <EditLocationOutlinedIcon sx={{ fontSize: "75px" }} />
-          <span>Add New Address</span>
+    <div>
+      {loader ? (
+        <Loader />
+      ) : (
+        <div className="show-address">
+          {address.length > 0 &&
+            address.map(
+              ({ address, city, mobile, name, pincode, state, _id }, index) => {
+                return (
+                  <AddressCard
+                    key={_id}
+                    index={index}
+                    address={address}
+                    city={city}
+                    mobile={mobile}
+                    name={name}
+                    pincode={pincode}
+                    state={state}
+                    _id={_id}
+                    getAddressData={getAddressData}
+                  />
+                );
+              }
+            )}
+          <Link to="/addnewaddress" className="textDecorationNone">
+            <div className="AddressCard addNewAddress ">
+              <EditLocationOutlinedIcon sx={{ fontSize: "75px" }} />
+              <span>Add New Address</span>
+            </div>
+          </Link>
         </div>
-      </Link>
+      )}
     </div>
   );
 }

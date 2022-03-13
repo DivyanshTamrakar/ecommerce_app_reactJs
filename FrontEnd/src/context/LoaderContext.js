@@ -3,8 +3,12 @@ export const LoaderContext = createContext();
 
 export function LoaderProvider({ children }) {
   const [loader, setloader] = useState(false);
+  
+
   return (
-    <LoaderContext.Provider value={{ loader, setloader }}>
+    <LoaderContext.Provider
+      value={{ loader, setloader }}
+    >
       {children}
     </LoaderContext.Provider>
   );

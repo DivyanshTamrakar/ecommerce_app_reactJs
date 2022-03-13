@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import "./Address.css";
+import { useLoader } from "../../context/LoaderContext";
 
 function AddressCard({
   address,
@@ -18,8 +19,10 @@ function AddressCard({
   getAddressData,
 }) {
   const [clickvalue, setclickvalue] = useState("0");
+  const { setloader } = useLoader();
 
   const RemoveHandler = async (e) => {
+    setloader(true);
     try {
       const response = await getData(`/address/delete/${e}`);
       response.success
@@ -27,6 +30,7 @@ function AddressCard({
         : toast.error(response.message);
       getAddressData();
     } catch (error) {
+      setloader(false);
       console.error(error);
     }
   };

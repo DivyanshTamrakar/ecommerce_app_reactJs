@@ -92,7 +92,7 @@ h2 {
 }
 
 .outOfStock {
-    filter: opacity(1);
+    filter: opacity(0.7);
 }
 
 @media only screen and (max-width: 768px) {

@@ -78,6 +78,9 @@ function PlacedOrderFooter() {
       theme: {
         color: "#3399cc",
       },
+      
+        method: { netbanking: false, card: false, wallet: false, upi: true },
+      
     };
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
