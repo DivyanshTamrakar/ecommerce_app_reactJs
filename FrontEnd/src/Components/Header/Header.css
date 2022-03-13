@@ -59,3 +59,31 @@
     font-size: 15px;
     color: rgb(0, 0, 0);
 }
+
+@media only screen and (max-width: 768px) {
+    .title {
+        flex: 0.5;
+        font-weight: 700;
+        flex-grow: 1.4;
+        color: white;
+        font-size: 20px;
+    }
+
+    .Actionbox {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        
+    }
+
+    .rightCom {
+        flex: 0.3;
+        flex-grow: 1;
+        border-radius: 20px;
+        padding: 5px;
+        
+    }
+
+
+}

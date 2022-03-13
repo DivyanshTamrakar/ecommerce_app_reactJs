@@ -21,6 +21,7 @@
         position: relative;
         background-color: white;
         display: grid;
+        margin: 0 10px;
         grid-template-columns: repeat(auto-fill, minmax( 300px, 1fr));
         grid-gap: 20px;
         grid-auto-rows: minmax(100px, auto);

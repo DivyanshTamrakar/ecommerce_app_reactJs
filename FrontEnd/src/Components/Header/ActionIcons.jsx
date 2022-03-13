@@ -28,7 +28,7 @@ function ActionIcons() {
           <span className="badge">{itemInCart.length}</span>
         </Link>
       </div>
-      <Link to="/login" className="textDecorationNone">
+      <Link to={"/login"} className="textDecorationNone">
         <AccountCircleIcon sx={IconDesign} />
       </Link>
     </div>
