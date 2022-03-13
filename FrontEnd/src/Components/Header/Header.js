@@ -20,7 +20,7 @@ const Header = () => {
 
       <div className="title">
         <Link to="/" className="textDecorationNone colorWhite">
-          E-Commerce App
+          ShoppingKart
         </Link>
       </div>
 
