@@ -134,7 +134,7 @@ const ProductCard = ({ item }) => {
                 {itemexist && !buttonloader
                   ? "Go to Cart"
                   : buttonloader
-                  ? "Loading"
+                  ? "adding..."
                   : "Add To Cart"}
               </button>
             )}
