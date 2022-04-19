@@ -14,7 +14,7 @@ function WishItemCard({ _id, name, image, price, fastDelivery, productId }) {
   const RemoveWishItem = async (e) => {
     setloader(true);
     try {
-      const response = await getData(`/wishlists/delete/${e}`);
+      await getData(`/wishlists/delete/${e}`);
     } catch (error) {
       console.error(error);
     }
