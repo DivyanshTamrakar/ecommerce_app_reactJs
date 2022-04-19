@@ -13,6 +13,7 @@ import { PrivateRoute } from "./Components/privateroute";
 import { Routes, Route } from "react-router-dom";
 import UserProfile from "./Pages/UserProfile";
 
+
 function App() {
   return (
     <div className="App">
@@ -21,7 +22,10 @@ function App() {
       </div>
       <div>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={
+
+            <Home />
+          } />
           <Route
             path="/carts"
             element={
