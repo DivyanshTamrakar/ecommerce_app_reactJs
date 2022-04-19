@@ -1,11 +1,10 @@
 import axios from "axios";
-
- export const url = "https://divecommercebackend.herokuapp.com";
-// export const url = "http://localhost:5000";
-// userId which comes from local storage
+import { BASE_URL } from "../Constant/base_url";
 export const userId = localStorage.getItem("userId");
+
+
 export async function getData(...endpoints) {
-  const final_url = `${url}${endpoints}`;
+  const final_url = `${BASE_URL}${endpoints}`;
   try {
     const response = await axios.get(final_url);
     return response.data;
@@ -15,7 +14,7 @@ export async function getData(...endpoints) {
 }
 
 export async function postData(body, ...endpoints) {
-  const final_url = `${url}${endpoints}`;
+  const final_url = `${BASE_URL}${endpoints}`;
   try {
     const response = await axios.post(final_url, body);
     return response.data;
