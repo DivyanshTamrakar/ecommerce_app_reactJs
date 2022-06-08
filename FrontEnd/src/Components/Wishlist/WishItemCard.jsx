@@ -2,7 +2,6 @@ import React from "react";
 import { getData, postData } from "../../FetchingApi/fetchApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-
 import { useWishlist } from "../../context/wishlist-context";
 import { useLoader } from "../../context/LoaderContext";
 
